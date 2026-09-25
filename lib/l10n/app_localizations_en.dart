@@ -304,7 +304,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String taskCount(int count) {
-    return '$count tasks';
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tasks',
+      one: '1 task',
+    );
+    return '$_temp0';
   }
 
   @override
@@ -319,4 +325,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get titleRequired => 'Enter a task title.';
+
+  @override
+  String get language => 'Language';
 }

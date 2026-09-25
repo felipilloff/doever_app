@@ -43,6 +43,31 @@ class SettingsScreen extends ConsumerWidget {
                 ),
               ),
               const Divider(height: Space.xxl),
+              Text(s.language, style: Theme.of(context).textTheme.titleLarge),
+              const SizedBox(height: Space.md),
+              for (final language in const [
+                ('en', 'English'),
+                ('zh', '中文'),
+                ('hi', 'हिन्दी'),
+                ('es', 'Español'),
+                ('ar', 'العربية'),
+              ])
+                ListTile(
+                  title: Text(language.$2),
+                  trailing:
+                      (ref.watch(localeProvider)?.languageCode ??
+                              Localizations.localeOf(context).languageCode) ==
+                          language.$1
+                      ? const Icon(Icons.check)
+                      : null,
+                  onTap: () => perform(
+                    context,
+                    () => ref
+                        .read(localeProvider.notifier)
+                        .set(Locale(language.$1)),
+                  ),
+                ),
+              const Divider(height: Space.xxl),
               Text(
                 s.preferences,
                 style: Theme.of(context).textTheme.titleLarge,

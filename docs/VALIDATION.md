@@ -5,7 +5,7 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 ## Completed
 
 - Strict static analysis, including compatible Riverpod analysis-server lint rules.
-- 31 deterministic unit, repository, migration, reminder, widget, accessibility,
+- 32 deterministic unit, repository, migration, reminder, widget, accessibility,
   responsive/text-scaling, and golden-image tests.
 - Android debug APK build, including native SQLite assets, notification receivers,
   Java desugaring, and the application runner.
@@ -18,9 +18,13 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
   pending native requests, cancel, and verify removal. This test does not claim
   to verify notification delivery timing or permission dialogs.
 - Windows x64 release build completed successfully on GitHub Actions
-  ([run 36159427380](https://github.com/felipilloff/doever_app/actions/runs/36159427380)).
+  ([run 36159427380](https://github.com/felipilloff/doever_app/actions/runs/36159427380));
+  the five-language update also compiled in [run 36163424252](https://github.com/felipilloff/doever_app/actions/runs/36163424252).
   The downloaded executable architecture, required DLLs/assets, and ZIP integrity
   were verified. No interactive Windows runtime test was performed.
+- The language selector switches English, Mandarin Chinese, Hindi, Spanish, and Arabic,
+  saves the choice across app restarts, uses right-to-left layout for Arabic,
+  and defaults to English for unsupported system locales; tested at phone width.
 - Linux x86_64 release build and packaged archive verified after extraction,
   including shared-library resolution. The extracted release executable was
   launched and initialized an isolated local database successfully.

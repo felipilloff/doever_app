@@ -94,7 +94,7 @@
   "clearSearch": "Clear search",
   "today": "Today",
   "allLocal": "Stored on this device",
-  "taskCount": "{count} tasks",
+  "taskCount": "{count, plural, one{1 task} other{{count} tasks}}",
   "@taskCount": {
     "placeholders": {
       "count": {
@@ -118,5 +118,6 @@
       }
     }
   },
-  "titleRequired": "Enter a task title."
+  "titleRequired": "Enter a task title.",
+  "language": "Language"
 }

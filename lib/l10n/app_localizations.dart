@@ -5,7 +5,11 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:intl/intl.dart' as intl;
 
+import 'app_localizations_ar.dart';
 import 'app_localizations_en.dart';
+import 'app_localizations_es.dart';
+import 'app_localizations_hi.dart';
+import 'app_localizations_zh.dart';
 
 // ignore_for_file: type=lint
 
@@ -92,7 +96,13 @@ abstract class AppLocalizations {
       ];
 
   /// A list of this localizations delegate's supported locales.
-  static const List<Locale> supportedLocales = <Locale>[Locale('en')];
+  static const List<Locale> supportedLocales = <Locale>[
+    Locale('en'),
+    Locale('ar'),
+    Locale('es'),
+    Locale('hi'),
+    Locale('zh'),
+  ];
 
   /// No description provided for @appName.
   ///
@@ -661,7 +671,7 @@ abstract class AppLocalizations {
   /// No description provided for @taskCount.
   ///
   /// In en, this message translates to:
-  /// **'{count} tasks'**
+  /// **'{count, plural, one{1 task} other{{count} tasks}}'**
   String taskCount(int count);
 
   /// No description provided for @dueOn.
@@ -681,6 +691,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Enter a task title.'**
   String get titleRequired;
+
+  /// No description provided for @language.
+  ///
+  /// In en, this message translates to:
+  /// **'Language'**
+  String get language;
 }
 
 class _AppLocalizationsDelegate
@@ -694,7 +710,7 @@ class _AppLocalizationsDelegate
 
   @override
   bool isSupported(Locale locale) =>
-      <String>['en'].contains(locale.languageCode);
+      <String>['ar', 'en', 'es', 'hi', 'zh'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
@@ -703,8 +719,16 @@ class _AppLocalizationsDelegate
 AppLocalizations lookupAppLocalizations(Locale locale) {
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
+    case 'ar':
+      return AppLocalizationsAr();
     case 'en':
       return AppLocalizationsEn();
+    case 'es':
+      return AppLocalizationsEs();
+    case 'hi':
+      return AppLocalizationsHi();
+    case 'zh':
+      return AppLocalizationsZh();
   }
 
   throw FlutterError(

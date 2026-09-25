@@ -22,7 +22,7 @@ output=build/releases
 test -x "$bundle/doever"
 cp LICENSE THIRD_PARTY_NOTICES.md "$bundle/"
 mkdir -p "$output"
-tar -czf "$output/doever-linux-x64.tar.gz" -C "$bundle" .
+tar --exclude='./data/flutter_assets/kernel_blob.bin' -czf "$output/doever-linux-x64.tar.gz" -C "$bundle" .
 (cd "$output" && sha256sum doever-linux-x64.tar.gz > doever-linux-x64.tar.gz.sha256)
 printf 'Executable: %s/doever
 Archive: %s/doever-linux-x64.tar.gz

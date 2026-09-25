@@ -93,7 +93,7 @@ locally. No external error reporting is installed.
 
 Breakpoints, spacing, shape, colors, and motion tokens are centralized. Material
 ThemeData expresses semantic colors and states. Lato is bundled for offline use.
-English ARB strings establish Flutter's localization architecture.
+English, Mandarin Chinese, Hindi, Spanish, and Arabic ARB catalogs drive Flutter localization. The selected language is stored with the other preferences; Arabic uses Flutter's right-to-left layout.
 
 Task and list collections are lazy. Task details progressively reveal properties.
 Inline edits begin local writes immediately, serialize them, and expose retry on

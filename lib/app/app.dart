@@ -19,6 +19,7 @@ class DoeverApp extends ConsumerWidget {
     theme: DoeverTheme.build(Brightness.light),
     darkTheme: DoeverTheme.build(Brightness.dark),
     themeMode: ref.watch(themeProvider),
+    locale: ref.watch(localeProvider),
     localizationsDelegates: AppLocalizations.localizationsDelegates,
     supportedLocales: AppLocalizations.supportedLocales,
   );

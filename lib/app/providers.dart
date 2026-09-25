@@ -66,6 +66,27 @@ class ThemePreference extends Notifier<ThemeMode> {
   }
 }
 
+final localeProvider = NotifierProvider<LocalePreference, Locale?>(
+  LocalePreference.new,
+);
+
+class LocalePreference extends Notifier<Locale?> {
+  static const supported = {'en', 'zh', 'hi', 'es', 'ar'};
+
+  @override
+  Locale? build() {
+    final language = ref.read(preferencesProvider).getString('language');
+    return supported.contains(language) ? Locale(language!) : null;
+  }
+
+  Future<void> set(Locale value) async {
+    await ref
+        .read(preferencesProvider)
+        .setString('language', value.languageCode);
+    state = value;
+  }
+}
+
 final completedPreferenceProvider = NotifierProvider<CompletedPreference, bool>(
   CompletedPreference.new,
 );

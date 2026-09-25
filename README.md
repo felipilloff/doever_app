@@ -14,7 +14,12 @@ Tasks stay on your device; no account or network connection is needed on native 
 - Calendar due dates, local reminders, and daily/weekday/weekly/monthly/yearly recurrence.
 - Task deletion with undo. Deleting a custom list moves surviving tasks into Tasks.
 - Adaptive sidebar/list/detail panes on desktop, drawer navigation and dedicated details on phones.
-- Light, dark, and system appearance; keyboard shortcuts and English localization foundations.
+- Light, dark, and system appearance; keyboard shortcuts; switchable English, Mandarin Chinese, Hindi, Spanish, and Arabic.
+
+Choose a language in **Settings → Language**. The choice applies immediately and is
+remembered across launches. On a fresh install, Doever follows the device language
+when it is supported, otherwise it uses English. The five languages follow the
+[2025 Ethnologue total-speaker ranking](https://www.visualcapitalist.com/ranked-the-worlds-most-spoken-languages-in-2025/).
 
 ## Screenshots
 
@@ -89,7 +94,7 @@ flutter test integration_test/app_test.dart -d <android-or-desktop-id>
 
 Tests cover smart queries, literal search, calendar dates, recurrence boundaries,
 CRUD, reordering, deletion/undo, file-backed restart persistence, the committed
-schema, reminder permissions/retries, widget interactions, text scaling, and visual snapshots.
+schema, reminder permissions/retries, five-language switching/persistence, widget interactions, text scaling, and visual snapshots.
 The integration test uses an isolated on-disk database and fake notifications; it does not alter your task database.
 OS delivery and permission dialogs require the manual checks in [validation notes](docs/VALIDATION.md).
 
@@ -109,7 +114,7 @@ lib/features/tasks/data/         transactional Drift repository
 lib/features/tasks/presentation/ adaptive task list, details, steps, inline editors
 lib/features/lists/              list entity and navigation
 lib/features/settings/           preferences UI
-lib/l10n/                        English ARB and generated localization
+lib/l10n/                        Five ARB catalogs and generated localization
 ```
 
 UI consumes repository streams through Riverpod. SQLite runs in a background isolate
@@ -146,7 +151,7 @@ Logs contain operation names, exception types, and stacks, never task text or SQ
 Read [CONTRIBUTING.md](CONTRIBUTING.md), [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md), and [SECURITY.md](SECURITY.md).
 The next phase can add sync through the repository boundary. Accounts, cloud sync,
 collaboration, integrations, and AI are not implemented or shown as unfinished UI.
-Near-term work is platform delivery validation, signed installers, localization,
+Near-term work is platform delivery validation, signed installers, translation review,
 and performance measurements on large personal datasets.
 
 ## License
