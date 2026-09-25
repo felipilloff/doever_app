@@ -9,11 +9,23 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
   responsive/text-scaling, and golden-image tests.
 - Android debug APK build, including native SQLite assets, notification receivers,
   Java desugaring, and the application runner.
+- Normal Android APK installed and launched to the My Day empty state. No
+  startup notification prompt appeared; Android reported POST_NOTIFICATIONS
+  as not granted while Doever remained the foreground activity.
 - Pixel 7 Android emulator integration: launch, create list/task, edit, complete,
   close/reopen a file-backed database, verify preserved fields and lists.
 - Real Android notification adapter: schedule, replace with the same ID, inspect
   pending native requests, cancel, and verify removal. This test does not claim
   to verify notification delivery timing or permission dialogs.
+- Windows x64 release build completed successfully on GitHub Actions
+  ([run 36159427380](https://github.com/felipilloff/doever_app/actions/runs/36159427380)).
+  The downloaded executable architecture, required DLLs/assets, and ZIP integrity
+  were verified. No interactive Windows runtime test was performed.
+- Linux x86_64 release build and packaged archive verified after extraction,
+  including shared-library resolution. The extracted release executable was
+  launched and initialized an isolated local database successfully.
+  The Linux desktop integration smoke test
+  passed creation, editing, completion, and file-backed persistence checks.
 - Web release compilation with `--no-web-resources-cdn`; local SQLite WASM and
   Drift worker are included. Web runtime storage and reload/offline behavior have
   not been exercised in a browser in this environment.
@@ -27,12 +39,12 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 
 ## Still requires target hardware / release validation
 
-Windows cannot be built or run on this Linux host. A manual Windows GitHub Actions
-build workflow is included, but has not been dispatched. Validate its installer
-identity and OS reminders before distributing a Windows release.
+Windows was compiled on its native GitHub Actions runner, since this local host
+is Linux. Interactive Windows behavior, installer identity, and OS reminder
+delivery still require validation on Windows before a signed release.
 
-Apple builds were not run. Linux native build prerequisites (GTK development
-libraries, CMake, Ninja, Clang) are missing. Android was tested on an emulator,
+Apple builds were not run. Linux was built and tested on Ubuntu 26.04 x86_64;
+compatibility with older distributions is not certified. Android was tested on an emulator,
 not physical OEM devices. The APK uses debug signing and is not a store release.
 
 Before release, verify on target systems:

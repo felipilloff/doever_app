@@ -32,8 +32,8 @@ The lockfile records the resolved compatible package versions.
 | Platform | Status |
 | --- | --- |
 | Android | Priority target; debug build and emulator smoke test are part of validation. |
-| Windows | Priority target; runner and notification adapter included. Build/run on Windows with Visual Studio C++ desktop tools. |
-| Linux | Runner and SQLite supported; native scheduled reminders are unavailable in the notification plugin. |
+| Windows | x64 release build verified on GitHub Actions; interactive Windows runtime validation remains pending. |
+| Linux | Release build and desktop persistence smoke test validated on Ubuntu 26.04 x86_64; scheduled reminders are unavailable in the notification plugin. |
 | macOS / iOS | Runners and notification configuration included; require validation on Apple hardware. |
 | Web | Compiles with local SQLite WASM and worker assets; scheduled reminders unavailable. Browser storage can be cleared/evicted. |
 
@@ -69,6 +69,14 @@ Serve `build/web` over localhost or HTTPS with `application/wasm` for `.wasm` fi
 SQLite chooses browser-supported persistent storage. Native installations are the fully offline distribution target in v0.1; web needs its application assets to be served and does not yet install an offline service worker.
 To regenerate the web worker: `dart compile js web/drift_worker.dart -o web/drift_worker.dart.js`.
 See [third-party notices](THIRD_PARTY_NOTICES.md) for binary asset provenance.
+
+## Desktop release packages
+
+Run `bash tool/build_linux.sh` on Linux, or `./tool/build_windows.ps1` from
+PowerShell on Windows. Each produces a release executable with its required
+libraries/resources and a compressed package in `build/releases/`.
+See [desktop build instructions](docs/DESKTOP_BUILDS.md) for prerequisites,
+launch commands, compatibility, and the existing Windows CI build.
 
 ## Tests and checks
 
