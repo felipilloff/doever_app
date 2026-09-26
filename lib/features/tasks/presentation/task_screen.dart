@@ -9,6 +9,8 @@ import '../../../app/theme/doever_theme.dart';
 import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../lists/presentation/sidebar.dart';
+import '../../settings/background/background_canvas.dart';
+import '../../settings/background/background_preference.dart';
 import '../domain/task.dart';
 import 'task_detail.dart';
 import 'task_tile.dart';
@@ -98,6 +100,7 @@ class _TaskScreenState extends ConsumerState<TaskScreen>
   @override
   Widget build(BuildContext context) {
     final s = AppLocalizations.of(context);
+    final background = ref.watch(backgroundProvider).asData?.value;
     final today = ref.watch(todayProvider);
     final lists = ref.watch(listsProvider).asData?.value ?? [];
     final query = TaskQuery(
@@ -165,131 +168,157 @@ class _TaskScreenState extends ConsumerState<TaskScreen>
                 children: [
                   if (wide) SizedBox(width: Layout.sidebar, child: sidebar),
                   Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.all(wide ? Space.xl : Space.md),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              if (!wide)
+                    child: BackgroundCanvas(
+                      image: background,
+                      child: Padding(
+                        padding: EdgeInsets.all(wide ? Space.xl : Space.md),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                if (!wide)
+                                  IconButton(
+                                    color: background == null
+                                        ? null
+                                        : Colors.white,
+                                    tooltip: s.openNavigation,
+                                    onPressed: () =>
+                                        _scaffold.currentState?.openDrawer(),
+                                    icon: const Icon(Icons.menu),
+                                  ),
+                                Expanded(
+                                  child: Text(
+                                    title,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .headlineLarge
+                                        ?.copyWith(
+                                          color: background == null
+                                              ? null
+                                              : Colors.white,
+                                        ),
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
                                 IconButton(
-                                  tooltip: s.openNavigation,
-                                  onPressed: () =>
-                                      _scaffold.currentState?.openDrawer(),
-                                  icon: const Icon(Icons.menu),
+                                  color: background == null
+                                      ? null
+                                      : Colors.white,
+                                  tooltip: s.searchShortcutHint,
+                                  onPressed: _openSearch,
+                                  icon: const Icon(Icons.search),
                                 ),
-                              Expanded(
-                                child: Text(
-                                  title,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .headlineLarge,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
+                              ],
+                            ),
+                            const SizedBox(height: Space.sm),
+                            Text(
+                              _view == TaskView.myDay && !_searching
+                                  ? DateFormat.yMMMMEEEEd(s.localeName)
+                                        .format(today.value)
+                                  : s.tagline,
+                              style: Theme.of(context).textTheme.bodyMedium
+                                  ?.copyWith(
+                                    color: background == null
+                                        ? Theme.of(context)
+                                              .colorScheme
+                                              .onSurfaceVariant
+                                        : Colors.white,
+                                  ),
+                            ),
+                            const SizedBox(height: Space.lg),
+                            if (_searching)
+                              Padding(
+                                padding: const EdgeInsets.only(
+                                  bottom: Space.md,
                                 ),
-                              ),
-                              IconButton(
-                                tooltip: s.searchShortcutHint,
-                                onPressed: _openSearch,
-                                icon: const Icon(Icons.search),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: Space.sm),
-                          Text(
-                            _view == TaskView.myDay && !_searching
-                                ? DateFormat.yMMMMEEEEd(s.localeName)
-                                      .format(today.value)
-                                : s.tagline,
-                            style: Theme.of(context).textTheme.bodyMedium
-                                ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .onSurfaceVariant,
-                                ),
-                          ),
-                          const SizedBox(height: Space.lg),
-                          if (_searching)
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: Space.md),
-                              child: TextField(
-                                controller: _search,
-                                focusNode: _searchFocus,
-                                onChanged: (_) => setState(() {}),
-                                decoration: InputDecoration(
-                                  labelText: s.searchHint,
-                                  prefixIcon: const Icon(Icons.search),
-                                  suffixIcon: IconButton(
-                                    tooltip: s.clearSearch,
-                                    icon: const Icon(Icons.close),
-                                    onPressed: () {
-                                      _search.clear();
-                                      setState(() {});
-                                    },
+                                child: TextField(
+                                  controller: _search,
+                                  focusNode: _searchFocus,
+                                  onChanged: (_) => setState(() {}),
+                                  decoration: InputDecoration(
+                                    labelText: s.searchHint,
+                                    prefixIcon: const Icon(Icons.search),
+                                    suffixIcon: IconButton(
+                                      tooltip: s.clearSearch,
+                                      icon: const Icon(Icons.close),
+                                      onPressed: () {
+                                        _search.clear();
+                                        setState(() {});
+                                      },
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          Expanded(
-                            child: tasks.when(
-                              skipLoadingOnReload: true,
-                              data: (items) => items.isEmpty
-                                  ? _empty(context)
-                                  : ListView.builder(
-                                      itemCount: items.length,
-                                      itemBuilder: (context, index) => TaskTile(
-                                        key: ValueKey(items[index].id),
-                                        task: items[index],
-                                        selected: _selected == items[index].id,
-                                        onOpen: () => open(items[index]),
+                            Expanded(
+                              child: tasks.when(
+                                skipLoadingOnReload: true,
+                                data: (items) => items.isEmpty
+                                    ? _empty(context, background != null)
+                                    : ListView.builder(
+                                        itemCount: items.length,
+                                        itemBuilder: (context, index) =>
+                                            TaskTile(
+                                              key: ValueKey(items[index].id),
+                                              task: items[index],
+                                              selected:
+                                                  _selected == items[index].id,
+                                              onOpen: () => open(items[index]),
+                                            ),
                                       ),
-                                    ),
-                              error: (_, _) => Center(
-                                child: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Text(s.loadError),
-                                    TextButton(
-                                      onPressed: () =>
-                                          ref.invalidate(tasksProvider(query)),
-                                      child: Text(s.retry),
-                                    ),
-                                  ],
+                                error: (_, _) => Center(
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(s.loadError),
+                                      TextButton(
+                                        onPressed: () => ref.invalidate(
+                                          tasksProvider(query),
+                                        ),
+                                        child: Text(s.retry),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                loading: () => const SizedBox.shrink(),
+                              ),
+                            ),
+                            const SizedBox(height: Space.md),
+                            TextField(
+                              key: const ValueKey('add-task'),
+                              controller: _title,
+                              focusNode: _addFocus,
+                              maxLength: 500,
+                              enabled: !_creating,
+                              textInputAction: TextInputAction.done,
+                              onSubmitted: (_) => _create(),
+                              decoration: InputDecoration(
+                                counterText: '',
+                                hintText: s.addTask,
+                                prefixIcon: const Icon(Icons.add),
+                                suffixIcon: IconButton(
+                                  tooltip: s.addTask,
+                                  onPressed: _create,
+                                  icon: const Icon(Icons.arrow_upward_rounded),
                                 ),
                               ),
-                              loading: () => const SizedBox.shrink(),
                             ),
-                          ),
-                          const SizedBox(height: Space.md),
-                          TextField(
-                            key: const ValueKey('add-task'),
-                            controller: _title,
-                            focusNode: _addFocus,
-                            maxLength: 500,
-                            enabled: !_creating,
-                            textInputAction: TextInputAction.done,
-                            onSubmitted: (_) => _create(),
-                            decoration: InputDecoration(
-                              counterText: '',
-                              hintText: s.addTask,
-                              prefixIcon: const Icon(Icons.add),
-                              suffixIcon: IconButton(
-                                tooltip: s.addTask,
-                                onPressed: _create,
-                                icon: const Icon(Icons.arrow_upward_rounded),
+                            if (wide)
+                              Padding(
+                                padding: const EdgeInsets.only(top: Space.sm),
+                                child: Text(
+                                  s.quickAddHint,
+                                  style: Theme.of(context).textTheme.labelSmall
+                                      ?.copyWith(
+                                        color: background == null
+                                            ? null
+                                            : Colors.white,
+                                      ),
+                                ),
                               ),
-                            ),
-                          ),
-                          if (wide)
-                            Padding(
-                              padding: const EdgeInsets.only(top: Space.sm),
-                              child: Text(
-                                s.quickAddHint,
-                                style: Theme.of(context).textTheme.labelSmall,
-                              ),
-                            ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -311,7 +340,7 @@ class _TaskScreenState extends ConsumerState<TaskScreen>
     );
   }
 
-  Widget _empty(BuildContext context) {
+  Widget _empty(BuildContext context, bool hasBackground) {
     final s = AppLocalizations.of(context);
     final (title, hint, icon) = _searching
         ? (s.emptySearch, s.emptySearchHint, Icons.search)
@@ -339,7 +368,16 @@ class _TaskScreenState extends ConsumerState<TaskScreen>
           };
     return Center(
       child: SingleChildScrollView(
-        child: Padding(
+        child: Container(
+          constraints: hasBackground
+              ? const BoxConstraints(maxWidth: 440)
+              : null,
+          decoration: hasBackground
+              ? BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(Layout.radius),
+                )
+              : null,
           padding: const EdgeInsets.all(Space.lg),
           child: Column(
             mainAxisSize: MainAxisSize.min,

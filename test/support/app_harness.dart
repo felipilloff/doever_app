@@ -11,6 +11,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fake_reminders.dart';
 
+import 'package:doever/features/notes/application/notes_providers.dart';
+import 'package:doever/features/notes/data/drift_note_repository.dart';
+
 import 'package:doever/features/tasks/domain/calendar_date.dart';
 
 class AppHarness {
@@ -26,6 +29,9 @@ class AppHarness {
       ..addFont(rootBundle.load('assets/fonts/Lato-Regular.ttf'))
       ..addFont(rootBundle.load('assets/fonts/Lato-Semibold.ttf'));
     await font.load();
+    await (FontLoader(
+      'DoeverMono',
+    )..addFont(rootBundle.load('assets/fonts/DejaVuSansMono.ttf'))).load();
     final icons = FontLoader('MaterialIcons')
       ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'));
     await icons.load();
@@ -36,6 +42,7 @@ class AppHarness {
       overrides: [
         if (today != null) todayProvider.overrideWith(() => FixedToday(today)),
         repositoryProvider.overrideWithValue(repository),
+        noteRepositoryProvider.overrideWithValue(DriftNoteRepository(database)),
         remindersProvider.overrideWithValue(FakeReminders()),
         preferencesProvider.overrideWithValue(preferences),
       ],

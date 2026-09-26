@@ -311,4 +311,164 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get language => '语言';
+
+  @override
+  String get backgroundTitle => '工作区背景';
+
+  @override
+  String get backgroundDescription => '让工作区更有个性。选择一张能让你专注的图片。';
+
+  @override
+  String get backgroundPreview => '工作区预览';
+
+  @override
+  String get backgroundApplying => '正在准备背景…';
+
+  @override
+  String get backgroundChoose => '选择图片';
+
+  @override
+  String get backgroundChange => '更换图片';
+
+  @override
+  String get backgroundRemove => '移除背景';
+
+  @override
+  String get backgroundLoadError => '无法打开已保存的图片。请选择其他图片或移除背景。';
+
+  @override
+  String get backgroundFormats => 'PNG、JPEG 或 WebP · 最大 20 MB。横向图片效果最佳。';
+
+  @override
+  String get backgroundLocal => '保存在此设备上，不会修改原始图片。';
+
+  @override
+  String get backgroundInvalid =>
+      '请选择有效的静态 PNG、JPEG 或 WebP 图片（最大 20 MB、4000 万像素）。';
+
+  @override
+  String get notesLabel => '笔记';
+
+  @override
+  String get newPage => '新建页面';
+
+  @override
+  String get untitledPage => '无标题';
+
+  @override
+  String get noNotes => '还没有笔记。创建页面开始写作。';
+
+  @override
+  String get searchPages => '搜索页面';
+
+  @override
+  String get searchPage => '在页面中查找';
+
+  @override
+  String get noteSaved => '已保存到本地';
+
+  @override
+  String get noteSaving => '正在保存…';
+
+  @override
+  String get noteSaveFailed => '更改未保存。离开前请重试。';
+
+  @override
+  String get noteHint => '开始输入，或输入 / 添加块';
+
+  @override
+  String get blockActions => '块操作';
+
+  @override
+  String get addBlock => '添加块';
+
+  @override
+  String get duplicateBlock => '复制';
+
+  @override
+  String get changeBlock => '更改块类型';
+
+  @override
+  String get blockDeleted => '块已删除';
+
+  @override
+  String get pageDeleted => '页面已删除';
+
+  @override
+  String get createNoteTask => '创建 Doever 任务';
+
+  @override
+  String get noteTaskCreated => '已在任务中创建';
+
+  @override
+  String get noteRedo => '重做';
+
+  @override
+  String get previousMatch => '上一个结果';
+
+  @override
+  String get nextMatch => '下一个结果';
+
+  @override
+  String get noteUrl => '网址（http 或 https）';
+
+  @override
+  String get noteInvalidUrl => '请输入有效的 http 或 https 地址。';
+
+  @override
+  String get noteOpenLink => '打开链接';
+
+  @override
+  String get noteImage => '选择图片';
+
+  @override
+  String get noteImageError => '图片不可用';
+
+  @override
+  String get noteToggleBody => '折叠内容';
+
+  @override
+  String get noteIcon => '提示图标（可选）';
+
+  @override
+  String get noteText => '文本';
+
+  @override
+  String get noteH1 => '一级标题';
+
+  @override
+  String get noteH2 => '二级标题';
+
+  @override
+  String get noteH3 => '三级标题';
+
+  @override
+  String get noteBullet => '无序列表';
+
+  @override
+  String get noteNumbered => '有序列表';
+
+  @override
+  String get noteTodo => '待办事项';
+
+  @override
+  String get noteQuote => '引用';
+
+  @override
+  String get noteDivider => '分隔线';
+
+  @override
+  String get noteCode => '代码';
+
+  @override
+  String get noteCallout => '提示';
+
+  @override
+  String get noteLink => '链接';
+
+  @override
+  String get noteToggle => '折叠块';
+
+  @override
+  String get noteChoosePage => '选择页面，或创建新页面。';
 }

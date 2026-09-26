@@ -13,6 +13,8 @@ try {
     $bundle = 'build/windows/x64/runner/Release'
     if (-not (Test-Path "$bundle/doever.exe")) { throw 'doever.exe was not generated.' }
     Copy-Item LICENSE, THIRD_PARTY_NOTICES.md -Destination $bundle -Force
+    New-Item -ItemType Directory -Path "$bundle/licenses" -Force | Out-Null
+    Copy-Item assets/fonts/*LICENSE.txt -Destination "$bundle/licenses" -Force
     $output = 'build/releases'
     New-Item -ItemType Directory -Path $output -Force | Out-Null
     $archive = Join-Path $output 'doever-windows-x64.zip'

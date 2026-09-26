@@ -331,4 +331,168 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get language => 'Idioma';
+
+  @override
+  String get backgroundTitle => 'Fondo del área de trabajo';
+
+  @override
+  String get backgroundDescription =>
+      'Haz tuyo este espacio. Elige una imagen que te ayude a concentrarte.';
+
+  @override
+  String get backgroundPreview => 'Vista previa de tu área de trabajo';
+
+  @override
+  String get backgroundApplying => 'Preparando tu fondo…';
+
+  @override
+  String get backgroundChoose => 'Elegir imagen';
+
+  @override
+  String get backgroundChange => 'Cambiar imagen';
+
+  @override
+  String get backgroundRemove => 'Quitar fondo';
+
+  @override
+  String get backgroundLoadError =>
+      'No se pudo abrir la imagen guardada. Elige otra imagen o quita el fondo.';
+
+  @override
+  String get backgroundFormats =>
+      'PNG, JPEG o WebP · Hasta 20 MB. Las imágenes horizontales se adaptan mejor.';
+
+  @override
+  String get backgroundLocal =>
+      'Guardado en este dispositivo. Tu imagen original se conserva intacta.';
+
+  @override
+  String get backgroundInvalid =>
+      'Elige una imagen PNG, JPEG o WebP válida, sin animación (hasta 20 MB y 40 megapíxeles).';
+
+  @override
+  String get notesLabel => 'Notas';
+
+  @override
+  String get newPage => 'Nueva página';
+
+  @override
+  String get untitledPage => 'Sin título';
+
+  @override
+  String get noNotes => 'Todavía no hay notas. Crea una página para comenzar.';
+
+  @override
+  String get searchPages => 'Buscar páginas';
+
+  @override
+  String get searchPage => 'Buscar en la página';
+
+  @override
+  String get noteSaved => 'Guardado localmente';
+
+  @override
+  String get noteSaving => 'Guardando…';
+
+  @override
+  String get noteSaveFailed => 'Cambios sin guardar. Reintenta antes de salir.';
+
+  @override
+  String get noteHint => 'Escribe algo o usa / para insertar bloques';
+
+  @override
+  String get blockActions => 'Acciones del bloque';
+
+  @override
+  String get addBlock => 'Añadir bloque';
+
+  @override
+  String get duplicateBlock => 'Duplicar';
+
+  @override
+  String get changeBlock => 'Cambiar tipo de bloque';
+
+  @override
+  String get blockDeleted => 'Bloque eliminado';
+
+  @override
+  String get pageDeleted => 'Página eliminada';
+
+  @override
+  String get createNoteTask => 'Crear tarea de Doever';
+
+  @override
+  String get noteTaskCreated => 'Tarea creada en Tareas';
+
+  @override
+  String get noteRedo => 'Rehacer';
+
+  @override
+  String get previousMatch => 'Resultado anterior';
+
+  @override
+  String get nextMatch => 'Resultado siguiente';
+
+  @override
+  String get noteUrl => 'Dirección web (http o https)';
+
+  @override
+  String get noteInvalidUrl => 'Introduce una dirección http o https válida.';
+
+  @override
+  String get noteOpenLink => 'Abrir enlace';
+
+  @override
+  String get noteImage => 'Elegir imagen';
+
+  @override
+  String get noteImageError => 'Imagen no disponible';
+
+  @override
+  String get noteToggleBody => 'Contenido desplegable';
+
+  @override
+  String get noteIcon => 'Icono del aviso (opcional)';
+
+  @override
+  String get noteText => 'Texto';
+
+  @override
+  String get noteH1 => 'Encabezado 1';
+
+  @override
+  String get noteH2 => 'Encabezado 2';
+
+  @override
+  String get noteH3 => 'Encabezado 3';
+
+  @override
+  String get noteBullet => 'Lista con viñetas';
+
+  @override
+  String get noteNumbered => 'Lista numerada';
+
+  @override
+  String get noteTodo => 'Pendiente';
+
+  @override
+  String get noteQuote => 'Cita';
+
+  @override
+  String get noteDivider => 'Separador';
+
+  @override
+  String get noteCode => 'Código';
+
+  @override
+  String get noteCallout => 'Aviso';
+
+  @override
+  String get noteLink => 'Enlace';
+
+  @override
+  String get noteToggle => 'Desplegable';
+
+  @override
+  String get noteChoosePage => 'Selecciona una página o crea una nueva.';
 }

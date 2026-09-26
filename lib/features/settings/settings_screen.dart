@@ -5,6 +5,8 @@ import '../../app/providers.dart';
 import '../../app/theme/doever_theme.dart';
 import '../../core/widgets/feedback.dart';
 import '../../l10n/app_localizations.dart';
+import 'background/background_preference.dart';
+import 'background/background_settings.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -19,6 +21,10 @@ class SettingsScreen extends ConsumerWidget {
           child: ListView(
             padding: const EdgeInsets.all(Space.lg),
             children: [
+              if (supportsDesktopBackground) ...[
+                const BackgroundSettings(),
+                const Divider(height: Space.xxl),
+              ],
               Text(s.theme, style: Theme.of(context).textTheme.titleLarge),
               const SizedBox(height: Space.md),
               ...ThemeMode.values.map(

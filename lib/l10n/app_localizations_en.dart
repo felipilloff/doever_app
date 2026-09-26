@@ -328,4 +328,168 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get language => 'Language';
+
+  @override
+  String get backgroundTitle => 'Workspace background';
+
+  @override
+  String get backgroundDescription =>
+      'Make this space yours. Choose a photo that helps you focus.';
+
+  @override
+  String get backgroundPreview => 'Preview of your workspace';
+
+  @override
+  String get backgroundApplying => 'Preparing your background…';
+
+  @override
+  String get backgroundChoose => 'Choose image';
+
+  @override
+  String get backgroundChange => 'Change image';
+
+  @override
+  String get backgroundRemove => 'Remove background';
+
+  @override
+  String get backgroundLoadError =>
+      'Your saved image could not be opened. Choose another image or remove the background.';
+
+  @override
+  String get backgroundFormats =>
+      'PNG, JPEG or WebP · Up to 20 MB. Landscape images work best.';
+
+  @override
+  String get backgroundLocal =>
+      'Saved on this device. Your original image stays unchanged.';
+
+  @override
+  String get backgroundInvalid =>
+      'Choose a valid, still PNG, JPEG or WebP image (up to 20 MB and 40 megapixels).';
+
+  @override
+  String get notesLabel => 'Notes';
+
+  @override
+  String get newPage => 'New page';
+
+  @override
+  String get untitledPage => 'Untitled';
+
+  @override
+  String get noNotes => 'No notes yet. Create a page to start writing.';
+
+  @override
+  String get searchPages => 'Search pages';
+
+  @override
+  String get searchPage => 'Find in page';
+
+  @override
+  String get noteSaved => 'Saved locally';
+
+  @override
+  String get noteSaving => 'Saving…';
+
+  @override
+  String get noteSaveFailed => 'Changes not saved. Retry before leaving.';
+
+  @override
+  String get noteHint => 'Write something, or type / for blocks';
+
+  @override
+  String get blockActions => 'Block actions';
+
+  @override
+  String get addBlock => 'Add block';
+
+  @override
+  String get duplicateBlock => 'Duplicate';
+
+  @override
+  String get changeBlock => 'Change block type';
+
+  @override
+  String get blockDeleted => 'Block deleted';
+
+  @override
+  String get pageDeleted => 'Page deleted';
+
+  @override
+  String get createNoteTask => 'Create Doever Task';
+
+  @override
+  String get noteTaskCreated => 'Task created in Tasks';
+
+  @override
+  String get noteRedo => 'Redo';
+
+  @override
+  String get previousMatch => 'Previous match';
+
+  @override
+  String get nextMatch => 'Next match';
+
+  @override
+  String get noteUrl => 'Web address (http or https)';
+
+  @override
+  String get noteInvalidUrl => 'Enter a valid http or https address.';
+
+  @override
+  String get noteOpenLink => 'Open link';
+
+  @override
+  String get noteImage => 'Choose image';
+
+  @override
+  String get noteImageError => 'Image unavailable';
+
+  @override
+  String get noteToggleBody => 'Collapsible content';
+
+  @override
+  String get noteIcon => 'Callout icon (optional)';
+
+  @override
+  String get noteText => 'Text';
+
+  @override
+  String get noteH1 => 'Heading 1';
+
+  @override
+  String get noteH2 => 'Heading 2';
+
+  @override
+  String get noteH3 => 'Heading 3';
+
+  @override
+  String get noteBullet => 'Bulleted list';
+
+  @override
+  String get noteNumbered => 'Numbered list';
+
+  @override
+  String get noteTodo => 'Todo';
+
+  @override
+  String get noteQuote => 'Quote';
+
+  @override
+  String get noteDivider => 'Divider';
+
+  @override
+  String get noteCode => 'Code';
+
+  @override
+  String get noteCallout => 'Callout';
+
+  @override
+  String get noteLink => 'Link';
+
+  @override
+  String get noteToggle => 'Toggle';
+
+  @override
+  String get noteChoosePage => 'Select a page, or create a new one.';
 }

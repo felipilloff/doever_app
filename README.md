@@ -14,12 +14,45 @@ Tasks stay on your device; no account or network connection is needed on native 
 - Calendar due dates, local reminders, and daily/weekday/weekly/monthly/yearly recurrence.
 - Task deletion with undo. Deleting a custom list moves surviving tasks into Tasks.
 - Adaptive sidebar/list/detail panes on desktop, drawer navigation and dedicated details on phones.
+- Custom workspace photo backgrounds on Windows and Linux, with preview and local storage.
 - Light, dark, and system appearance; keyboard shortcuts; switchable English, Mandarin Chinese, Hindi, Spanish, and Arabic.
 
 Choose a language in **Settings → Language**. The choice applies immediately and is
 remembered across launches. On a fresh install, Doever follows the device language
 when it is supported, otherwise it uses English. The five languages follow the
 [2025 Ethnologue total-speaker ranking](https://www.visualcapitalist.com/ranked-the-worlds-most-spoken-languages-in-2025/).
+
+On Windows and Linux, open **Settings → Workspace background** to choose, replace,
+or remove a photo. Static PNG, JPEG, and WebP images up to 20 MB and 40 megapixels
+are supported. Doever saves an optimized local copy, so moving or deleting the
+original does not remove your background. A subtle dark overlay and solid task
+cards keep text readable in both themes. This setting is unavailable on other platforms.
+
+## Notes (Windows and Linux)
+
+Open **Notes** from the desktop navigation to create local, offline pages. Pages
+contain independent text, heading (1–3), bulleted/numbered list, TODO, quote,
+divider, code, callout, image, link and toggle blocks. Type `/` for a searchable
+block menu, or use Markdown shortcuts: `# `, `## `, `### `, `- `, `* `, `1. `,
+`[] `, `> `, a triple backtick followed by a space, and `--- `.
+
+Text autosaves after a short pause; page changes flush before navigation. A visible
+error and Retry action preserve unsaved drafts if storage fails. Drag pages or
+blocks to reorder them, or use **Move up / Move down** in their menus. Compatible
+text blocks can change type without losing content. Delete actions offer Undo.
+
+Within Notes: **Ctrl+N** creates a page, **Ctrl+F** searches the current page,
+**Ctrl+Z** undoes, and **Ctrl+Shift+Z / Ctrl+Y** redoes recent session edits.
+Enter at the end of a paragraph creates a block; Shift+Enter inserts a line break.
+Lists continue with Enter, and Enter on an empty list item returns to text. Code
+blocks keep multiline input. Page-title search is separate from task search.
+
+A TODO block's **Create Doever Task** action creates an independent task in Tasks;
+the original block remains and completion is not synchronized. Images are copied
+into local app storage (static PNG/JPEG/WebP, up to 20 MB / 40 megapixels). Links
+accept http/https and open only when explicitly clicked. Toggles contain a title
+and one collapsible text area. There are no nested pages, accounts, synchronization,
+collaboration, or mobile/web Notes views in this release.
 
 ## Screenshots
 
@@ -37,7 +70,7 @@ The lockfile records the resolved compatible package versions.
 | Platform | Status |
 | --- | --- |
 | Android | Priority target; debug build and emulator smoke test are part of validation. |
-| Windows | x64 release build verified on GitHub Actions; interactive Windows runtime validation remains pending. |
+| Windows | x64 release build and Notes integration tested on GitHub Actions; manual target-device validation remains pending. |
 | Linux | Release build and desktop persistence smoke test validated on Ubuntu 26.04 x86_64; scheduled reminders are unavailable in the notification plugin. |
 | macOS / iOS | Runners and notification configuration included; require validation on Apple hardware. |
 | Web | Compiles with local SQLite WASM and worker assets; scheduled reminders unavailable. Browser storage can be cleared/evicted. |
@@ -76,6 +109,11 @@ To regenerate the web worker: `dart compile js web/drift_worker.dart -o web/drif
 See [third-party notices](THIRD_PARTY_NOTICES.md) for binary asset provenance.
 
 ## Desktop release packages
+
+Windows and Linux allow one running instance per desktop session. Launching the
+executable again requests the existing window; closing the app allows a new launch.
+Linux uses the desktop session D-Bus service; Windows uses a named session mutex.
+
 
 Run `bash tool/build_linux.sh` on Linux, or `./tool/build_windows.ps1` from
 PowerShell on Windows. Each produces a release executable with its required

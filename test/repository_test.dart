@@ -331,7 +331,7 @@ void main() {
               .data
               .values
               .single,
-          1,
+          2,
         );
       } finally {
         await disk.close();

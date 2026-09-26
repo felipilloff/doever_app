@@ -8,6 +8,7 @@ import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../tasks/domain/task.dart';
 import '../domain/task_list.dart';
+import '../../notes/application/notes_providers.dart';
 
 class Sidebar extends ConsumerWidget {
   const Sidebar({
@@ -71,6 +72,12 @@ class Sidebar extends ConsumerWidget {
                         .secondaryContainer,
                     onTap: () => onSelect(item.$1, inboxId),
                   ),
+                ),
+              if (supportsNotes)
+                ListTile(
+                  leading: const Icon(Icons.description_outlined),
+                  title: Text(s.notesLabel),
+                  onTap: () => context.push('/notes'),
                 ),
               const SizedBox(height: Space.lg),
               Padding(

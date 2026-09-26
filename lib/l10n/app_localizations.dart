@@ -697,6 +697,324 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Language'**
   String get language;
+
+  /// No description provided for @backgroundTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Workspace background'**
+  String get backgroundTitle;
+
+  /// No description provided for @backgroundDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Make this space yours. Choose a photo that helps you focus.'**
+  String get backgroundDescription;
+
+  /// No description provided for @backgroundPreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview of your workspace'**
+  String get backgroundPreview;
+
+  /// No description provided for @backgroundApplying.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparing your background…'**
+  String get backgroundApplying;
+
+  /// No description provided for @backgroundChoose.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose image'**
+  String get backgroundChoose;
+
+  /// No description provided for @backgroundChange.
+  ///
+  /// In en, this message translates to:
+  /// **'Change image'**
+  String get backgroundChange;
+
+  /// No description provided for @backgroundRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove background'**
+  String get backgroundRemove;
+
+  /// No description provided for @backgroundLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved image could not be opened. Choose another image or remove the background.'**
+  String get backgroundLoadError;
+
+  /// No description provided for @backgroundFormats.
+  ///
+  /// In en, this message translates to:
+  /// **'PNG, JPEG or WebP · Up to 20 MB. Landscape images work best.'**
+  String get backgroundFormats;
+
+  /// No description provided for @backgroundLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved on this device. Your original image stays unchanged.'**
+  String get backgroundLocal;
+
+  /// No description provided for @backgroundInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a valid, still PNG, JPEG or WebP image (up to 20 MB and 40 megapixels).'**
+  String get backgroundInvalid;
+
+  /// No description provided for @notesLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Notes'**
+  String get notesLabel;
+
+  /// No description provided for @newPage.
+  ///
+  /// In en, this message translates to:
+  /// **'New page'**
+  String get newPage;
+
+  /// No description provided for @untitledPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled'**
+  String get untitledPage;
+
+  /// No description provided for @noNotes.
+  ///
+  /// In en, this message translates to:
+  /// **'No notes yet. Create a page to start writing.'**
+  String get noNotes;
+
+  /// No description provided for @searchPages.
+  ///
+  /// In en, this message translates to:
+  /// **'Search pages'**
+  String get searchPages;
+
+  /// No description provided for @searchPage.
+  ///
+  /// In en, this message translates to:
+  /// **'Find in page'**
+  String get searchPage;
+
+  /// No description provided for @noteSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved locally'**
+  String get noteSaved;
+
+  /// No description provided for @noteSaving.
+  ///
+  /// In en, this message translates to:
+  /// **'Saving…'**
+  String get noteSaving;
+
+  /// No description provided for @noteSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes not saved. Retry before leaving.'**
+  String get noteSaveFailed;
+
+  /// No description provided for @noteHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Write something, or type / for blocks'**
+  String get noteHint;
+
+  /// No description provided for @blockActions.
+  ///
+  /// In en, this message translates to:
+  /// **'Block actions'**
+  String get blockActions;
+
+  /// No description provided for @addBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Add block'**
+  String get addBlock;
+
+  /// No description provided for @duplicateBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Duplicate'**
+  String get duplicateBlock;
+
+  /// No description provided for @changeBlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Change block type'**
+  String get changeBlock;
+
+  /// No description provided for @blockDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Block deleted'**
+  String get blockDeleted;
+
+  /// No description provided for @pageDeleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Page deleted'**
+  String get pageDeleted;
+
+  /// No description provided for @createNoteTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Create Doever Task'**
+  String get createNoteTask;
+
+  /// No description provided for @noteTaskCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Task created in Tasks'**
+  String get noteTaskCreated;
+
+  /// No description provided for @noteRedo.
+  ///
+  /// In en, this message translates to:
+  /// **'Redo'**
+  String get noteRedo;
+
+  /// No description provided for @previousMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Previous match'**
+  String get previousMatch;
+
+  /// No description provided for @nextMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Next match'**
+  String get nextMatch;
+
+  /// No description provided for @noteUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Web address (http or https)'**
+  String get noteUrl;
+
+  /// No description provided for @noteInvalidUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid http or https address.'**
+  String get noteInvalidUrl;
+
+  /// No description provided for @noteOpenLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Open link'**
+  String get noteOpenLink;
+
+  /// No description provided for @noteImage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose image'**
+  String get noteImage;
+
+  /// No description provided for @noteImageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Image unavailable'**
+  String get noteImageError;
+
+  /// No description provided for @noteToggleBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Collapsible content'**
+  String get noteToggleBody;
+
+  /// No description provided for @noteIcon.
+  ///
+  /// In en, this message translates to:
+  /// **'Callout icon (optional)'**
+  String get noteIcon;
+
+  /// No description provided for @noteText.
+  ///
+  /// In en, this message translates to:
+  /// **'Text'**
+  String get noteText;
+
+  /// No description provided for @noteH1.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading 1'**
+  String get noteH1;
+
+  /// No description provided for @noteH2.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading 2'**
+  String get noteH2;
+
+  /// No description provided for @noteH3.
+  ///
+  /// In en, this message translates to:
+  /// **'Heading 3'**
+  String get noteH3;
+
+  /// No description provided for @noteBullet.
+  ///
+  /// In en, this message translates to:
+  /// **'Bulleted list'**
+  String get noteBullet;
+
+  /// No description provided for @noteNumbered.
+  ///
+  /// In en, this message translates to:
+  /// **'Numbered list'**
+  String get noteNumbered;
+
+  /// No description provided for @noteTodo.
+  ///
+  /// In en, this message translates to:
+  /// **'Todo'**
+  String get noteTodo;
+
+  /// No description provided for @noteQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote'**
+  String get noteQuote;
+
+  /// No description provided for @noteDivider.
+  ///
+  /// In en, this message translates to:
+  /// **'Divider'**
+  String get noteDivider;
+
+  /// No description provided for @noteCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Code'**
+  String get noteCode;
+
+  /// No description provided for @noteCallout.
+  ///
+  /// In en, this message translates to:
+  /// **'Callout'**
+  String get noteCallout;
+
+  /// No description provided for @noteLink.
+  ///
+  /// In en, this message translates to:
+  /// **'Link'**
+  String get noteLink;
+
+  /// No description provided for @noteToggle.
+  ///
+  /// In en, this message translates to:
+  /// **'Toggle'**
+  String get noteToggle;
+
+  /// No description provided for @noteChoosePage.
+  ///
+  /// In en, this message translates to:
+  /// **'Select a page, or create a new one.'**
+  String get noteChoosePage;
 }
 
 class _AppLocalizationsDelegate

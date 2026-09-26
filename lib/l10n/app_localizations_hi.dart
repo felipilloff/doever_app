@@ -321,4 +321,169 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get language => 'भाषा';
+
+  @override
+  String get backgroundTitle => 'कार्यस्थान की पृष्ठभूमि';
+
+  @override
+  String get backgroundDescription =>
+      'इस जगह को अपना बनाएँ। ऐसी तस्वीर चुनें जो ध्यान लगाने में मदद करे।';
+
+  @override
+  String get backgroundPreview => 'आपके कार्यस्थान का पूर्वावलोकन';
+
+  @override
+  String get backgroundApplying => 'पृष्ठभूमि तैयार की जा रही है…';
+
+  @override
+  String get backgroundChoose => 'तस्वीर चुनें';
+
+  @override
+  String get backgroundChange => 'तस्वीर बदलें';
+
+  @override
+  String get backgroundRemove => 'पृष्ठभूमि हटाएँ';
+
+  @override
+  String get backgroundLoadError =>
+      'सहेजी गई तस्वीर नहीं खुल सकी। दूसरी तस्वीर चुनें या पृष्ठभूमि हटाएँ।';
+
+  @override
+  String get backgroundFormats =>
+      'PNG, JPEG या WebP · अधिकतम 20 MB। क्षैतिज तस्वीरें सबसे अच्छी लगती हैं।';
+
+  @override
+  String get backgroundLocal =>
+      'इस डिवाइस पर सहेजा गया। आपकी मूल तस्वीर नहीं बदलती।';
+
+  @override
+  String get backgroundInvalid =>
+      'मान्य स्थिर PNG, JPEG या WebP तस्वीर चुनें (अधिकतम 20 MB और 40 मेगापिक्सेल)।';
+
+  @override
+  String get notesLabel => 'नोट्स';
+
+  @override
+  String get newPage => 'नया पृष्ठ';
+
+  @override
+  String get untitledPage => 'बिना शीर्षक';
+
+  @override
+  String get noNotes => 'अभी कोई नोट नहीं। लिखने के लिए पृष्ठ बनाएँ।';
+
+  @override
+  String get searchPages => 'पृष्ठ खोजें';
+
+  @override
+  String get searchPage => 'पृष्ठ में खोजें';
+
+  @override
+  String get noteSaved => 'स्थानीय रूप से सहेजा गया';
+
+  @override
+  String get noteSaving => 'सहेजा जा रहा है…';
+
+  @override
+  String get noteSaveFailed =>
+      'बदलाव सहेजे नहीं गए। जाने से पहले पुनः प्रयास करें।';
+
+  @override
+  String get noteHint => 'लिखें या ब्लॉक के लिए / टाइप करें';
+
+  @override
+  String get blockActions => 'ब्लॉक विकल्प';
+
+  @override
+  String get addBlock => 'ब्लॉक जोड़ें';
+
+  @override
+  String get duplicateBlock => 'प्रतिलिपि बनाएँ';
+
+  @override
+  String get changeBlock => 'ब्लॉक का प्रकार बदलें';
+
+  @override
+  String get blockDeleted => 'ब्लॉक हटाया गया';
+
+  @override
+  String get pageDeleted => 'पृष्ठ हटाया गया';
+
+  @override
+  String get createNoteTask => 'Doever कार्य बनाएँ';
+
+  @override
+  String get noteTaskCreated => 'कार्य सूची में कार्य बनाया गया';
+
+  @override
+  String get noteRedo => 'फिर से करें';
+
+  @override
+  String get previousMatch => 'पिछला परिणाम';
+
+  @override
+  String get nextMatch => 'अगला परिणाम';
+
+  @override
+  String get noteUrl => 'वेब पता (http या https)';
+
+  @override
+  String get noteInvalidUrl => 'मान्य http या https पता दर्ज करें।';
+
+  @override
+  String get noteOpenLink => 'लिंक खोलें';
+
+  @override
+  String get noteImage => 'चित्र चुनें';
+
+  @override
+  String get noteImageError => 'चित्र उपलब्ध नहीं';
+
+  @override
+  String get noteToggleBody => 'संकुचित की जा सकने वाली सामग्री';
+
+  @override
+  String get noteIcon => 'सूचना चिह्न (वैकल्पिक)';
+
+  @override
+  String get noteText => 'पाठ';
+
+  @override
+  String get noteH1 => 'शीर्षक 1';
+
+  @override
+  String get noteH2 => 'शीर्षक 2';
+
+  @override
+  String get noteH3 => 'शीर्षक 3';
+
+  @override
+  String get noteBullet => 'बुलेट सूची';
+
+  @override
+  String get noteNumbered => 'क्रमांकित सूची';
+
+  @override
+  String get noteTodo => 'करने का कार्य';
+
+  @override
+  String get noteQuote => 'उद्धरण';
+
+  @override
+  String get noteDivider => 'विभाजक';
+
+  @override
+  String get noteCode => 'कोड';
+
+  @override
+  String get noteCallout => 'सूचना';
+
+  @override
+  String get noteLink => 'लिंक';
+
+  @override
+  String get noteToggle => 'टॉगल';
+
+  @override
+  String get noteChoosePage => 'कोई पृष्ठ चुनें या नया बनाएँ।';
 }

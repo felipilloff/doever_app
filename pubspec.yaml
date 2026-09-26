@@ -46,6 +46,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cupertino_icons: ^1.0.9
+  file_selector: ^1.1.0
+  url_launcher: ^6.3.2
 
 dev_dependencies:
   flutter_test:
@@ -62,6 +64,7 @@ dev_dependencies:
   integration_test:
     sdk: flutter
   riverpod_lint: ^3.1.9
+  file_selector_platform_interface: ^2.7.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,6 +78,9 @@ flutter:
   generate: true
   uses-material-design: true
   fonts:
+    - family: DoeverMono
+      fonts:
+        - asset: assets/fonts/DejaVuSansMono.ttf
     - family: Lato
       fonts:
         - asset: assets/fonts/Lato-Regular.ttf

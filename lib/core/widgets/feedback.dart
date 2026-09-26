@@ -16,6 +16,7 @@ Future<bool> perform(
     if (context.mounted) {
       final s = AppLocalizations.of(context);
       final message = switch (error) {
+        AppFailure(kind: FailureKind.backgroundImage) => s.backgroundInvalid,
         AppFailure(kind: FailureKind.validation) => s.validationError,
         AppFailure(kind: FailureKind.notification) => s.notificationError,
         AppFailure(kind: FailureKind.persistence) => s.persistenceError,

@@ -330,4 +330,168 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get language => 'اللغة';
+
+  @override
+  String get backgroundTitle => 'خلفية مساحة العمل';
+
+  @override
+  String get backgroundDescription =>
+      'اجعل هذه المساحة خاصة بك. اختر صورة تساعدك على التركيز.';
+
+  @override
+  String get backgroundPreview => 'معاينة مساحة العمل';
+
+  @override
+  String get backgroundApplying => 'جارٍ إعداد الخلفية…';
+
+  @override
+  String get backgroundChoose => 'اختيار صورة';
+
+  @override
+  String get backgroundChange => 'تغيير الصورة';
+
+  @override
+  String get backgroundRemove => 'إزالة الخلفية';
+
+  @override
+  String get backgroundLoadError =>
+      'تعذر فتح الصورة المحفوظة. اختر صورة أخرى أو أزل الخلفية.';
+
+  @override
+  String get backgroundFormats =>
+      'PNG أو JPEG أو WebP · حتى 20 ميغابايت. الصور الأفقية هي الأنسب.';
+
+  @override
+  String get backgroundLocal =>
+      'محفوظة على هذا الجهاز. تبقى صورتك الأصلية دون تغيير.';
+
+  @override
+  String get backgroundInvalid =>
+      'اختر صورة ثابتة وصالحة بصيغة PNG أو JPEG أو WebP (حتى 20 ميغابايت و40 ميغابكسل).';
+
+  @override
+  String get notesLabel => 'الملاحظات';
+
+  @override
+  String get newPage => 'صفحة جديدة';
+
+  @override
+  String get untitledPage => 'بدون عنوان';
+
+  @override
+  String get noNotes => 'لا توجد ملاحظات بعد. أنشئ صفحة لبدء الكتابة.';
+
+  @override
+  String get searchPages => 'البحث في الصفحات';
+
+  @override
+  String get searchPage => 'البحث في الصفحة';
+
+  @override
+  String get noteSaved => 'تم الحفظ محليًا';
+
+  @override
+  String get noteSaving => 'جارٍ الحفظ…';
+
+  @override
+  String get noteSaveFailed => 'لم تُحفظ التغييرات. أعد المحاولة قبل المغادرة.';
+
+  @override
+  String get noteHint => 'اكتب شيئًا أو اكتب / لإضافة كتل';
+
+  @override
+  String get blockActions => 'إجراءات الكتلة';
+
+  @override
+  String get addBlock => 'إضافة كتلة';
+
+  @override
+  String get duplicateBlock => 'تكرار';
+
+  @override
+  String get changeBlock => 'تغيير نوع الكتلة';
+
+  @override
+  String get blockDeleted => 'تم حذف الكتلة';
+
+  @override
+  String get pageDeleted => 'تم حذف الصفحة';
+
+  @override
+  String get createNoteTask => 'إنشاء مهمة Doever';
+
+  @override
+  String get noteTaskCreated => 'تم إنشاء المهمة في المهام';
+
+  @override
+  String get noteRedo => 'إعادة';
+
+  @override
+  String get previousMatch => 'النتيجة السابقة';
+
+  @override
+  String get nextMatch => 'النتيجة التالية';
+
+  @override
+  String get noteUrl => 'عنوان الويب (http أو https)';
+
+  @override
+  String get noteInvalidUrl => 'أدخل عنوان http أو https صالحًا.';
+
+  @override
+  String get noteOpenLink => 'فتح الرابط';
+
+  @override
+  String get noteImage => 'اختيار صورة';
+
+  @override
+  String get noteImageError => 'الصورة غير متاحة';
+
+  @override
+  String get noteToggleBody => 'محتوى قابل للطي';
+
+  @override
+  String get noteIcon => 'رمز التنبيه (اختياري)';
+
+  @override
+  String get noteText => 'نص';
+
+  @override
+  String get noteH1 => 'عنوان 1';
+
+  @override
+  String get noteH2 => 'عنوان 2';
+
+  @override
+  String get noteH3 => 'عنوان 3';
+
+  @override
+  String get noteBullet => 'قائمة نقطية';
+
+  @override
+  String get noteNumbered => 'قائمة مرقمة';
+
+  @override
+  String get noteTodo => 'مهمة';
+
+  @override
+  String get noteQuote => 'اقتباس';
+
+  @override
+  String get noteDivider => 'فاصل';
+
+  @override
+  String get noteCode => 'شفرة';
+
+  @override
+  String get noteCallout => 'تنبيه';
+
+  @override
+  String get noteLink => 'رابط';
+
+  @override
+  String get noteToggle => 'كتلة قابلة للطي';
+
+  @override
+  String get noteChoosePage => 'اختر صفحة أو أنشئ صفحة جديدة.';
 }

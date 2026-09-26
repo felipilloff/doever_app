@@ -7,6 +7,8 @@
 #include <memory>
 #include <string>
 
+constexpr wchar_t kDoeverWindowClassName[] = L"DOEVER_RUNNER_WIN32_WINDOW";
+
 // A class abstraction for a high DPI-aware Win32 Window. Intended to be
 // inherited from by classes that wish to specialize with custom
 // rendering and input handling

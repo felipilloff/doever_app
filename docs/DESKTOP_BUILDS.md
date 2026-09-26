@@ -13,8 +13,55 @@ Both packages are available locally after this build:
 
 SHA-256 files and `BUILD_INFO.txt` are beside the archives. Linux was built and
 launched on Ubuntu 26.04 x86_64. Windows was built successfully on its native
-[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36159427380);
-its desktop UI has not been run on this Linux host.
+[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36227397981);
+its native process smoke test passed in CI. Foreground focus has not been visually
+verified on Windows.
+
+## Notes
+
+These packages include local Notes for Windows and Linux: independent blocks,
+autosave, session undo/redo, search, managed images and TODO-to-task creation.
+The first launch upgrades schema v1 to v2 by adding Notes tables and indexes;
+existing task/list/reminder data is preserved. See [Notes architecture](ARCHITECTURE.md#notes-desktop-module)
+and [validation coverage](VALIDATION.md#notes--pages-update).
+
+## Workspace background
+
+Windows and Linux expose **Settings → Workspace background** with a native file
+chooser, live preview, and change/remove actions. Static PNG, JPEG and WebP files
+up to 20 MB and 40 megapixels are accepted; animated files are rejected. Images
+are normalized to PNG with a longest edge of at most 2560 pixels and saved under
+`backgrounds/` in the application support directory. Only the managed copy is
+removed when changing/resetting this preference. The original image is untouched.
+The selected background is local to the installation and persists across launches.
+
+## Single instance
+
+Windows and Linux allow one instance per graphical desktop session, including
+launches from different extracted copies of the package. A second launch exits
+and asks the existing window to restore/activate. Foreground focus ultimately
+follows the desktop window manager's rules. Close old versions before testing an
+updated package: older executables do not participate in this guard.
+
+Linux uses [GTK/GApplication uniqueness](https://docs.gtk.org/gio/class.Application.html)
+via the desktop's D-Bus session. Windows keeps a
+[named mutex](https://learn.microsoft.com/en-us/windows/win32/api/synchapi/nf-synchapi-createmutexw)
+alive for the entire process lifetime. The OS releases ownership on exit/crash.
+
+Run the process regression check with temporary Linux data and a private bus:
+
+```sh
+dbus-run-session -- python3 tool/test_single_instance.py build/linux/x64/release/bundle/doever
+```
+
+Windows CI runs the same check against the release EXE on its isolated runner:
+
+```powershell
+python tool/test_single_instance.py build/windows/x64/runner/Release/doever.exe
+```
+
+The check covers duplicate launches, simultaneous startup, and reopening after
+abrupt process termination. It does not assert foreground focus or minimization.
 
 ## Linux x86_64
 

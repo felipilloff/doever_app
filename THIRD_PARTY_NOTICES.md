@@ -3,6 +3,9 @@
 - **Lato** regular and semibold: Łukasz Dziedzic; SIL Open Font License 1.1.
   Files and full license: `assets/fonts/`. Copied unmodified from the installed
   `fonts-lato` distribution. https://www.latofonts.com/
+- **DejaVu Sans Mono**: Bitstream Vera license; DejaVu changes are public domain.
+  Copied unmodified from `fonts-dejavu-core`; full notices in
+  `assets/fonts/DejaVu-LICENSE.txt` (also `licenses/` in packaged releases). Used for offline code blocks.
 - **SQLite WASM**: unmodified `sqlite3.wasm` from
   https://github.com/simolus3/sqlite3.dart/releases/tag/sqlite3-3.5.2 .
   SQLite is public domain; the sqlite3.dart wrapper uses MIT. See upstream

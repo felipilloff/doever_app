@@ -2279,6 +2279,1199 @@ class ReminderJobsCompanion extends UpdateCompanion<ReminderJob> {
   }
 }
 
+class $NotePagesTable extends NotePages
+    with TableInfo<$NotePagesTable, NotePageRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $NotePagesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _titleMeta = const VerificationMeta('title');
+  @override
+  late final GeneratedColumn<String> title = GeneratedColumn<String>(
+    'title',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<double> sortOrder = GeneratedColumn<double>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    title,
+    sortOrder,
+    createdAt,
+    updatedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'note_pages';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<NotePageRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('title')) {
+      context.handle(
+        _titleMeta,
+        title.isAcceptableOrUnknown(data['title']!, _titleMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sortOrderMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  NotePageRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return NotePageRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      title: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}title'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $NotePagesTable createAlias(String alias) {
+    return $NotePagesTable(attachedDatabase, alias);
+  }
+}
+
+class NotePageRow extends DataClass implements Insertable<NotePageRow> {
+  final String id;
+  final String title;
+  final double sortOrder;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+  const NotePageRow({
+    required this.id,
+    required this.title,
+    required this.sortOrder,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['title'] = Variable<String>(title);
+    map['sort_order'] = Variable<double>(sortOrder);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  NotePagesCompanion toCompanion(bool nullToAbsent) {
+    return NotePagesCompanion(
+      id: Value(id),
+      title: Value(title),
+      sortOrder: Value(sortOrder),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory NotePageRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return NotePageRow(
+      id: serializer.fromJson<String>(json['id']),
+      title: serializer.fromJson<String>(json['title']),
+      sortOrder: serializer.fromJson<double>(json['sortOrder']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'title': serializer.toJson<String>(title),
+      'sortOrder': serializer.toJson<double>(sortOrder),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  NotePageRow copyWith({
+    String? id,
+    String? title,
+    double? sortOrder,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => NotePageRow(
+    id: id ?? this.id,
+    title: title ?? this.title,
+    sortOrder: sortOrder ?? this.sortOrder,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  NotePageRow copyWithCompanion(NotePagesCompanion data) {
+    return NotePageRow(
+      id: data.id.present ? data.id.value : this.id,
+      title: data.title.present ? data.title.value : this.title,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('NotePageRow(')
+          ..write('id: $id, ')
+          ..write('title: $title, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(id, title, sortOrder, createdAt, updatedAt, deletedAt);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is NotePageRow &&
+          other.id == this.id &&
+          other.title == this.title &&
+          other.sortOrder == this.sortOrder &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class NotePagesCompanion extends UpdateCompanion<NotePageRow> {
+  final Value<String> id;
+  final Value<String> title;
+  final Value<double> sortOrder;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const NotePagesCompanion({
+    this.id = const Value.absent(),
+    this.title = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  NotePagesCompanion.insert({
+    required String id,
+    this.title = const Value.absent(),
+    required double sortOrder,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       sortOrder = Value(sortOrder),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<NotePageRow> custom({
+    Expression<String>? id,
+    Expression<String>? title,
+    Expression<double>? sortOrder,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (title != null) 'title': title,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  NotePagesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? title,
+    Value<double>? sortOrder,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return NotePagesCompanion(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (title.present) {
+      map['title'] = Variable<String>(title.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<double>(sortOrder.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('NotePagesCompanion(')
+          ..write('id: $id, ')
+          ..write('title: $title, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $NoteBlocksTable extends NoteBlocks
+    with TableInfo<$NoteBlocksTable, NoteBlockRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $NoteBlocksTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _pageIdMeta = const VerificationMeta('pageId');
+  @override
+  late final GeneratedColumn<String> pageId = GeneratedColumn<String>(
+    'page_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'REFERENCES note_pages (id)',
+    ),
+  );
+  static const VerificationMeta _typeMeta = const VerificationMeta('type');
+  @override
+  late final GeneratedColumn<String> type = GeneratedColumn<String>(
+    'type',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _contentMeta = const VerificationMeta(
+    'content',
+  );
+  @override
+  late final GeneratedColumn<String> content = GeneratedColumn<String>(
+    'content',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _checkedMeta = const VerificationMeta(
+    'checked',
+  );
+  @override
+  late final GeneratedColumn<bool> checked = GeneratedColumn<bool>(
+    'checked',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("checked" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  static const VerificationMeta _urlMeta = const VerificationMeta('url');
+  @override
+  late final GeneratedColumn<String> url = GeneratedColumn<String>(
+    'url',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _imageNameMeta = const VerificationMeta(
+    'imageName',
+  );
+  @override
+  late final GeneratedColumn<String> imageName = GeneratedColumn<String>(
+    'image_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _detailMeta = const VerificationMeta('detail');
+  @override
+  late final GeneratedColumn<String> detail = GeneratedColumn<String>(
+    'detail',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _iconMeta = const VerificationMeta('icon');
+  @override
+  late final GeneratedColumn<String> icon = GeneratedColumn<String>(
+    'icon',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(''),
+  );
+  static const VerificationMeta _expandedMeta = const VerificationMeta(
+    'expanded',
+  );
+  @override
+  late final GeneratedColumn<bool> expanded = GeneratedColumn<bool>(
+    'expanded',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("expanded" IN (0, 1))',
+    ),
+    defaultValue: const Constant(true),
+  );
+  static const VerificationMeta _sortOrderMeta = const VerificationMeta(
+    'sortOrder',
+  );
+  @override
+  late final GeneratedColumn<double> sortOrder = GeneratedColumn<double>(
+    'sort_order',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _createdAtMeta = const VerificationMeta(
+    'createdAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> createdAt = GeneratedColumn<DateTime>(
+    'created_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _updatedAtMeta = const VerificationMeta(
+    'updatedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> updatedAt = GeneratedColumn<DateTime>(
+    'updated_at',
+    aliasedName,
+    false,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _deletedAtMeta = const VerificationMeta(
+    'deletedAt',
+  );
+  @override
+  late final GeneratedColumn<DateTime> deletedAt = GeneratedColumn<DateTime>(
+    'deleted_at',
+    aliasedName,
+    true,
+    type: DriftSqlType.dateTime,
+    requiredDuringInsert: false,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [
+    id,
+    pageId,
+    type,
+    content,
+    checked,
+    url,
+    imageName,
+    detail,
+    icon,
+    expanded,
+    sortOrder,
+    createdAt,
+    updatedAt,
+    deletedAt,
+  ];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'note_blocks';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<NoteBlockRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('page_id')) {
+      context.handle(
+        _pageIdMeta,
+        pageId.isAcceptableOrUnknown(data['page_id']!, _pageIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_pageIdMeta);
+    }
+    if (data.containsKey('type')) {
+      context.handle(
+        _typeMeta,
+        type.isAcceptableOrUnknown(data['type']!, _typeMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_typeMeta);
+    }
+    if (data.containsKey('content')) {
+      context.handle(
+        _contentMeta,
+        content.isAcceptableOrUnknown(data['content']!, _contentMeta),
+      );
+    }
+    if (data.containsKey('checked')) {
+      context.handle(
+        _checkedMeta,
+        checked.isAcceptableOrUnknown(data['checked']!, _checkedMeta),
+      );
+    }
+    if (data.containsKey('url')) {
+      context.handle(
+        _urlMeta,
+        url.isAcceptableOrUnknown(data['url']!, _urlMeta),
+      );
+    }
+    if (data.containsKey('image_name')) {
+      context.handle(
+        _imageNameMeta,
+        imageName.isAcceptableOrUnknown(data['image_name']!, _imageNameMeta),
+      );
+    }
+    if (data.containsKey('detail')) {
+      context.handle(
+        _detailMeta,
+        detail.isAcceptableOrUnknown(data['detail']!, _detailMeta),
+      );
+    }
+    if (data.containsKey('icon')) {
+      context.handle(
+        _iconMeta,
+        icon.isAcceptableOrUnknown(data['icon']!, _iconMeta),
+      );
+    }
+    if (data.containsKey('expanded')) {
+      context.handle(
+        _expandedMeta,
+        expanded.isAcceptableOrUnknown(data['expanded']!, _expandedMeta),
+      );
+    }
+    if (data.containsKey('sort_order')) {
+      context.handle(
+        _sortOrderMeta,
+        sortOrder.isAcceptableOrUnknown(data['sort_order']!, _sortOrderMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_sortOrderMeta);
+    }
+    if (data.containsKey('created_at')) {
+      context.handle(
+        _createdAtMeta,
+        createdAt.isAcceptableOrUnknown(data['created_at']!, _createdAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_createdAtMeta);
+    }
+    if (data.containsKey('updated_at')) {
+      context.handle(
+        _updatedAtMeta,
+        updatedAt.isAcceptableOrUnknown(data['updated_at']!, _updatedAtMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_updatedAtMeta);
+    }
+    if (data.containsKey('deleted_at')) {
+      context.handle(
+        _deletedAtMeta,
+        deletedAt.isAcceptableOrUnknown(data['deleted_at']!, _deletedAtMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  NoteBlockRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return NoteBlockRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      pageId: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}page_id'],
+      )!,
+      type: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}type'],
+      )!,
+      content: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}content'],
+      )!,
+      checked: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}checked'],
+      )!,
+      url: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}url'],
+      )!,
+      imageName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}image_name'],
+      )!,
+      detail: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}detail'],
+      )!,
+      icon: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}icon'],
+      )!,
+      expanded: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}expanded'],
+      )!,
+      sortOrder: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}sort_order'],
+      )!,
+      createdAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}created_at'],
+      )!,
+      updatedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}updated_at'],
+      )!,
+      deletedAt: attachedDatabase.typeMapping.read(
+        DriftSqlType.dateTime,
+        data['${effectivePrefix}deleted_at'],
+      ),
+    );
+  }
+
+  @override
+  $NoteBlocksTable createAlias(String alias) {
+    return $NoteBlocksTable(attachedDatabase, alias);
+  }
+}
+
+class NoteBlockRow extends DataClass implements Insertable<NoteBlockRow> {
+  final String id;
+  final String pageId;
+  final String type;
+  final String content;
+  final bool checked;
+  final String url;
+  final String imageName;
+  final String detail;
+  final String icon;
+  final bool expanded;
+  final double sortOrder;
+  final DateTime createdAt;
+  final DateTime updatedAt;
+  final DateTime? deletedAt;
+  const NoteBlockRow({
+    required this.id,
+    required this.pageId,
+    required this.type,
+    required this.content,
+    required this.checked,
+    required this.url,
+    required this.imageName,
+    required this.detail,
+    required this.icon,
+    required this.expanded,
+    required this.sortOrder,
+    required this.createdAt,
+    required this.updatedAt,
+    this.deletedAt,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['page_id'] = Variable<String>(pageId);
+    map['type'] = Variable<String>(type);
+    map['content'] = Variable<String>(content);
+    map['checked'] = Variable<bool>(checked);
+    map['url'] = Variable<String>(url);
+    map['image_name'] = Variable<String>(imageName);
+    map['detail'] = Variable<String>(detail);
+    map['icon'] = Variable<String>(icon);
+    map['expanded'] = Variable<bool>(expanded);
+    map['sort_order'] = Variable<double>(sortOrder);
+    map['created_at'] = Variable<DateTime>(createdAt);
+    map['updated_at'] = Variable<DateTime>(updatedAt);
+    if (!nullToAbsent || deletedAt != null) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt);
+    }
+    return map;
+  }
+
+  NoteBlocksCompanion toCompanion(bool nullToAbsent) {
+    return NoteBlocksCompanion(
+      id: Value(id),
+      pageId: Value(pageId),
+      type: Value(type),
+      content: Value(content),
+      checked: Value(checked),
+      url: Value(url),
+      imageName: Value(imageName),
+      detail: Value(detail),
+      icon: Value(icon),
+      expanded: Value(expanded),
+      sortOrder: Value(sortOrder),
+      createdAt: Value(createdAt),
+      updatedAt: Value(updatedAt),
+      deletedAt: deletedAt == null && nullToAbsent
+          ? const Value.absent()
+          : Value(deletedAt),
+    );
+  }
+
+  factory NoteBlockRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return NoteBlockRow(
+      id: serializer.fromJson<String>(json['id']),
+      pageId: serializer.fromJson<String>(json['pageId']),
+      type: serializer.fromJson<String>(json['type']),
+      content: serializer.fromJson<String>(json['content']),
+      checked: serializer.fromJson<bool>(json['checked']),
+      url: serializer.fromJson<String>(json['url']),
+      imageName: serializer.fromJson<String>(json['imageName']),
+      detail: serializer.fromJson<String>(json['detail']),
+      icon: serializer.fromJson<String>(json['icon']),
+      expanded: serializer.fromJson<bool>(json['expanded']),
+      sortOrder: serializer.fromJson<double>(json['sortOrder']),
+      createdAt: serializer.fromJson<DateTime>(json['createdAt']),
+      updatedAt: serializer.fromJson<DateTime>(json['updatedAt']),
+      deletedAt: serializer.fromJson<DateTime?>(json['deletedAt']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'pageId': serializer.toJson<String>(pageId),
+      'type': serializer.toJson<String>(type),
+      'content': serializer.toJson<String>(content),
+      'checked': serializer.toJson<bool>(checked),
+      'url': serializer.toJson<String>(url),
+      'imageName': serializer.toJson<String>(imageName),
+      'detail': serializer.toJson<String>(detail),
+      'icon': serializer.toJson<String>(icon),
+      'expanded': serializer.toJson<bool>(expanded),
+      'sortOrder': serializer.toJson<double>(sortOrder),
+      'createdAt': serializer.toJson<DateTime>(createdAt),
+      'updatedAt': serializer.toJson<DateTime>(updatedAt),
+      'deletedAt': serializer.toJson<DateTime?>(deletedAt),
+    };
+  }
+
+  NoteBlockRow copyWith({
+    String? id,
+    String? pageId,
+    String? type,
+    String? content,
+    bool? checked,
+    String? url,
+    String? imageName,
+    String? detail,
+    String? icon,
+    bool? expanded,
+    double? sortOrder,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    Value<DateTime?> deletedAt = const Value.absent(),
+  }) => NoteBlockRow(
+    id: id ?? this.id,
+    pageId: pageId ?? this.pageId,
+    type: type ?? this.type,
+    content: content ?? this.content,
+    checked: checked ?? this.checked,
+    url: url ?? this.url,
+    imageName: imageName ?? this.imageName,
+    detail: detail ?? this.detail,
+    icon: icon ?? this.icon,
+    expanded: expanded ?? this.expanded,
+    sortOrder: sortOrder ?? this.sortOrder,
+    createdAt: createdAt ?? this.createdAt,
+    updatedAt: updatedAt ?? this.updatedAt,
+    deletedAt: deletedAt.present ? deletedAt.value : this.deletedAt,
+  );
+  NoteBlockRow copyWithCompanion(NoteBlocksCompanion data) {
+    return NoteBlockRow(
+      id: data.id.present ? data.id.value : this.id,
+      pageId: data.pageId.present ? data.pageId.value : this.pageId,
+      type: data.type.present ? data.type.value : this.type,
+      content: data.content.present ? data.content.value : this.content,
+      checked: data.checked.present ? data.checked.value : this.checked,
+      url: data.url.present ? data.url.value : this.url,
+      imageName: data.imageName.present ? data.imageName.value : this.imageName,
+      detail: data.detail.present ? data.detail.value : this.detail,
+      icon: data.icon.present ? data.icon.value : this.icon,
+      expanded: data.expanded.present ? data.expanded.value : this.expanded,
+      sortOrder: data.sortOrder.present ? data.sortOrder.value : this.sortOrder,
+      createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
+      updatedAt: data.updatedAt.present ? data.updatedAt.value : this.updatedAt,
+      deletedAt: data.deletedAt.present ? data.deletedAt.value : this.deletedAt,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('NoteBlockRow(')
+          ..write('id: $id, ')
+          ..write('pageId: $pageId, ')
+          ..write('type: $type, ')
+          ..write('content: $content, ')
+          ..write('checked: $checked, ')
+          ..write('url: $url, ')
+          ..write('imageName: $imageName, ')
+          ..write('detail: $detail, ')
+          ..write('icon: $icon, ')
+          ..write('expanded: $expanded, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    id,
+    pageId,
+    type,
+    content,
+    checked,
+    url,
+    imageName,
+    detail,
+    icon,
+    expanded,
+    sortOrder,
+    createdAt,
+    updatedAt,
+    deletedAt,
+  );
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is NoteBlockRow &&
+          other.id == this.id &&
+          other.pageId == this.pageId &&
+          other.type == this.type &&
+          other.content == this.content &&
+          other.checked == this.checked &&
+          other.url == this.url &&
+          other.imageName == this.imageName &&
+          other.detail == this.detail &&
+          other.icon == this.icon &&
+          other.expanded == this.expanded &&
+          other.sortOrder == this.sortOrder &&
+          other.createdAt == this.createdAt &&
+          other.updatedAt == this.updatedAt &&
+          other.deletedAt == this.deletedAt);
+}
+
+class NoteBlocksCompanion extends UpdateCompanion<NoteBlockRow> {
+  final Value<String> id;
+  final Value<String> pageId;
+  final Value<String> type;
+  final Value<String> content;
+  final Value<bool> checked;
+  final Value<String> url;
+  final Value<String> imageName;
+  final Value<String> detail;
+  final Value<String> icon;
+  final Value<bool> expanded;
+  final Value<double> sortOrder;
+  final Value<DateTime> createdAt;
+  final Value<DateTime> updatedAt;
+  final Value<DateTime?> deletedAt;
+  final Value<int> rowid;
+  const NoteBlocksCompanion({
+    this.id = const Value.absent(),
+    this.pageId = const Value.absent(),
+    this.type = const Value.absent(),
+    this.content = const Value.absent(),
+    this.checked = const Value.absent(),
+    this.url = const Value.absent(),
+    this.imageName = const Value.absent(),
+    this.detail = const Value.absent(),
+    this.icon = const Value.absent(),
+    this.expanded = const Value.absent(),
+    this.sortOrder = const Value.absent(),
+    this.createdAt = const Value.absent(),
+    this.updatedAt = const Value.absent(),
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  NoteBlocksCompanion.insert({
+    required String id,
+    required String pageId,
+    required String type,
+    this.content = const Value.absent(),
+    this.checked = const Value.absent(),
+    this.url = const Value.absent(),
+    this.imageName = const Value.absent(),
+    this.detail = const Value.absent(),
+    this.icon = const Value.absent(),
+    this.expanded = const Value.absent(),
+    required double sortOrder,
+    required DateTime createdAt,
+    required DateTime updatedAt,
+    this.deletedAt = const Value.absent(),
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       pageId = Value(pageId),
+       type = Value(type),
+       sortOrder = Value(sortOrder),
+       createdAt = Value(createdAt),
+       updatedAt = Value(updatedAt);
+  static Insertable<NoteBlockRow> custom({
+    Expression<String>? id,
+    Expression<String>? pageId,
+    Expression<String>? type,
+    Expression<String>? content,
+    Expression<bool>? checked,
+    Expression<String>? url,
+    Expression<String>? imageName,
+    Expression<String>? detail,
+    Expression<String>? icon,
+    Expression<bool>? expanded,
+    Expression<double>? sortOrder,
+    Expression<DateTime>? createdAt,
+    Expression<DateTime>? updatedAt,
+    Expression<DateTime>? deletedAt,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (pageId != null) 'page_id': pageId,
+      if (type != null) 'type': type,
+      if (content != null) 'content': content,
+      if (checked != null) 'checked': checked,
+      if (url != null) 'url': url,
+      if (imageName != null) 'image_name': imageName,
+      if (detail != null) 'detail': detail,
+      if (icon != null) 'icon': icon,
+      if (expanded != null) 'expanded': expanded,
+      if (sortOrder != null) 'sort_order': sortOrder,
+      if (createdAt != null) 'created_at': createdAt,
+      if (updatedAt != null) 'updated_at': updatedAt,
+      if (deletedAt != null) 'deleted_at': deletedAt,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  NoteBlocksCompanion copyWith({
+    Value<String>? id,
+    Value<String>? pageId,
+    Value<String>? type,
+    Value<String>? content,
+    Value<bool>? checked,
+    Value<String>? url,
+    Value<String>? imageName,
+    Value<String>? detail,
+    Value<String>? icon,
+    Value<bool>? expanded,
+    Value<double>? sortOrder,
+    Value<DateTime>? createdAt,
+    Value<DateTime>? updatedAt,
+    Value<DateTime?>? deletedAt,
+    Value<int>? rowid,
+  }) {
+    return NoteBlocksCompanion(
+      id: id ?? this.id,
+      pageId: pageId ?? this.pageId,
+      type: type ?? this.type,
+      content: content ?? this.content,
+      checked: checked ?? this.checked,
+      url: url ?? this.url,
+      imageName: imageName ?? this.imageName,
+      detail: detail ?? this.detail,
+      icon: icon ?? this.icon,
+      expanded: expanded ?? this.expanded,
+      sortOrder: sortOrder ?? this.sortOrder,
+      createdAt: createdAt ?? this.createdAt,
+      updatedAt: updatedAt ?? this.updatedAt,
+      deletedAt: deletedAt ?? this.deletedAt,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (pageId.present) {
+      map['page_id'] = Variable<String>(pageId.value);
+    }
+    if (type.present) {
+      map['type'] = Variable<String>(type.value);
+    }
+    if (content.present) {
+      map['content'] = Variable<String>(content.value);
+    }
+    if (checked.present) {
+      map['checked'] = Variable<bool>(checked.value);
+    }
+    if (url.present) {
+      map['url'] = Variable<String>(url.value);
+    }
+    if (imageName.present) {
+      map['image_name'] = Variable<String>(imageName.value);
+    }
+    if (detail.present) {
+      map['detail'] = Variable<String>(detail.value);
+    }
+    if (icon.present) {
+      map['icon'] = Variable<String>(icon.value);
+    }
+    if (expanded.present) {
+      map['expanded'] = Variable<bool>(expanded.value);
+    }
+    if (sortOrder.present) {
+      map['sort_order'] = Variable<double>(sortOrder.value);
+    }
+    if (createdAt.present) {
+      map['created_at'] = Variable<DateTime>(createdAt.value);
+    }
+    if (updatedAt.present) {
+      map['updated_at'] = Variable<DateTime>(updatedAt.value);
+    }
+    if (deletedAt.present) {
+      map['deleted_at'] = Variable<DateTime>(deletedAt.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('NoteBlocksCompanion(')
+          ..write('id: $id, ')
+          ..write('pageId: $pageId, ')
+          ..write('type: $type, ')
+          ..write('content: $content, ')
+          ..write('checked: $checked, ')
+          ..write('url: $url, ')
+          ..write('imageName: $imageName, ')
+          ..write('detail: $detail, ')
+          ..write('icon: $icon, ')
+          ..write('expanded: $expanded, ')
+          ..write('sortOrder: $sortOrder, ')
+          ..write('createdAt: $createdAt, ')
+          ..write('updatedAt: $updatedAt, ')
+          ..write('deletedAt: $deletedAt, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -2286,6 +3479,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $TasksTable tasks = $TasksTable(this);
   late final $StepsTable steps = $StepsTable(this);
   late final $ReminderJobsTable reminderJobs = $ReminderJobsTable(this);
+  late final $NotePagesTable notePages = $NotePagesTable(this);
+  late final $NoteBlocksTable noteBlocks = $NoteBlocksTable(this);
   late final Index tasksList = Index(
     'tasks_list',
     'CREATE INDEX tasks_list ON tasks (list_id, deleted_at, sort_order)',
@@ -2302,6 +3497,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     'steps_task',
     'CREATE INDEX steps_task ON steps (task_id, deleted_at, sort_order)',
   );
+  late final Index notesOrder = Index(
+    'notes_order',
+    'CREATE INDEX notes_order ON note_pages (deleted_at, sort_order)',
+  );
+  late final Index noteBlocksPage = Index(
+    'note_blocks_page',
+    'CREATE INDEX note_blocks_page ON note_blocks (page_id, deleted_at, sort_order)',
+  );
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
@@ -2311,10 +3514,14 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     tasks,
     steps,
     reminderJobs,
+    notePages,
+    noteBlocks,
     tasksList,
     tasksDay,
     tasksDue,
     stepsTask,
+    notesOrder,
+    noteBlocksPage,
   ];
 }
 
@@ -4048,6 +5255,808 @@ typedef $$ReminderJobsTableProcessedTableManager =
       ReminderJob,
       PrefetchHooks Function({bool taskId})
     >;
+typedef $$NotePagesTableCreateCompanionBuilder = NotePagesCompanion Function({
+  required String id,
+  Value<String> title,
+  required double sortOrder,
+  required DateTime createdAt,
+  required DateTime updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+typedef $$NotePagesTableUpdateCompanionBuilder = NotePagesCompanion Function({
+  Value<String> id,
+  Value<String> title,
+  Value<double> sortOrder,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+
+final class $$NotePagesTableReferences
+    extends BaseReferences<_$AppDatabase, $NotePagesTable, NotePageRow> {
+  $$NotePagesTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static MultiTypedResultKey<$NoteBlocksTable, List<NoteBlockRow>>
+  _noteBlocksRefsTable(_$AppDatabase db) => MultiTypedResultKey.fromTable(
+    db.noteBlocks,
+    aliasName: 'note_pages__id__note_blocks__page_id',
+  );
+
+  $$NoteBlocksTableProcessedTableManager get noteBlocksRefs {
+    final manager = $$NoteBlocksTableTableManager(
+      $_db,
+      $_db.noteBlocks,
+    ).filter((f) => f.pageId.id.sqlEquals($_itemColumn<String>('id')!));
+
+    final cache = $_typedResult.readTableOrNull(_noteBlocksRefsTable($_db));
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: cache),
+    );
+  }
+}
+
+class $$NotePagesTableFilterComposer
+    extends Composer<_$AppDatabase, $NotePagesTable> {
+  $$NotePagesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  Expression<bool> noteBlocksRefs(
+    Expression<bool> Function($$NoteBlocksTableFilterComposer f) f,
+  ) {
+    final $$NoteBlocksTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.noteBlocks,
+      getReferencedColumn: (t) => t.pageId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$NoteBlocksTableFilterComposer(
+            $db: $db,
+            $table: $db.noteBlocks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$NotePagesTableOrderingComposer
+    extends Composer<_$AppDatabase, $NotePagesTable> {
+  $$NotePagesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get title => $composableBuilder(
+    column: $table.title,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$NotePagesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $NotePagesTable> {
+  $$NotePagesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get title =>
+      $composableBuilder(column: $table.title, builder: (column) => column);
+
+  GeneratedColumn<double> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  Expression<T> noteBlocksRefs<T extends Object>(
+    Expression<T> Function($$NoteBlocksTableAnnotationComposer a) f,
+  ) {
+    final $$NoteBlocksTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.id,
+      referencedTable: $db.noteBlocks,
+      getReferencedColumn: (t) => t.pageId,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$NoteBlocksTableAnnotationComposer(
+            $db: $db,
+            $table: $db.noteBlocks,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return f(composer);
+  }
+}
+
+class $$NotePagesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $NotePagesTable,
+          NotePageRow,
+          $$NotePagesTableFilterComposer,
+          $$NotePagesTableOrderingComposer,
+          $$NotePagesTableAnnotationComposer,
+          $$NotePagesTableCreateCompanionBuilder,
+          $$NotePagesTableUpdateCompanionBuilder,
+          (NotePageRow, $$NotePagesTableReferences),
+          NotePageRow,
+          PrefetchHooks Function({bool noteBlocksRefs})
+        > {
+  $$NotePagesTableTableManager(_$AppDatabase db, $NotePagesTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$NotePagesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$NotePagesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$NotePagesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> title = const Value.absent(),
+                Value<double> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => NotePagesCompanion(
+                id: id,
+                title: title,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                Value<String> title = const Value.absent(),
+                required double sortOrder,
+                required DateTime createdAt,
+                required DateTime updatedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => NotePagesCompanion.insert(
+                id: id,
+                title: title,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$NotePagesTable, NotePageRow>(table),
+                  $$NotePagesTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({noteBlocksRefs = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [if (noteBlocksRefs) db.noteBlocks],
+              addJoins: null,
+              getPrefetchedDataCallback: (items) async {
+                return [
+                  if (noteBlocksRefs)
+                    await $_getPrefetchedData<
+                      NotePageRow,
+                      $NotePagesTable,
+                      NoteBlockRow
+                    >(
+                      currentTable: table,
+                      referencedTable: $$NotePagesTableReferences
+                          ._noteBlocksRefsTable(db),
+                      managerFromTypedResult: (p0) =>
+                          $$NotePagesTableReferences(
+                            db,
+                            table,
+                            p0,
+                          ).noteBlocksRefs,
+                      referencedItemsForCurrentItem: (item, referencedItems) =>
+                          referencedItems.where((e) => e.pageId == item.id),
+                      typedResults: items,
+                    ),
+                ];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$NotePagesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $NotePagesTable,
+      NotePageRow,
+      $$NotePagesTableFilterComposer,
+      $$NotePagesTableOrderingComposer,
+      $$NotePagesTableAnnotationComposer,
+      $$NotePagesTableCreateCompanionBuilder,
+      $$NotePagesTableUpdateCompanionBuilder,
+      (NotePageRow, $$NotePagesTableReferences),
+      NotePageRow,
+      PrefetchHooks Function({bool noteBlocksRefs})
+    >;
+typedef $$NoteBlocksTableCreateCompanionBuilder = NoteBlocksCompanion Function({
+  required String id,
+  required String pageId,
+  required String type,
+  Value<String> content,
+  Value<bool> checked,
+  Value<String> url,
+  Value<String> imageName,
+  Value<String> detail,
+  Value<String> icon,
+  Value<bool> expanded,
+  required double sortOrder,
+  required DateTime createdAt,
+  required DateTime updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+typedef $$NoteBlocksTableUpdateCompanionBuilder = NoteBlocksCompanion Function({
+  Value<String> id,
+  Value<String> pageId,
+  Value<String> type,
+  Value<String> content,
+  Value<bool> checked,
+  Value<String> url,
+  Value<String> imageName,
+  Value<String> detail,
+  Value<String> icon,
+  Value<bool> expanded,
+  Value<double> sortOrder,
+  Value<DateTime> createdAt,
+  Value<DateTime> updatedAt,
+  Value<DateTime?> deletedAt,
+  Value<int> rowid,
+});
+
+final class $$NoteBlocksTableReferences
+    extends BaseReferences<_$AppDatabase, $NoteBlocksTable, NoteBlockRow> {
+  $$NoteBlocksTableReferences(super.$_db, super.$_table, super.$_typedResult);
+
+  static $NotePagesTable _pageIdTable(_$AppDatabase db) =>
+      db.notePages.createAlias('note_blocks__page_id__note_pages__id');
+
+  $$NotePagesTableProcessedTableManager get pageId {
+    final $_column = $_itemColumn<String>('page_id')!;
+
+    final manager = $$NotePagesTableTableManager(
+      $_db,
+      $_db.notePages,
+    ).filter((f) => f.id.sqlEquals($_column));
+    final item = $_typedResult.readTableOrNull(_pageIdTable($_db));
+    if (item == null) return manager;
+    return ProcessedTableManager(
+      manager.$state.copyWith(prefetchedData: [item]),
+    );
+  }
+}
+
+class $$NoteBlocksTableFilterComposer
+    extends Composer<_$AppDatabase, $NoteBlocksTable> {
+  $$NoteBlocksTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get content => $composableBuilder(
+    column: $table.content,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get checked => $composableBuilder(
+    column: $table.checked,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get url => $composableBuilder(
+    column: $table.url,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get imageName => $composableBuilder(
+    column: $table.imageName,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get detail => $composableBuilder(
+    column: $table.detail,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get icon => $composableBuilder(
+    column: $table.icon,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get expanded => $composableBuilder(
+    column: $table.expanded,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  $$NotePagesTableFilterComposer get pageId {
+    final $$NotePagesTableFilterComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.pageId,
+      referencedTable: $db.notePages,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$NotePagesTableFilterComposer(
+            $db: $db,
+            $table: $db.notePages,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$NoteBlocksTableOrderingComposer
+    extends Composer<_$AppDatabase, $NoteBlocksTable> {
+  $$NoteBlocksTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get type => $composableBuilder(
+    column: $table.type,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get content => $composableBuilder(
+    column: $table.content,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get checked => $composableBuilder(
+    column: $table.checked,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get url => $composableBuilder(
+    column: $table.url,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get imageName => $composableBuilder(
+    column: $table.imageName,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get detail => $composableBuilder(
+    column: $table.detail,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get icon => $composableBuilder(
+    column: $table.icon,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get expanded => $composableBuilder(
+    column: $table.expanded,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get sortOrder => $composableBuilder(
+    column: $table.sortOrder,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get createdAt => $composableBuilder(
+    column: $table.createdAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
+    column: $table.updatedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<DateTime> get deletedAt => $composableBuilder(
+    column: $table.deletedAt,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  $$NotePagesTableOrderingComposer get pageId {
+    final $$NotePagesTableOrderingComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.pageId,
+      referencedTable: $db.notePages,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$NotePagesTableOrderingComposer(
+            $db: $db,
+            $table: $db.notePages,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$NoteBlocksTableAnnotationComposer
+    extends Composer<_$AppDatabase, $NoteBlocksTable> {
+  $$NoteBlocksTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get type =>
+      $composableBuilder(column: $table.type, builder: (column) => column);
+
+  GeneratedColumn<String> get content =>
+      $composableBuilder(column: $table.content, builder: (column) => column);
+
+  GeneratedColumn<bool> get checked =>
+      $composableBuilder(column: $table.checked, builder: (column) => column);
+
+  GeneratedColumn<String> get url =>
+      $composableBuilder(column: $table.url, builder: (column) => column);
+
+  GeneratedColumn<String> get imageName =>
+      $composableBuilder(column: $table.imageName, builder: (column) => column);
+
+  GeneratedColumn<String> get detail =>
+      $composableBuilder(column: $table.detail, builder: (column) => column);
+
+  GeneratedColumn<String> get icon =>
+      $composableBuilder(column: $table.icon, builder: (column) => column);
+
+  GeneratedColumn<bool> get expanded =>
+      $composableBuilder(column: $table.expanded, builder: (column) => column);
+
+  GeneratedColumn<double> get sortOrder =>
+      $composableBuilder(column: $table.sortOrder, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get createdAt =>
+      $composableBuilder(column: $table.createdAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get updatedAt =>
+      $composableBuilder(column: $table.updatedAt, builder: (column) => column);
+
+  GeneratedColumn<DateTime> get deletedAt =>
+      $composableBuilder(column: $table.deletedAt, builder: (column) => column);
+
+  $$NotePagesTableAnnotationComposer get pageId {
+    final $$NotePagesTableAnnotationComposer composer = $composerBuilder(
+      composer: this,
+      getCurrentColumn: (t) => t.pageId,
+      referencedTable: $db.notePages,
+      getReferencedColumn: (t) => t.id,
+      builder:
+          (
+            joinBuilder, {
+            $addJoinBuilderToRootComposer,
+            $removeJoinBuilderFromRootComposer,
+          }) => $$NotePagesTableAnnotationComposer(
+            $db: $db,
+            $table: $db.notePages,
+            $addJoinBuilderToRootComposer: $addJoinBuilderToRootComposer,
+            joinBuilder: joinBuilder,
+            $removeJoinBuilderFromRootComposer:
+                $removeJoinBuilderFromRootComposer,
+          ),
+    );
+    return composer;
+  }
+}
+
+class $$NoteBlocksTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $NoteBlocksTable,
+          NoteBlockRow,
+          $$NoteBlocksTableFilterComposer,
+          $$NoteBlocksTableOrderingComposer,
+          $$NoteBlocksTableAnnotationComposer,
+          $$NoteBlocksTableCreateCompanionBuilder,
+          $$NoteBlocksTableUpdateCompanionBuilder,
+          (NoteBlockRow, $$NoteBlocksTableReferences),
+          NoteBlockRow,
+          PrefetchHooks Function({bool pageId})
+        > {
+  $$NoteBlocksTableTableManager(_$AppDatabase db, $NoteBlocksTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$NoteBlocksTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$NoteBlocksTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$NoteBlocksTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> pageId = const Value.absent(),
+                Value<String> type = const Value.absent(),
+                Value<String> content = const Value.absent(),
+                Value<bool> checked = const Value.absent(),
+                Value<String> url = const Value.absent(),
+                Value<String> imageName = const Value.absent(),
+                Value<String> detail = const Value.absent(),
+                Value<String> icon = const Value.absent(),
+                Value<bool> expanded = const Value.absent(),
+                Value<double> sortOrder = const Value.absent(),
+                Value<DateTime> createdAt = const Value.absent(),
+                Value<DateTime> updatedAt = const Value.absent(),
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => NoteBlocksCompanion(
+                id: id,
+                pageId: pageId,
+                type: type,
+                content: content,
+                checked: checked,
+                url: url,
+                imageName: imageName,
+                detail: detail,
+                icon: icon,
+                expanded: expanded,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String pageId,
+                required String type,
+                Value<String> content = const Value.absent(),
+                Value<bool> checked = const Value.absent(),
+                Value<String> url = const Value.absent(),
+                Value<String> imageName = const Value.absent(),
+                Value<String> detail = const Value.absent(),
+                Value<String> icon = const Value.absent(),
+                Value<bool> expanded = const Value.absent(),
+                required double sortOrder,
+                required DateTime createdAt,
+                required DateTime updatedAt,
+                Value<DateTime?> deletedAt = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => NoteBlocksCompanion.insert(
+                id: id,
+                pageId: pageId,
+                type: type,
+                content: content,
+                checked: checked,
+                url: url,
+                imageName: imageName,
+                detail: detail,
+                icon: icon,
+                expanded: expanded,
+                sortOrder: sortOrder,
+                createdAt: createdAt,
+                updatedAt: updatedAt,
+                deletedAt: deletedAt,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$NoteBlocksTable, NoteBlockRow>(table),
+                  $$NoteBlocksTableReferences(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: ({pageId = false}) {
+            return PrefetchHooks(
+              db: db,
+              explicitlyWatchedTables: [],
+              addJoins:
+                  <
+                    T extends TableManagerState<
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic,
+                      dynamic
+                    >
+                  >(state) {
+                    if (pageId) {
+                      state = state.withJoin(
+                        currentTable: table,
+                        currentColumn: table.pageId,
+                        referencedTable: $$NoteBlocksTableReferences
+                            ._pageIdTable(db),
+                        referencedColumn: $$NoteBlocksTableReferences
+                            ._pageIdTable(db)
+                            .id,
+                      ) as T;
+                    }
+
+                    return state;
+                  },
+              getPrefetchedDataCallback: (items) async {
+                return [];
+              },
+            );
+          },
+        ),
+      );
+}
+
+typedef $$NoteBlocksTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $NoteBlocksTable,
+      NoteBlockRow,
+      $$NoteBlocksTableFilterComposer,
+      $$NoteBlocksTableOrderingComposer,
+      $$NoteBlocksTableAnnotationComposer,
+      $$NoteBlocksTableCreateCompanionBuilder,
+      $$NoteBlocksTableUpdateCompanionBuilder,
+      (NoteBlockRow, $$NoteBlocksTableReferences),
+      NoteBlockRow,
+      PrefetchHooks Function({bool pageId})
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -4060,4 +6069,8 @@ class $AppDatabaseManager {
       $$StepsTableTableManager(_db, _db.steps);
   $$ReminderJobsTableTableManager get reminderJobs =>
       $$ReminderJobsTableTableManager(_db, _db.reminderJobs);
+  $$NotePagesTableTableManager get notePages =>
+      $$NotePagesTableTableManager(_db, _db.notePages);
+  $$NoteBlocksTableTableManager get noteBlocks =>
+      $$NoteBlocksTableTableManager(_db, _db.noteBlocks);
 }

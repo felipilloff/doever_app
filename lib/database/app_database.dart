@@ -64,7 +64,46 @@ class ReminderJobs extends Table {
   BoolColumn get pending => boolean().withDefault(const Constant(true))();
 }
 
-@DriftDatabase(tables: [Lists, Tasks, Steps, ReminderJobs])
+@DataClassName('NotePageRow')
+@TableIndex(name: 'notes_order', columns: {#deletedAt, #sortOrder})
+class NotePages extends Table {
+  TextColumn get id => text()();
+  TextColumn get title => text().withDefault(const Constant(''))();
+  RealColumn get sortOrder => real()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get updatedAt => dateTime()();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+@DataClassName('NoteBlockRow')
+@TableIndex(
+  name: 'note_blocks_page',
+  columns: {#pageId, #deletedAt, #sortOrder},
+)
+class NoteBlocks extends Table {
+  TextColumn get id => text()();
+  TextColumn get pageId => text().references(NotePages, #id)();
+  TextColumn get type => text()();
+  TextColumn get content => text().withDefault(const Constant(''))();
+  BoolColumn get checked => boolean().withDefault(const Constant(false))();
+  TextColumn get url => text().withDefault(const Constant(''))();
+  TextColumn get imageName => text().withDefault(const Constant(''))();
+  TextColumn get detail => text().withDefault(const Constant(''))();
+  TextColumn get icon => text().withDefault(const Constant(''))();
+  BoolColumn get expanded => boolean().withDefault(const Constant(true))();
+  RealColumn get sortOrder => real()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get updatedAt => dateTime()();
+  DateTimeColumn get deletedAt => dateTime().nullable()();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+@DriftDatabase(
+  tables: [Lists, Tasks, Steps, ReminderJobs, NotePages, NoteBlocks],
+)
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor])
     : super(
@@ -81,12 +120,23 @@ class AppDatabase extends _$AppDatabase {
             ),
       );
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) => m.createAll(),
     onUpgrade: (m, from, to) async {
-      throw StateError('No migration from $from to $to');
+      if (from == 1 && to == 2) {
+        await m.createTable(notePages);
+        await m.createTable(noteBlocks);
+        await customStatement(
+          'CREATE INDEX notes_order ON note_pages (deleted_at, sort_order)',
+        );
+        await customStatement(
+          'CREATE INDEX note_blocks_page ON note_blocks (page_id, deleted_at, sort_order)',
+        );
+      } else {
+        throw StateError('No migration from $from to $to');
+      }
     },
     beforeOpen: (_) async => customStatement('PRAGMA foreign_keys = ON'),
   );

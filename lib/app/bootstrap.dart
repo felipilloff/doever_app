@@ -9,6 +9,8 @@ import '../core/notifications/local_reminders.dart';
 import '../core/notifications/reminder_worker.dart';
 import '../database/app_database.dart';
 import '../features/tasks/data/drift_task_repository.dart';
+import '../features/notes/data/drift_note_repository.dart';
+import '../features/notes/application/notes_providers.dart';
 import '../l10n/app_localizations.dart';
 import 'app.dart';
 import 'providers.dart';
@@ -57,6 +59,9 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       return ProviderScope(
         overrides: [
           repositoryProvider.overrideWithValue(repository),
+          noteRepositoryProvider.overrideWithValue(
+            DriftNoteRepository(database),
+          ),
           preferencesProvider.overrideWithValue(preferences),
           remindersProvider.overrideWithValue(reminders),
         ],

@@ -5,7 +5,7 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 ## Completed
 
 - Strict static analysis, including compatible Riverpod analysis-server lint rules.
-- 32 deterministic unit, repository, migration, reminder, widget, accessibility,
+- 45 deterministic unit, repository, migration, reminder, widget, accessibility,
   responsive/text-scaling, and golden-image tests.
 - Android debug APK build, including native SQLite assets, notification receivers,
   Java desugaring, and the application runner.
@@ -41,6 +41,58 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 - File-backed database restart, soft deletion, list migration, sorting, recurrence
   month/leap boundaries, wildcard-safe search, and durable reminder retries.
 
+## Desktop single-instance update
+
+- Linux release and extracted TAR.GZ passed repeated launch, concurrent launch,
+  and restart-after-termination checks using a private D-Bus session and temporary data.
+- Windows release compiled and passed the same native process smoke test in
+  [run 36190933363](https://github.com/felipilloff/doever_app/actions/runs/36190933363).
+  The test now runs before publishing the Windows artifact in Platform builds.
+- Both updated archives and SHA-256 manifests were verified. Foreground focus
+  and minimizing/restoring windows still require an interactive desktop check.
+
+## Desktop background customization
+
+- Real image decoding, resizing, local copying and restart persistence are tested;
+  invalid and oversized replacements preserve the existing image. Replacement and
+  removal clean up the managed copy without changing the original file.
+- Widget checks cover native-picker cancellation through a test adapter, preview,
+  task rendering in both themes, removal, and absence of controls on Android.
+- Settings and desktop screenshots with a custom background were visually inspected.
+  Reproduce them with `flutter test test/background_test.dart --dart-define=backgroundScreenshots=true`.
+- Linux release, web release, Windows release and Android debug compilation passed.
+  Windows CI also passed the native single-instance check in
+  [run 36212233048](https://github.com/felipilloff/doever_app/actions/runs/36212233048).
+- The extracted Linux package passed duplicate/concurrent launch and restart checks.
+- Both updated archives include the native file-selector library; ZIP integrity,
+  Windows x64 architecture, and SHA-256 manifests were verified.
+- Interactive native file-dialog behavior still requires target-system validation.
+
+## Notes / Pages update
+
+- 45 tests pass with the existing task, localization, background and golden suites.
+  Notes coverage includes CRUD/tombstones, ordering, duplication, compatible
+  conversion, task creation, serialized autosave, retry after failure and history.
+- Migration v1 → v2 is schema-verified and compares every existing task, list,
+  step and reminder-job column before/after; preferences are retained separately.
+- Widget checks cover navigation, page/title editing, slash keyboard commands,
+  Markdown shortcuts, checkbox edits, task creation, duplicate/delete/undo/redo,
+  title and in-page search, page/block drag and menu movement, and Ctrl+N/F/Z.
+  Unsupported-platform navigation is rejected. Layouts cover both themes and a
+  narrow desktop window with 200% text scaling.
+- Native Linux and Windows integration creates a page, text/heading/TODO blocks,
+  creates a task, closes/reopens the file-backed database and verifies both page
+  and task. Windows integration passed in
+  [run 36227397981](https://github.com/felipilloff/doever_app/actions/runs/36227397981).
+- The full CI validation, including regenerated Drift code consistency, passed in
+  [run 36227397790](https://github.com/felipilloff/doever_app/actions/runs/36227397790).
+- Linux/Windows release, Android debug and web compilation passed. Both desktop
+  packages include the native image picker and URL launcher. The extracted Linux package resolves
+  its native libraries and passed the single-instance/restart regression check.
+- Image tests exercise managed copying, source removal and invalid-input/path
+  rejection. Native file-dialog interaction and browser launching require manual
+  validation; tests do not open remote URLs.
+
 ## Still requires target hardware / release validation
 
 Windows was compiled on its native GitHub Actions runner, since this local host
@@ -72,6 +124,8 @@ flutter analyze
 flutter test
 flutter test integration_test/app_test.dart -d <android-device>
 flutter test integration_test/reminders_test.dart -d <android-device>
+dbus-run-session -- flutter test integration_test/notes_test.dart -d linux
+flutter test integration_test/notes_test.dart -d windows # on Windows
 flutter build apk --debug
 flutter build web --no-web-resources-cdn
 ```

@@ -1,4 +1,10 @@
-enum FailureKind { validation, persistence, notification, unexpected }
+enum FailureKind {
+  validation,
+  persistence,
+  notification,
+  backgroundImage,
+  unexpected,
+}
 
 class AppFailure implements Exception {
   const AppFailure(this.kind);
