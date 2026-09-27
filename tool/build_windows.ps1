@@ -12,6 +12,10 @@ try {
 
     $bundle = 'build/windows/x64/runner/Release'
     if (-not (Test-Path "$bundle/doever.exe")) { throw 'doever.exe was not generated.' }
+    # Native integration tests can leave a debug kernel in shared Flutter assets.
+    # A release uses the AOT library and must not ship that stale test payload.
+    $kernelBlob = Join-Path $bundle 'data/flutter_assets/kernel_blob.bin'
+    if (Test-Path $kernelBlob) { Remove-Item -LiteralPath $kernelBlob }
     Copy-Item LICENSE, THIRD_PARTY_NOTICES.md -Destination $bundle -Force
     New-Item -ItemType Directory -Path "$bundle/licenses" -Force | Out-Null
     Copy-Item assets/fonts/*LICENSE.txt -Destination "$bundle/licenses" -Force

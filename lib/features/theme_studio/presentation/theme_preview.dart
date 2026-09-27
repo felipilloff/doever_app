@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 import '../../../app/theme/doever_theme.dart';
 import '../../../app/theme/theme_generator.dart';
 import '../../../app/theme/theme_layer_paint.dart';
@@ -23,7 +25,7 @@ class ThemeStudioPreview extends StatelessWidget {
         final colors = Theme.of(context).colorScheme;
         final palette = DoeverPalette.of(context)!;
         return Semantics(
-          label: 'Theme preview: navigation, tasks, text, input and action',
+          label: AppLocalizations.of(context).themePreviewSemantics,
           child: ExcludeSemantics(
             child: IgnorePointer(
               child: AspectRatio(
@@ -56,7 +58,7 @@ class ThemeStudioPreview extends StatelessWidget {
                                             color: colors.primary,
                                           ),
                                           const SizedBox(width: 8),
-                                          const Text(
+                                          Text(
                                             'Doever',
                                             style: TextStyle(
                                               fontWeight: FontWeight.w600,
@@ -65,23 +67,27 @@ class ThemeStudioPreview extends StatelessWidget {
                                         ],
                                       ),
                                       const SizedBox(height: 28),
-                                      const _NavigationSample(
+                                      _NavigationSample(
                                         icon: Icons.wb_sunny_outlined,
-                                        title: 'My Day',
+                                        title: AppLocalizations.of(context)
+                                            .myDay,
                                         selected: true,
                                       ),
-                                      const _NavigationSample(
+                                      _NavigationSample(
                                         icon: Icons.inbox_outlined,
-                                        title: 'Tasks',
+                                        title: AppLocalizations.of(context)
+                                            .tasks,
                                       ),
-                                      const _NavigationSample(
+                                      _NavigationSample(
                                         icon: Icons.description_outlined,
-                                        title: 'Notes',
+                                        title: AppLocalizations.of(context)
+                                            .notes,
                                       ),
                                       const Spacer(),
                                       const Divider(),
                                       Text(
-                                        'Your personal space',
+                                        AppLocalizations.of(context)
+                                            .themePersonalSpace,
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelSmall,
@@ -98,26 +104,28 @@ class ThemeStudioPreview extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'My Day',
+                                      AppLocalizations.of(context).myDay,
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineMedium,
                                     ),
                                     const SizedBox(height: 4),
                                     Text(
-                                      'Room for what matters.',
+                                      AppLocalizations.of(context).themeRoom,
                                       style: TextStyle(
                                         color: colors.onSurfaceVariant,
                                       ),
                                     ),
                                     const SizedBox(height: 24),
-                                    const _TaskSample(
-                                      title: 'Shape the day',
+                                    _TaskSample(
+                                      title: AppLocalizations.of(context)
+                                          .themeSampleDone,
                                       completed: true,
                                     ),
                                     const SizedBox(height: 10),
-                                    const _TaskSample(
-                                      title: 'Review project notes',
+                                    _TaskSample(
+                                      title: AppLocalizations.of(context)
+                                          .themeSampleTask,
                                     ),
                                     const SizedBox(height: 18),
                                     Container(
@@ -138,7 +146,10 @@ class ThemeStudioPreview extends StatelessWidget {
                                             color: colors.primary,
                                           ),
                                           const SizedBox(width: 8),
-                                          const Text('Add a task'),
+                                          Text(
+                                            AppLocalizations.of(context)
+                                                .addTask,
+                                          ),
                                         ],
                                       ),
                                     ),
@@ -148,7 +159,8 @@ class ThemeStudioPreview extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            'All changes stay local',
+                                            AppLocalizations.of(context)
+                                                .themeLocal,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelSmall,
@@ -156,7 +168,10 @@ class ThemeStudioPreview extends StatelessWidget {
                                         ),
                                         FilledButton(
                                           onPressed: () {},
-                                          child: const Text('Create'),
+                                          child: Text(
+                                            AppLocalizations.of(context)
+                                                .themeCreate,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -204,7 +219,14 @@ class _NavigationSample extends StatelessWidget {
         children: [
           Icon(icon, size: 18, color: ink),
           const SizedBox(width: 8),
-          Text(title, style: TextStyle(fontSize: 12, color: ink)),
+          Expanded(
+            child: Text(
+              title,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontSize: 12, color: ink),
+            ),
+          ),
         ],
       ),
     );

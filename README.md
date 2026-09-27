@@ -69,6 +69,10 @@ live preview until you apply them. Use **Ctrl/Cmd+Z** to undo, **Ctrl/Cmd+Y** or
 **Ctrl/Cmd+Shift+Z** to redo, and the layer reset controls to restore one layer or
 the full theme.
 
+Theme Studio follows the language selected in Settings, including dialogs,
+contrast feedback, and built-in preset labels. Custom theme names stay as entered.
+The workspace-background preview uses the active theme's colors and gradients.
+
 ## Screenshots
 
 Generated from deterministic widget tests using the bundled font:

@@ -64,7 +64,11 @@ class ThemeActions {
   ThemeRepository get _repo =>
       _repository ?? (throw StateError('Theme storage is unavailable'));
 
-  Future<CustomTheme> apply(CustomTheme value, {required bool modified}) async {
+  Future<CustomTheme> apply(
+    CustomTheme value, {
+    required bool modified,
+    String? copyName,
+  }) async {
     if (value.isBuiltIn && !modified) {
       await _repo.select(value.id);
       return value;
@@ -79,7 +83,7 @@ class ThemeActions {
     final saved = value.copyWith(
       id: value.isBuiltIn ? const Uuid().v4() : value.id,
       name: needsCopyName
-          ? '${name.substring(0, name.length.clamp(0, 195))} Copy'
+          ? (copyName ?? '${name.substring(0, name.length.clamp(0, 195))} Copy')
           : name,
       createdAt: value.isBuiltIn ? now : value.createdAt,
       updatedAt: now,
@@ -89,7 +93,8 @@ class ThemeActions {
   }
 
   Future<void> restoreDefault() => _repo.select('preset:default');
-  Future<CustomTheme> duplicate(CustomTheme value) => _repo.duplicate(value);
+  Future<CustomTheme> duplicate(CustomTheme value, {String? name}) =>
+      _repo.duplicate(value, name: name);
   Future<void> delete(String id) => _repo.delete(id);
   Future<void> rememberColors(List<int> colors) => _repo.rememberColors(colors);
 

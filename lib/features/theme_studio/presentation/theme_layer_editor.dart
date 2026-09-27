@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 import '../../../app/theme/doever_theme.dart';
 import '../application/theme_draft.dart';
 import '../domain/custom_theme.dart';
@@ -45,18 +47,33 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
     widget.onChanged(widget.layer.copyWith(colors: colors), coalesce: true);
   }
 
-  String _directionName(
-    ThemeGradientDirection direction,
-  ) => switch (direction) {
-    ThemeGradientDirection.topToBottom => 'Top to bottom',
-    ThemeGradientDirection.bottomToTop => 'Bottom to top',
-    ThemeGradientDirection.leftToRight => 'Left to right',
-    ThemeGradientDirection.rightToLeft => 'Right to left',
-    ThemeGradientDirection.topLeftToBottomRight => 'Top left to bottom right',
-    ThemeGradientDirection.topRightToBottomLeft => 'Top right to bottom left',
-    ThemeGradientDirection.bottomLeftToTopRight => 'Bottom left to top right',
-    ThemeGradientDirection.bottomRightToTopLeft => 'Bottom right to top left',
-  };
+  String _directionName(ThemeGradientDirection direction) =>
+      switch (direction) {
+        ThemeGradientDirection.topToBottom => AppLocalizations.of(
+          context,
+        ).themeTopBottom,
+        ThemeGradientDirection.bottomToTop => AppLocalizations.of(
+          context,
+        ).themeBottomTop,
+        ThemeGradientDirection.leftToRight => AppLocalizations.of(
+          context,
+        ).themeLeftRight,
+        ThemeGradientDirection.rightToLeft => AppLocalizations.of(
+          context,
+        ).themeRightLeft,
+        ThemeGradientDirection.topLeftToBottomRight => AppLocalizations.of(
+          context,
+        ).themeTopLeftBottomRight,
+        ThemeGradientDirection.topRightToBottomLeft => AppLocalizations.of(
+          context,
+        ).themeTopRightBottomLeft,
+        ThemeGradientDirection.bottomLeftToTopRight => AppLocalizations.of(
+          context,
+        ).themeBottomLeftTopRight,
+        ThemeGradientDirection.bottomRightToTopLeft => AppLocalizations.of(
+          context,
+        ).themeBottomRightTopLeft,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -91,22 +108,22 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                 TextButton.icon(
                   onPressed: () => widget.draft.resetLayer(widget.index),
                   icon: const Icon(Icons.restart_alt, size: 18),
-                  label: const Text('Reset layer'),
+                  label: Text(AppLocalizations.of(context).themeResetLayer),
                 ),
               ],
             ),
             const SizedBox(height: Space.lg),
             SegmentedButton<ThemeLayerMode>(
               showSelectedIcon: false,
-              segments: const [
+              segments: [
                 ButtonSegment(
                   value: ThemeLayerMode.solid,
-                  label: Text('Solid'),
+                  label: Text(AppLocalizations.of(context).themeSolid),
                   icon: Icon(Icons.square_rounded),
                 ),
                 ButtonSegment(
                   value: ThemeLayerMode.gradient,
-                  label: Text('Gradient'),
+                  label: Text(AppLocalizations.of(context).themeGradient),
                   icon: Icon(Icons.gradient_rounded),
                 ),
               ],
@@ -126,7 +143,10 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
             const SizedBox(height: Space.lg),
             Row(
               children: [
-                Text('Colors', style: Theme.of(context).textTheme.labelLarge),
+                Text(
+                  AppLocalizations.of(context).themeColors,
+                  style: Theme.of(context).textTheme.labelLarge,
+                ),
                 const Spacer(),
                 if (layer.mode == ThemeLayerMode.gradient &&
                     layer.colors.length == 2)
@@ -138,7 +158,7 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                       setState(() => _selectedStop = 1);
                     },
                     icon: const Icon(Icons.add, size: 18),
-                    label: const Text('Add stop'),
+                    label: Text(AppLocalizations.of(context).themeAddStop),
                   ),
                 if (layer.colors.length == 3)
                   TextButton.icon(
@@ -148,7 +168,7 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                       setState(() => _selectedStop = 0);
                     },
                     icon: const Icon(Icons.remove, size: 18),
-                    label: const Text('Remove stop'),
+                    label: Text(AppLocalizations.of(context).themeRemoveStop),
                   ),
               ],
             ),
@@ -160,7 +180,7 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                     child: Semantics(
                       button: true,
                       selected: _selectedStop == i,
-                      label: 'Color stop ${i + 1}',
+                      label: AppLocalizations.of(context).themeColorStop(i + 1),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
                         onTap: () => setState(() => _selectedStop = i),
@@ -199,7 +219,9 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                 key: ValueKey(layer.direction),
                 isExpanded: true,
                 initialValue: layer.direction,
-                decoration: const InputDecoration(labelText: 'Direction'),
+                decoration: InputDecoration(
+                  labelText: AppLocalizations.of(context).themeDirection,
+                ),
                 items: [
                   for (final direction in ThemeGradientDirection.values)
                     DropdownMenuItem(
@@ -216,11 +238,14 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
             ExpansionTile(
               tilePadding: EdgeInsets.zero,
               childrenPadding: EdgeInsets.zero,
-              title: const Text('Advanced'),
-              subtitle: const Text('Tone, intensity, and gradient strength'),
+              title: Text(AppLocalizations.of(context).themeAdvanced),
+              subtitle: Text(
+                AppLocalizations.of(context).themeAdvancedDescription,
+              ),
               children: [
                 _PercentSlider(
-                  label: 'Tone',
+                  sliderKey: 'theme-tone',
+                  label: AppLocalizations.of(context).themeTone,
                   value: layer.tone,
                   neutral: 50,
                   onChanged: (value) => widget.onChanged(
@@ -230,7 +255,8 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                   onChangeEnd: widget.draft.endGesture,
                 ),
                 _PercentSlider(
-                  label: 'Intensity',
+                  sliderKey: 'theme-intensity',
+                  label: AppLocalizations.of(context).themeIntensity,
                   value: layer.intensity,
                   onChanged: (value) => widget.onChanged(
                     layer.copyWith(intensity: value),
@@ -240,7 +266,8 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
                 ),
                 if (layer.mode == ThemeLayerMode.gradient)
                   _PercentSlider(
-                    label: 'Gradient strength',
+                    sliderKey: 'theme-gradient-strength',
+                    label: AppLocalizations.of(context).themeGradientStrength,
                     value: layer.gradientStrength,
                     onChanged: (value) => widget.onChanged(
                       layer.copyWith(gradientStrength: value),
@@ -259,6 +286,7 @@ class _ThemeLayerEditorState extends State<ThemeLayerEditor> {
 
 class _PercentSlider extends StatelessWidget {
   const _PercentSlider({
+    required this.sliderKey,
     required this.label,
     required this.value,
     required this.onChanged,
@@ -266,6 +294,7 @@ class _PercentSlider extends StatelessWidget {
     this.neutral,
   });
   final String label;
+  final String sliderKey;
   final double value;
   final double? neutral;
   final ValueChanged<double> onChanged;
@@ -277,12 +306,12 @@ class _PercentSlider extends StatelessWidget {
       SizedBox(width: 118, child: Text(label)),
       Expanded(
         child: Slider(
-          key: ValueKey('theme-${label.toLowerCase().replaceAll(' ', '-')}'),
+          key: ValueKey(sliderKey),
           value: value,
           min: 0,
           max: 100,
           semanticFormatterCallback: (value) =>
-              '$label ${value.round()} percent',
+              AppLocalizations.of(context).themePercent(label, value.round()),
           divisions: 100,
           label: '${value.round()}%',
           secondaryTrackValue: neutral,

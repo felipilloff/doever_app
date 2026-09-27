@@ -492,4 +492,339 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noteChoosePage => 'Select a page, or create a new one.';
+
+  @override
+  String get themeStudio => 'Theme Studio';
+
+  @override
+  String get themeStudioSubtitle => 'Make Doever feel like yours';
+
+  @override
+  String get themeLayers => 'Foundation, Surface & Accent';
+
+  @override
+  String get themeFoundation => 'Foundation';
+
+  @override
+  String get themeSurface => 'Surface';
+
+  @override
+  String get themeAccent => 'Accent';
+
+  @override
+  String get themeFoundationDescription =>
+      'The workspace background and overall atmosphere.';
+
+  @override
+  String get themeSurfaceDescription =>
+      'Cards, panels, inputs, and elevated content.';
+
+  @override
+  String get themeAccentDescription =>
+      'Actions, focus, selection, and personality.';
+
+  @override
+  String get themeApply => 'Apply';
+
+  @override
+  String get themeUnsaved => 'Unsaved theme changes';
+
+  @override
+  String get themeLeavePrompt =>
+      'Apply your changes before leaving Theme Studio?';
+
+  @override
+  String get themeContinueEditing => 'Continue editing';
+
+  @override
+  String get themeDiscard => 'Discard';
+
+  @override
+  String get themeNameInvalid => 'Give this theme a name of 1–200 characters.';
+
+  @override
+  String get themeApplied => 'Theme applied';
+
+  @override
+  String get themeApplyFailed =>
+      'Couldn’t apply this theme. Your changes are still here.';
+
+  @override
+  String get themeUntitled => 'Untitled theme';
+
+  @override
+  String get themeRename => 'Rename theme';
+
+  @override
+  String themeDeleteTitle(String name) {
+    return 'Delete “$name”?';
+  }
+
+  @override
+  String get themeDeleteMessage =>
+      'This saved theme will be permanently removed.';
+
+  @override
+  String get themeFile => 'Doever theme';
+
+  @override
+  String get themeFileTooLarge =>
+      'That theme file is too large. Choose a file under 64 KB.';
+
+  @override
+  String get themeFileInvalid => 'That file isn’t a valid Doever theme.';
+
+  @override
+  String get themeExportFailed => 'Couldn’t export this theme.';
+
+  @override
+  String get themeSaveFailed => 'Couldn’t save that change. Please try again.';
+
+  @override
+  String get themeBack => 'Back to settings';
+
+  @override
+  String get themeRedo => 'Redo';
+
+  @override
+  String get themeThemes => 'Themes';
+
+  @override
+  String get themeLivePreview => 'Live preview';
+
+  @override
+  String get themePreviewHint =>
+      'Preview changes throughout Doever before applying';
+
+  @override
+  String get themePreviewInApp => 'Preview in app';
+
+  @override
+  String get themeContrastGood => 'Contrast · Good';
+
+  @override
+  String get themeContrastProtected => 'Contrast · Readability protected';
+
+  @override
+  String get themeName => 'Theme name';
+
+  @override
+  String get themeReset => 'Reset theme';
+
+  @override
+  String get themeMode => 'Mode';
+
+  @override
+  String get themeAutoBalance => 'Auto Balance';
+
+  @override
+  String get themeAutoBalanceDescription =>
+      'Keep layers distinct and comfortably readable.';
+
+  @override
+  String get themeLowContrast => 'Low contrast in selected colors';
+
+  @override
+  String get themeBalanceContrast => 'Auto balance contrast';
+
+  @override
+  String get themeBalanced => 'Balanced automatically';
+
+  @override
+  String get themeFix => 'Fix automatically';
+
+  @override
+  String get themeKeep => 'Keep anyway';
+
+  @override
+  String get themeGallery => 'Theme gallery';
+
+  @override
+  String get themeImport => 'Import theme';
+
+  @override
+  String get themeExport => 'Export theme';
+
+  @override
+  String get themeGalleryDescription =>
+      'Start from a curated look or one you saved.';
+
+  @override
+  String get themeBuiltIn => 'Built in';
+
+  @override
+  String get themeSaved => 'Saved';
+
+  @override
+  String get themeNew => 'New theme';
+
+  @override
+  String get themeEmpty => 'Your saved themes will appear here.';
+
+  @override
+  String get themeActive => 'Applied';
+
+  @override
+  String themeActions(String name) {
+    return '$name actions';
+  }
+
+  @override
+  String get themeResetLayer => 'Reset layer';
+
+  @override
+  String get themeSolid => 'Solid';
+
+  @override
+  String get themeGradient => 'Gradient';
+
+  @override
+  String get themeColors => 'Colors';
+
+  @override
+  String get themeAddStop => 'Add stop';
+
+  @override
+  String get themeRemoveStop => 'Remove stop';
+
+  @override
+  String themeColorStop(int number) {
+    return 'Color stop $number';
+  }
+
+  @override
+  String get themeDirection => 'Direction';
+
+  @override
+  String get themeTopBottom => 'Top to bottom';
+
+  @override
+  String get themeBottomTop => 'Bottom to top';
+
+  @override
+  String get themeLeftRight => 'Left to right';
+
+  @override
+  String get themeRightLeft => 'Right to left';
+
+  @override
+  String get themeTopLeftBottomRight => 'Top left to bottom right';
+
+  @override
+  String get themeTopRightBottomLeft => 'Top right to bottom left';
+
+  @override
+  String get themeBottomLeftTopRight => 'Bottom left to top right';
+
+  @override
+  String get themeBottomRightTopLeft => 'Bottom right to top left';
+
+  @override
+  String get themeAdvanced => 'Advanced';
+
+  @override
+  String get themeAdvancedDescription =>
+      'Tone, intensity, and gradient strength';
+
+  @override
+  String get themeTone => 'Tone';
+
+  @override
+  String get themeIntensity => 'Intensity';
+
+  @override
+  String get themeGradientStrength => 'Gradient strength';
+
+  @override
+  String themePercent(String label, int value) {
+    return '$label $value percent';
+  }
+
+  @override
+  String get themeHexInvalid => 'Use #RRGGBB';
+
+  @override
+  String get themeSaturationBrightness => 'Saturation and brightness';
+
+  @override
+  String get themeHue => 'Hue';
+
+  @override
+  String themeHueDegrees(int value) {
+    return 'Hue $value degrees';
+  }
+
+  @override
+  String get themeRecentColors => 'Recent colors';
+
+  @override
+  String get themePreviewSemantics =>
+      'Theme preview: navigation, tasks, text, input and action';
+
+  @override
+  String get themePersonalSpace => 'Your personal space';
+
+  @override
+  String get themeRoom => 'Room for what matters.';
+
+  @override
+  String get themeSampleDone => 'Shape the day';
+
+  @override
+  String get themeSampleTask => 'Review project notes';
+
+  @override
+  String get themeLocal => 'All changes stay local';
+
+  @override
+  String get themeCreate => 'Create';
+
+  @override
+  String get themeHierarchyBalanced =>
+      'Foundation and Surface were balanced for clearer hierarchy.';
+
+  @override
+  String get themeHierarchyLow =>
+      'Foundation and Surface have low visual hierarchy.';
+
+  @override
+  String get themeAccentAdjusted =>
+      'Accent tones were adjusted to keep foreground text readable.';
+
+  @override
+  String get themeGradientMissing => 'A gradient needs at least two colors.';
+
+  @override
+  String get themeLightAdjusted =>
+      'Layer tones were adjusted for readable light mode.';
+
+  @override
+  String get themeDarkAdjusted =>
+      'Layer tones were adjusted for readable dark mode.';
+
+  @override
+  String themeCopyName(String name) {
+    return '$name Copy';
+  }
+
+  @override
+  String get themePresetMidnight => 'Midnight';
+
+  @override
+  String get themePresetGraphite => 'Graphite';
+
+  @override
+  String get themePresetOcean => 'Ocean';
+
+  @override
+  String get themePresetAurora => 'Aurora';
+
+  @override
+  String get themePresetEmber => 'Ember';
+
+  @override
+  String get themePresetForest => 'Forest';
+
+  @override
+  String get themePresetSand => 'Sand';
 }

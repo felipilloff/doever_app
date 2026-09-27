@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../../l10n/app_localizations.dart';
+
 import 'package:flutter/services.dart';
 
 import '../../../app/theme/doever_theme.dart';
@@ -95,7 +98,7 @@ class _HsvColorPickerState extends State<HsvColorPicker> {
           children: [
             Expanded(
               child: Semantics(
-                label: 'Saturation and brightness',
+                label: AppLocalizations.of(context).themeSaturationBrightness,
                 value:
                     '${(_hsv.saturation * 100).round()}%, ${(_hsv.value * 100).round()}%',
                 child: SizedBox(
@@ -122,23 +125,27 @@ class _HsvColorPickerState extends State<HsvColorPicker> {
         ),
         const SizedBox(height: Space.sm),
         Semantics(
-          label: 'Hue',
-          value: '${_hsv.hue.round()} degrees',
+          label: AppLocalizations.of(context).themeHue,
+          value: AppLocalizations.of(context).themeHueDegrees(_hsv.hue.round()),
           child: SizedBox(
             height: 28,
-            child: _HueBar(
-              hue: _hsv.hue,
-              onChanged: (hue) => _set(_hsv.withHue(hue)),
-              onChangeEnd: widget.onChangeEnd,
+            child: Directionality(
+              textDirection: TextDirection.ltr,
+              child: _HueBar(
+                hue: _hsv.hue,
+                onChanged: (hue) => _set(_hsv.withHue(hue)),
+                onChangeEnd: widget.onChangeEnd,
+              ),
             ),
           ),
         ),
         const SizedBox(height: Space.md),
         TextFormField(
+          textDirection: TextDirection.ltr,
           key: _hexKey,
           controller: _hex,
           textCapitalization: TextCapitalization.characters,
-          decoration: const InputDecoration(
+          decoration: InputDecoration(
             labelText: 'HEX',
             hintText: '#426B59',
             prefixIcon: Icon(Icons.tag),
@@ -146,14 +153,17 @@ class _HsvColorPickerState extends State<HsvColorPicker> {
           validator: (value) =>
               RegExp(r'^#[0-9a-fA-F]{6}$').hasMatch(value ?? '')
               ? null
-              : 'Use #RRGGBB',
+              : AppLocalizations.of(context).themeHexInvalid,
           onFieldSubmitted: _submitHex,
           onChanged: _editHex,
           onEditingComplete: () => _submitHex(_hex.text),
         ),
         if (widget.recentColors.isNotEmpty) ...[
           const SizedBox(height: Space.md),
-          Text('Recent colors', style: Theme.of(context).textTheme.labelLarge),
+          Text(
+            AppLocalizations.of(context).themeRecentColors,
+            style: Theme.of(context).textTheme.labelLarge,
+          ),
           const SizedBox(height: Space.sm),
           Wrap(
             spacing: Space.sm,
@@ -325,7 +335,8 @@ class _HueBar extends StatelessWidget {
           min: 0,
           max: 360,
           divisions: 360,
-          semanticFormatterCallback: (value) => 'Hue ${value.round()} degrees',
+          semanticFormatterCallback: (value) =>
+              AppLocalizations.of(context).themeHueDegrees(value.round()),
           onChanged: onChanged,
           onChangeEnd: (_) => onChangeEnd?.call(),
         ),

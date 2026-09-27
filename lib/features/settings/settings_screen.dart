@@ -10,12 +10,14 @@ import '../../l10n/app_localizations.dart';
 import 'background/background_preference.dart';
 import 'background/background_settings.dart';
 import '../theme_studio/application/theme_providers.dart';
+import '../theme_studio/presentation/theme_labels.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final s = AppLocalizations.of(context);
+    final customTheme = ref.watch(appliedCustomThemeProvider);
     return Scaffold(
       appBar: AppBar(title: Text(s.settings)),
       body: ThemeLayerPaint(
@@ -60,10 +62,11 @@ class SettingsScreen extends ConsumerWidget {
                 if (supportsThemeStudio)
                   ListTile(
                     leading: const Icon(Icons.palette_outlined),
-                    title: const Text('Theme Studio'),
+                    title: Text(s.themeStudio),
                     subtitle: Text(
-                      ref.watch(appliedCustomThemeProvider)?.name ??
-                          'Foundation, Surface & Accent',
+                      customTheme != null
+                          ? themeDisplayName(customTheme, s)
+                          : s.themeLayers,
                     ),
                     trailing: const Icon(Icons.chevron_right),
                     onTap: () => context.push('/settings/theme-studio'),

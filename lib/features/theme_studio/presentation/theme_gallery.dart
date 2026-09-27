@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../l10n/app_localizations.dart';
+
 import '../../../app/theme/doever_theme.dart';
 import '../domain/custom_theme.dart';
+import 'theme_labels.dart';
 
 class ThemeGallery extends StatelessWidget {
   const ThemeGallery({
@@ -31,15 +34,19 @@ class ThemeGallery extends StatelessWidget {
     children: [
       Row(
         children: [
-          Text('Theme gallery', style: Theme.of(context).textTheme.titleLarge),
-          const Spacer(),
+          Expanded(
+            child: Text(
+              AppLocalizations.of(context).themeGallery,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+          ),
           IconButton(
-            tooltip: 'Import theme',
+            tooltip: AppLocalizations.of(context).themeImport,
             onPressed: onImport,
             icon: const Icon(Icons.file_open_outlined),
           ),
           IconButton(
-            tooltip: 'Export theme',
+            tooltip: AppLocalizations.of(context).themeExport,
             onPressed: onExport,
             icon: const Icon(Icons.ios_share_outlined),
           ),
@@ -47,12 +54,15 @@ class ThemeGallery extends StatelessWidget {
       ),
       const SizedBox(height: Space.xs),
       Text(
-        'Start from a curated look or one you saved.',
+        AppLocalizations.of(context).themeGalleryDescription,
         style: Theme.of(context).textTheme.bodySmall
             ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
       ),
       const SizedBox(height: Space.lg),
-      _SectionLabel(label: 'Built in', count: presets.length),
+      _SectionLabel(
+        label: AppLocalizations.of(context).themeBuiltIn,
+        count: presets.length,
+      ),
       const SizedBox(height: Space.sm),
       for (final theme in presets)
         _ThemeTile(
@@ -66,12 +76,15 @@ class ThemeGallery extends StatelessWidget {
       Row(
         children: [
           Expanded(
-            child: _SectionLabel(label: 'Saved', count: saved.length),
+            child: _SectionLabel(
+              label: AppLocalizations.of(context).themeSaved,
+              count: saved.length,
+            ),
           ),
           TextButton.icon(
             onPressed: onNew,
             icon: const Icon(Icons.add),
-            label: const Text('New theme'),
+            label: Text(AppLocalizations.of(context).themeNew),
           ),
         ],
       ),
@@ -84,7 +97,7 @@ class ThemeGallery extends StatelessWidget {
             color: Theme.of(context).colorScheme.surfaceContainerLow,
             borderRadius: BorderRadius.circular(12),
           ),
-          child: const Text('Your saved themes will appear here.'),
+          child: Text(AppLocalizations.of(context).themeEmpty),
         )
       else
         for (final theme in saved)
@@ -150,13 +163,13 @@ class _ThemeTile extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        theme.name,
+                        themeDisplayName(theme, AppLocalizations.of(context)),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       if (active)
                         Text(
-                          'Applied',
+                          AppLocalizations.of(context).themeActive,
                           style: Theme.of(context).textTheme.labelSmall
                               ?.copyWith(color: scheme.primary),
                         ),
@@ -165,7 +178,9 @@ class _ThemeTile extends StatelessWidget {
                 ),
                 if (onRename != null || onDuplicate != null)
                   PopupMenuButton<String>(
-                    tooltip: '${theme.name} actions',
+                    tooltip: AppLocalizations.of(context).themeActions(
+                      themeDisplayName(theme, AppLocalizations.of(context)),
+                    ),
                     onSelected: (value) => switch (value) {
                       'rename' => onRename?.call(),
                       'duplicate' => onDuplicate?.call(),
@@ -174,19 +189,21 @@ class _ThemeTile extends StatelessWidget {
                     },
                     itemBuilder: (_) => [
                       if (onRename != null)
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 'rename',
-                          child: Text('Rename'),
+                          child: Text(AppLocalizations.of(context).rename),
                         ),
                       if (onDuplicate != null)
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 'duplicate',
-                          child: Text('Duplicate'),
+                          child: Text(
+                            AppLocalizations.of(context).duplicateBlock,
+                          ),
                         ),
                       if (onDelete != null)
-                        const PopupMenuItem(
+                        PopupMenuItem(
                           value: 'delete',
-                          child: Text('Delete'),
+                          child: Text(AppLocalizations.of(context).delete),
                         ),
                     ],
                   ),
@@ -204,7 +221,7 @@ class _Swatch extends StatelessWidget {
   final CustomTheme theme;
   @override
   Widget build(BuildContext context) => Tooltip(
-    message: 'Foundation · Surface · Accent',
+    message: AppLocalizations.of(context).themeLayers,
     child: Container(
       width: 54,
       height: 38,

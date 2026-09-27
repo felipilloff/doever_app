@@ -13,7 +13,7 @@ Both packages are available locally after this build:
 
 SHA-256 files and `BUILD_INFO.txt` are beside the archives. Linux was built and
 launched on Ubuntu 26.04 x86_64. Windows was built successfully on its native
-[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36301612878);
+[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36332091057);
 its native process smoke test passed in CI. Foreground focus has not been visually
 verified on Windows.
 
