@@ -4,6 +4,9 @@ import 'dart:ui' show AppExitResponse;
 
 import 'package:file_selector/file_selector.dart';
 import 'package:flutter/material.dart';
+
+import '../../../l10n/app_localizations.dart';
+
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -19,6 +22,7 @@ import '../data/theme_codec.dart';
 import '../domain/custom_theme.dart';
 import '../domain/theme_presets.dart';
 import 'theme_gallery.dart';
+import 'theme_labels.dart';
 import 'theme_layer_editor.dart';
 import 'theme_preview.dart';
 
@@ -40,6 +44,20 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
   late final Future<bool> Function() _leaveCheck;
   late final ThemePreview _previewController;
   late final ThemeLeaveGuard _guard;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_draft != null) _updateName();
+  }
+
+  void _updateName() {
+    final name = themeDisplayName(
+      _draft!.current,
+      AppLocalizations.of(context),
+    );
+    if (_name.text != name) _name.text = name;
+  }
 
   @override
   void initState() {
@@ -73,7 +91,7 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     _draft?.removeListener(_changed);
     _draft?.dispose();
     _draft = ThemeDraft(theme)..addListener(_changed);
-    _name.text = theme.name;
+    _updateName();
     _newUnsaved = false;
     _keepContrast = false;
     if (_previewInApp) _syncPreview();
@@ -81,7 +99,7 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
 
   void _changed() {
     if (!mounted) return;
-    if (_name.text != _draft!.current.name) _name.text = _draft!.current.name;
+    _updateName();
     _keepContrast = false;
     _syncPreview();
     setState(() {});
@@ -101,21 +119,21 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
       context: context,
       barrierDismissible: false,
       builder: (context) => AlertDialog(
-        title: const Text('Unsaved theme changes'),
-        content: const Text('Apply your changes before leaving Theme Studio?'),
+        title: Text(AppLocalizations.of(context).themeUnsaved),
+        content: Text(AppLocalizations.of(context).themeLeavePrompt),
         actions: [
           TextButton(
             onPressed: () =>
                 Navigator.pop(context, _LeaveChoice.continueEditing),
-            child: const Text('Continue editing'),
+            child: Text(AppLocalizations.of(context).themeContinueEditing),
           ),
           TextButton(
             onPressed: () => Navigator.pop(context, _LeaveChoice.discard),
-            child: const Text('Discard'),
+            child: Text(AppLocalizations.of(context).themeDiscard),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, _LeaveChoice.apply),
-            child: const Text('Apply'),
+            child: Text(AppLocalizations.of(context).themeApply),
           ),
         ],
       ),
@@ -140,14 +158,18 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     if (!(_form.currentState?.validate() ?? true)) return false;
     if (draft.current.name.trim().isEmpty ||
         draft.current.name.trim().length > 200) {
-      _error('Give this theme a name of 1–200 characters.');
+      _error(AppLocalizations.of(context).themeNameInvalid);
       return false;
     }
     setState(() => _busy = true);
     try {
       final saved = await ref
           .read(themeActionsProvider)
-          .apply(draft.current, modified: draft.isDirty);
+          .apply(
+            draft.current,
+            modified: draft.isDirty,
+            copyName: _copyName(draft.current),
+          );
       if (!mounted) return true;
       draft.markSaved(saved);
       _newUnsaved = false;
@@ -157,13 +179,14 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
         logFailure('theme.recent_colors', error, stack);
       }
       if (!mounted) return true;
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Theme applied')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(AppLocalizations.of(context).themeApplied)),
+      );
       return true;
     } catch (error, stack) {
       logFailure('theme.apply', error, stack);
       if (mounted) {
-        _error('Couldn’t apply this theme. Your changes are still here.');
+        _error(AppLocalizations.of(context).themeApplyFailed);
       }
       return false;
     } finally {
@@ -185,7 +208,7 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
       _install(
         source.copyWith(
           id: const Uuid().v4(),
-          name: 'Untitled theme',
+          name: AppLocalizations.of(context).themeUntitled,
           createdAt: now,
           updatedAt: now,
         ),
@@ -201,7 +224,7 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     final target = current ? _draft!.current : theme;
     final value = await askText(
       context,
-      title: 'Rename theme',
+      title: AppLocalizations.of(context).themeRename,
       initial: target.name,
     );
     final name = value?.trim();
@@ -219,7 +242,9 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     if (!await _confirmLeave() || !mounted) return;
     final target = current ? _draft!.current : theme;
     await _run('duplicate', () async {
-      final copy = await ref.read(themeActionsProvider).duplicate(target);
+      final copy = await ref
+          .read(themeActionsProvider)
+          .duplicate(target, name: _copyName(target));
       if (mounted) setState(() => _install(copy));
     });
   }
@@ -230,16 +255,20 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     final yes = await showDialog<bool>(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Delete “${theme.name}”?'),
-        content: const Text('This saved theme will be permanently removed.'),
+        title: Text(
+          AppLocalizations.of(context).themeDeleteTitle(
+            themeDisplayName(theme, AppLocalizations.of(context)),
+          ),
+        ),
+        content: Text(AppLocalizations.of(context).themeDeleteMessage),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context, false),
-            child: const Text('Cancel'),
+            child: Text(AppLocalizations.of(context).cancel),
           ),
           FilledButton(
             onPressed: () => Navigator.pop(context, true),
-            child: const Text('Delete'),
+            child: Text(AppLocalizations.of(context).delete),
           ),
         ],
       ),
@@ -255,22 +284,26 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
 
   Future<void> _import() async {
     if (!await _confirmLeave() || !mounted) return;
+    final s = AppLocalizations.of(context);
     await _run('import', () async {
       final file = await openFile(
-        acceptedTypeGroups: const [
-          XTypeGroup(label: 'Doever theme', extensions: ['json']),
+        acceptedTypeGroups: [
+          XTypeGroup(
+            label: AppLocalizations.of(context).themeFile,
+            extensions: ['json'],
+          ),
         ],
       );
       if (file == null) return;
       if (await file.length() > ThemeCodec.maxFileBytes) {
-        _error('That theme file is too large. Choose a file under 64 KB.');
+        if (mounted) _error(s.themeFileTooLarge);
         return;
       }
       final theme = await ref
           .read(themeActionsProvider)
           .importTheme(await file.readAsString());
       if (mounted) setState(() => _install(theme));
-    }, message: 'That file isn’t a valid Doever theme.');
+    }, message: AppLocalizations.of(context).themeFileInvalid);
   }
 
   Future<void> _export() async {
@@ -279,8 +312,11 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
     await _run('export', () async {
       final location = await getSaveLocation(
         suggestedName: '${_safeName(theme.name)}.doever-theme.json',
-        acceptedTypeGroups: const [
-          XTypeGroup(label: 'Doever theme', extensions: ['json']),
+        acceptedTypeGroups: [
+          XTypeGroup(
+            label: AppLocalizations.of(context).themeFile,
+            extensions: ['json'],
+          ),
         ],
       );
       if (location == null) return;
@@ -288,13 +324,13 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
         Uint8List.fromList(utf8.encode(ThemeCodec.encode(theme))),
         mimeType: 'application/json',
       ).saveTo(location.path);
-    }, message: 'Couldn’t export this theme.');
+    }, message: AppLocalizations.of(context).themeExportFailed);
   }
 
   Future<void> _run(
     String operation,
     Future<void> Function() action, {
-    String message = 'Couldn’t save that change. Please try again.',
+    String? message,
   }) async {
     if (_busy) return;
     setState(() => _busy = true);
@@ -302,7 +338,9 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
       await action();
     } catch (error, stack) {
       logFailure('theme.$operation', error, stack);
-      if (mounted) _error(message);
+      if (mounted) {
+        _error(message ?? AppLocalizations.of(context).themeSaveFailed);
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -349,35 +387,35 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
       child: Scaffold(
         appBar: AppBar(
           leading: IconButton(
-            tooltip: 'Back to settings',
+            tooltip: AppLocalizations.of(context).themeBack,
             onPressed: _cancel,
             icon: const Icon(Icons.arrow_back),
           ),
-          title: const Column(
+          title: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Theme Studio'),
+              Text(AppLocalizations.of(context).themeStudio),
               Text(
-                'Make Doever feel like yours',
+                AppLocalizations.of(context).themeStudioSubtitle,
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
               ),
             ],
           ),
           actions: [
             IconButton(
-              tooltip: 'Undo',
+              tooltip: AppLocalizations.of(context).undo,
               onPressed: !_busy && draft.canUndo ? draft.undo : null,
               icon: const Icon(Icons.undo),
             ),
             IconButton(
-              tooltip: 'Redo',
+              tooltip: AppLocalizations.of(context).themeRedo,
               onPressed: !_busy && draft.canRedo ? draft.redo : null,
               icon: const Icon(Icons.redo),
             ),
             const SizedBox(width: Space.sm),
             TextButton(
               onPressed: _busy ? null : _cancel,
-              child: const Text('Cancel'),
+              child: Text(AppLocalizations.of(context).cancel),
             ),
             const SizedBox(width: Space.sm),
             FilledButton.icon(
@@ -388,7 +426,7 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
                       child: CircularProgressIndicator(strokeWidth: 2),
                     )
                   : const Icon(Icons.check, size: 18),
-              label: const Text('Apply'),
+              label: Text(AppLocalizations.of(context).themeApply),
             ),
             const SizedBox(width: Space.md),
           ],
@@ -447,8 +485,10 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
       Card(
         margin: EdgeInsets.zero,
         child: ExpansionTile(
-          title: const Text('Themes'),
-          subtitle: Text(draft.current.name),
+          title: Text(AppLocalizations.of(context).themeThemes),
+          subtitle: Text(
+            themeDisplayName(draft.current, AppLocalizations.of(context)),
+          ),
           leading: const Icon(Icons.palette_outlined),
           childrenPadding: const EdgeInsets.all(Space.md),
           children: [_gallery(library, draft)],
@@ -485,16 +525,16 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
           children: [
             Expanded(
               child: Text(
-                'Live preview',
+                AppLocalizations.of(context).themeLivePreview,
                 style: Theme.of(context).textTheme.titleLarge,
               ),
             ),
             Tooltip(
-              message: 'Preview changes throughout Doever before applying',
+              message: AppLocalizations.of(context).themePreviewHint,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Text('Preview in app'),
+                  Text(AppLocalizations.of(context).themePreviewInApp),
                   Switch(
                     value: _previewInApp,
                     onChanged: (value) => setState(() {
@@ -517,8 +557,8 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
             Expanded(
               child: Text(
                 warnings.isEmpty
-                    ? 'Contrast · Good'
-                    : 'Contrast · Readability protected',
+                    ? AppLocalizations.of(context).themeContrastGood
+                    : AppLocalizations.of(context).themeContrastProtected,
               ),
             ),
           ],
@@ -556,8 +596,8 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
                 controller: _name,
                 maxLength: 200,
                 style: Theme.of(context).textTheme.headlineSmall,
-                decoration: const InputDecoration(
-                  hintText: 'Theme name',
+                decoration: InputDecoration(
+                  hintText: AppLocalizations.of(context).themeName,
                   counterText: '',
                   isDense: true,
                 ),
@@ -568,24 +608,27 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
             TextButton.icon(
               onPressed: draft.isDirty ? draft.reset : null,
               icon: const Icon(Icons.restart_alt),
-              label: const Text('Reset theme'),
+              label: Text(AppLocalizations.of(context).themeReset),
             ),
           ],
         ),
         const SizedBox(height: Space.md),
-        Text('Mode', style: Theme.of(context).textTheme.labelLarge),
+        Text(
+          AppLocalizations.of(context).themeMode,
+          style: Theme.of(context).textTheme.labelLarge,
+        ),
         const SizedBox(height: Space.sm),
         SegmentedButton<ThemeBrightnessMode>(
           showSelectedIcon: false,
-          segments: const [
+          segments: [
             ButtonSegment(
               value: ThemeBrightnessMode.light,
-              label: Text('Light'),
+              label: Text(AppLocalizations.of(context).lightTheme),
               icon: Icon(Icons.light_mode_outlined),
             ),
             ButtonSegment(
               value: ThemeBrightnessMode.dark,
-              label: Text('Dark'),
+              label: Text(AppLocalizations.of(context).darkTheme),
               icon: Icon(Icons.dark_mode_outlined),
             ),
           ],
@@ -596,9 +639,9 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
         const SizedBox(height: Space.lg),
         SwitchListTile(
           contentPadding: EdgeInsets.zero,
-          title: const Text('Auto Balance'),
-          subtitle: const Text(
-            'Keep layers distinct and comfortably readable.',
+          title: Text(AppLocalizations.of(context).themeAutoBalance),
+          subtitle: Text(
+            AppLocalizations.of(context).themeAutoBalanceDescription,
           ),
           value: theme.autoBalance,
           onChanged: (value) =>
@@ -607,10 +650,19 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
         const SizedBox(height: Space.md),
         SegmentedButton<int>(
           showSelectedIcon: false,
-          segments: const [
-            ButtonSegment(value: 0, label: Text('Foundation')),
-            ButtonSegment(value: 1, label: Text('Surface')),
-            ButtonSegment(value: 2, label: Text('Accent')),
+          segments: [
+            ButtonSegment(
+              value: 0,
+              label: Text(AppLocalizations.of(context).themeFoundation),
+            ),
+            ButtonSegment(
+              value: 1,
+              label: Text(AppLocalizations.of(context).themeSurface),
+            ),
+            ButtonSegment(
+              value: 2,
+              label: Text(AppLocalizations.of(context).themeAccent),
+            ),
           ],
           selected: {_layer},
           onSelectionChanged: (value) => setState(() => _layer = value.single),
@@ -618,11 +670,15 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
         const SizedBox(height: Space.md),
         ThemeLayerEditor(
           key: ValueKey('${theme.id}:$_layer'),
-          title: const ['Foundation', 'Surface', 'Accent'][_layer],
-          description: const [
-            'The workspace background and overall atmosphere.',
-            'Cards, panels, inputs, and elevated content.',
-            'Actions, focus, selection, and personality.',
+          title: [
+            AppLocalizations.of(context).themeFoundation,
+            AppLocalizations.of(context).themeSurface,
+            AppLocalizations.of(context).themeAccent,
+          ][_layer],
+          description: [
+            AppLocalizations.of(context).themeFoundationDescription,
+            AppLocalizations.of(context).themeSurfaceDescription,
+            AppLocalizations.of(context).themeAccentDescription,
           ][_layer],
           index: _layer,
           layer: layer,
@@ -641,6 +697,12 @@ class _ThemeStudioScreenState extends ConsumerState<ThemeStudioScreen>
 
   void _undo() {
     if (!_busy && !_editingText()) _draft?.undo();
+  }
+
+  String _copyName(CustomTheme theme) {
+    final s = AppLocalizations.of(context);
+    final name = s.themeCopyName(themeDisplayName(theme, s));
+    return name.substring(0, name.length.clamp(0, 200));
   }
 
   void _redo() {
@@ -666,7 +728,7 @@ class _ContrastWarning extends StatelessWidget {
     required this.onFix,
     required this.onKeep,
   });
-  final List<String> warnings;
+  final List<ThemeContrastWarning> warnings;
   final bool autoBalance;
   final ValueChanged<bool> onAutoBalance;
   final VoidCallback onFix, onKeep;
@@ -686,7 +748,7 @@ class _ContrastWarning extends StatelessWidget {
               const SizedBox(width: Space.sm),
               Expanded(
                 child: Text(
-                  'Low contrast in selected colors',
+                  AppLocalizations.of(context).themeLowContrast,
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ),
@@ -694,13 +756,19 @@ class _ContrastWarning extends StatelessWidget {
           ),
           const SizedBox(height: Space.sm),
           Text(
-            warnings.join(' '),
+            warnings
+                .map(
+                  (warning) =>
+                      themeWarningText(warning, AppLocalizations.of(context)),
+                )
+                .toSet()
+                .join(' '),
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Auto balance contrast'),
+            title: Text(AppLocalizations.of(context).themeBalanceContrast),
             value: autoBalance,
             onChanged: onAutoBalance,
           ),
@@ -710,10 +778,15 @@ class _ContrastWarning extends StatelessWidget {
               FilledButton(
                 onPressed: autoBalance ? null : onFix,
                 child: Text(
-                  autoBalance ? 'Balanced automatically' : 'Fix automatically',
+                  autoBalance
+                      ? AppLocalizations.of(context).themeBalanced
+                      : AppLocalizations.of(context).themeFix,
                 ),
               ),
-              TextButton(onPressed: onKeep, child: const Text('Keep anyway')),
+              TextButton(
+                onPressed: onKeep,
+                child: Text(AppLocalizations.of(context).themeKeep),
+              ),
             ],
           ),
         ],

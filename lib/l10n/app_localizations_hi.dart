@@ -486,4 +486,335 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noteChoosePage => 'कोई पृष्ठ चुनें या नया बनाएँ।';
+
+  @override
+  String get themeStudio => 'थीम स्टूडियो';
+
+  @override
+  String get themeStudioSubtitle => 'Doever को अपना अंदाज़ दें';
+
+  @override
+  String get themeLayers => 'आधार, सतह और मुख्य रंग';
+
+  @override
+  String get themeFoundation => 'आधार';
+
+  @override
+  String get themeSurface => 'सतह';
+
+  @override
+  String get themeAccent => 'मुख्य रंग';
+
+  @override
+  String get themeFoundationDescription =>
+      'कार्यस्थान की पृष्ठभूमि और समग्र रूप।';
+
+  @override
+  String get themeSurfaceDescription =>
+      'कार्ड, पैनल, इनपुट और उभरी हुई सामग्री।';
+
+  @override
+  String get themeAccentDescription =>
+      'क्रियाएँ, फ़ोकस, चयन और व्यक्तिगत शैली।';
+
+  @override
+  String get themeApply => 'लागू करें';
+
+  @override
+  String get themeUnsaved => 'थीम के बदलाव सहेजे नहीं गए';
+
+  @override
+  String get themeLeavePrompt => 'थीम स्टूडियो छोड़ने से पहले बदलाव लागू करें?';
+
+  @override
+  String get themeContinueEditing => 'संपादन जारी रखें';
+
+  @override
+  String get themeDiscard => 'छोड़ दें';
+
+  @override
+  String get themeNameInvalid => 'थीम का नाम 1–200 अक्षरों में लिखें।';
+
+  @override
+  String get themeApplied => 'थीम लागू की गई';
+
+  @override
+  String get themeApplyFailed =>
+      'थीम लागू नहीं हो सकी। आपके बदलाव सुरक्षित हैं।';
+
+  @override
+  String get themeUntitled => 'बिना नाम की थीम';
+
+  @override
+  String get themeRename => 'थीम का नाम बदलें';
+
+  @override
+  String themeDeleteTitle(String name) {
+    return '“$name” हटाएँ?';
+  }
+
+  @override
+  String get themeDeleteMessage => 'यह सहेजी गई थीम स्थायी रूप से हट जाएगी।';
+
+  @override
+  String get themeFile => 'Doever थीम';
+
+  @override
+  String get themeFileTooLarge =>
+      'थीम फ़ाइल बहुत बड़ी है। 64 KB से छोटी फ़ाइल चुनें।';
+
+  @override
+  String get themeFileInvalid => 'यह फ़ाइल मान्य Doever थीम नहीं है।';
+
+  @override
+  String get themeExportFailed => 'थीम निर्यात नहीं हो सकी।';
+
+  @override
+  String get themeSaveFailed => 'बदलाव सहेजा नहीं जा सका। फिर कोशिश करें।';
+
+  @override
+  String get themeBack => 'सेटिंग पर वापस जाएँ';
+
+  @override
+  String get themeRedo => 'फिर करें';
+
+  @override
+  String get themeThemes => 'थीम';
+
+  @override
+  String get themeLivePreview => 'लाइव पूर्वावलोकन';
+
+  @override
+  String get themePreviewHint =>
+      'लागू करने से पहले पूरे Doever में बदलाव देखें';
+
+  @override
+  String get themePreviewInApp => 'ऐप में पूर्वावलोकन';
+
+  @override
+  String get themeContrastGood => 'कंट्रास्ट · अच्छा';
+
+  @override
+  String get themeContrastProtected => 'कंट्रास्ट · पठनीयता सुरक्षित';
+
+  @override
+  String get themeName => 'थीम का नाम';
+
+  @override
+  String get themeReset => 'थीम रीसेट करें';
+
+  @override
+  String get themeMode => 'मोड';
+
+  @override
+  String get themeAutoBalance => 'स्वचालित संतुलन';
+
+  @override
+  String get themeAutoBalanceDescription =>
+      'परतों को स्पष्ट और आसानी से पढ़ने योग्य रखें।';
+
+  @override
+  String get themeLowContrast => 'चुने हुए रंगों में कम कंट्रास्ट';
+
+  @override
+  String get themeBalanceContrast => 'कंट्रास्ट स्वतः संतुलित करें';
+
+  @override
+  String get themeBalanced => 'स्वतः संतुलित';
+
+  @override
+  String get themeFix => 'स्वतः ठीक करें';
+
+  @override
+  String get themeKeep => 'फिर भी रखें';
+
+  @override
+  String get themeGallery => 'थीम गैलरी';
+
+  @override
+  String get themeImport => 'थीम आयात करें';
+
+  @override
+  String get themeExport => 'थीम निर्यात करें';
+
+  @override
+  String get themeGalleryDescription =>
+      'तैयार या सहेजी हुई थीम से शुरुआत करें।';
+
+  @override
+  String get themeBuiltIn => 'पहले से उपलब्ध';
+
+  @override
+  String get themeSaved => 'सहेजी गई';
+
+  @override
+  String get themeNew => 'नई थीम';
+
+  @override
+  String get themeEmpty => 'आपकी सहेजी हुई थीम यहाँ दिखेंगी।';
+
+  @override
+  String get themeActive => 'लागू';
+
+  @override
+  String themeActions(String name) {
+    return '$name की क्रियाएँ';
+  }
+
+  @override
+  String get themeResetLayer => 'परत रीसेट करें';
+
+  @override
+  String get themeSolid => 'एक रंग';
+
+  @override
+  String get themeGradient => 'ग्रेडिएंट';
+
+  @override
+  String get themeColors => 'रंग';
+
+  @override
+  String get themeAddStop => 'रंग बिंदु जोड़ें';
+
+  @override
+  String get themeRemoveStop => 'रंग बिंदु हटाएँ';
+
+  @override
+  String themeColorStop(int number) {
+    return 'रंग बिंदु $number';
+  }
+
+  @override
+  String get themeDirection => 'दिशा';
+
+  @override
+  String get themeTopBottom => 'ऊपर से नीचे';
+
+  @override
+  String get themeBottomTop => 'नीचे से ऊपर';
+
+  @override
+  String get themeLeftRight => 'बाएँ से दाएँ';
+
+  @override
+  String get themeRightLeft => 'दाएँ से बाएँ';
+
+  @override
+  String get themeTopLeftBottomRight => 'ऊपर बाएँ से नीचे दाएँ';
+
+  @override
+  String get themeTopRightBottomLeft => 'ऊपर दाएँ से नीचे बाएँ';
+
+  @override
+  String get themeBottomLeftTopRight => 'नीचे बाएँ से ऊपर दाएँ';
+
+  @override
+  String get themeBottomRightTopLeft => 'नीचे दाएँ से ऊपर बाएँ';
+
+  @override
+  String get themeAdvanced => 'उन्नत';
+
+  @override
+  String get themeAdvancedDescription => 'टोन, तीव्रता और ग्रेडिएंट की ताकत';
+
+  @override
+  String get themeTone => 'टोन';
+
+  @override
+  String get themeIntensity => 'तीव्रता';
+
+  @override
+  String get themeGradientStrength => 'ग्रेडिएंट की ताकत';
+
+  @override
+  String themePercent(String label, int value) {
+    return '$label $value प्रतिशत';
+  }
+
+  @override
+  String get themeHexInvalid => '#RRGGBB का उपयोग करें';
+
+  @override
+  String get themeSaturationBrightness => 'संतृप्ति और चमक';
+
+  @override
+  String get themeHue => 'रंगत';
+
+  @override
+  String themeHueDegrees(int value) {
+    return 'रंगत $value डिग्री';
+  }
+
+  @override
+  String get themeRecentColors => 'हाल के रंग';
+
+  @override
+  String get themePreviewSemantics =>
+      'थीम पूर्वावलोकन: नेविगेशन, कार्य, पाठ, इनपुट और क्रिया';
+
+  @override
+  String get themePersonalSpace => 'आपका निजी स्थान';
+
+  @override
+  String get themeRoom => 'ज़रूरी चीज़ों के लिए जगह।';
+
+  @override
+  String get themeSampleDone => 'दिन की योजना बनाएँ';
+
+  @override
+  String get themeSampleTask => 'प्रोजेक्ट के नोट्स देखें';
+
+  @override
+  String get themeLocal => 'सभी बदलाव स्थानीय रहते हैं';
+
+  @override
+  String get themeCreate => 'बनाएँ';
+
+  @override
+  String get themeHierarchyBalanced =>
+      'आधार और सतह को स्पष्ट परतों के लिए संतुलित किया गया।';
+
+  @override
+  String get themeHierarchyLow => 'आधार और सतह में दृश्य अंतर कम है।';
+
+  @override
+  String get themeAccentAdjusted =>
+      'पाठ को पठनीय रखने के लिए मुख्य रंग समायोजित किया गया।';
+
+  @override
+  String get themeGradientMissing => 'ग्रेडिएंट के लिए कम से कम दो रंग चाहिए।';
+
+  @override
+  String get themeLightAdjusted =>
+      'हल्के मोड में पठनीयता के लिए परतों के टोन बदले गए।';
+
+  @override
+  String get themeDarkAdjusted =>
+      'गहरे मोड में पठनीयता के लिए परतों के टोन बदले गए।';
+
+  @override
+  String themeCopyName(String name) {
+    return '$name की कॉपी';
+  }
+
+  @override
+  String get themePresetMidnight => 'आधी रात';
+
+  @override
+  String get themePresetGraphite => 'ग्रेफाइट';
+
+  @override
+  String get themePresetOcean => 'महासागर';
+
+  @override
+  String get themePresetAurora => 'ध्रुवीय ज्योति';
+
+  @override
+  String get themePresetEmber => 'अंगारा';
+
+  @override
+  String get themePresetForest => 'वन';
+
+  @override
+  String get themePresetSand => 'रेत';
 }

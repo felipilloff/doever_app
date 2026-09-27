@@ -5,7 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/theme/doever_theme.dart';
 import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
-import 'background_canvas.dart';
+import 'background_theme_preview.dart';
 import 'background_preference.dart';
 
 class BackgroundSettings extends ConsumerStatefulWidget {
@@ -58,97 +58,7 @@ class _BackgroundSettingsState extends ConsumerState<BackgroundSettings> {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         const SizedBox(height: Space.md),
-        Semantics(
-          label: s.backgroundPreview,
-          image: true,
-          child: ExcludeSemantics(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(Layout.radius),
-              child: AspectRatio(
-                aspectRatio: 16 / 9,
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [
-                        colors.primaryContainer,
-                        colors.surfaceContainerHigh,
-                      ],
-                    ),
-                  ),
-                  child: BackgroundCanvas(
-                    image: image,
-                    child: Padding(
-                      padding: const EdgeInsets.all(Space.lg),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.wb_sunny_outlined,
-                                color: image == null
-                                    ? colors.primary
-                                    : Colors.white,
-                                size: 22,
-                              ),
-                              const SizedBox(width: Space.sm),
-                              Expanded(
-                                child: Text(
-                                  s.myDay,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: Theme.of(context).textTheme.titleLarge
-                                      ?.copyWith(
-                                        color: image == null
-                                            ? colors.onSurface
-                                            : Colors.white,
-                                      ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          const Spacer(),
-                          Container(
-                            padding: const EdgeInsets.all(Space.md),
-                            decoration: BoxDecoration(
-                              color: colors.surface,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.radio_button_unchecked,
-                                  size: 20,
-                                  color: colors.primary,
-                                ),
-                                const SizedBox(width: Space.md),
-                                Expanded(
-                                  child: Text(
-                                    s.taskTitle,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.ellipsis,
-                                  ),
-                                ),
-                                const SizedBox(width: Space.sm),
-                                Icon(
-                                  Icons.star_outline_rounded,
-                                  size: 20,
-                                  color: colors.primary,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-        ),
+        BackgroundThemePreview(image: image),
         if (disabled) ...[
           const SizedBox(height: Space.sm),
           LinearProgressIndicator(semanticsLabel: s.backgroundApplying),

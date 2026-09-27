@@ -117,6 +117,12 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 - The extracted Linux release passes duplicate/concurrent launch and restart
   checks; its native libraries resolve and its SHA-256 manifest verifies.
 
+Theme Studio follow-up: all 83 tests pass. Thirteen added regressions cover the
+five languages at 600/1440 pixels, switching locale without losing draft edits,
+translated contrast/preset labels, and wallpaper previews using active custom
+Foundation/Surface/Accent gradients in both light and dark modes, with/without
+an image. Static analysis remains clean.
+
 ## Still requires target hardware / release validation
 
 Windows was compiled on its native GitHub Actions runner, since this local host

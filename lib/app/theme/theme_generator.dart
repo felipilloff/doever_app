@@ -5,6 +5,15 @@ import 'package:material_color_utilities/material_color_utilities.dart';
 
 import '../../features/theme_studio/domain/custom_theme.dart';
 
+enum ThemeContrastWarning {
+  hierarchyBalanced,
+  hierarchyLow,
+  accentAdjusted,
+  gradientMissing,
+  lightAdjusted,
+  darkAdjusted,
+}
+
 @immutable
 final class DoeverPalette extends ThemeExtension<DoeverPalette> {
   DoeverPalette({
@@ -28,7 +37,7 @@ final class DoeverPalette extends ThemeExtension<DoeverPalette> {
     required this.overlay,
     required this.elevatedSurface,
     required this.onAccent,
-    required List<String> warnings,
+    required List<ThemeContrastWarning> warnings,
     required this.colors,
   }) : foundation = List.unmodifiable(foundation),
        surface = List.unmodifiable(surface),
@@ -55,7 +64,7 @@ final class DoeverPalette extends ThemeExtension<DoeverPalette> {
   final Color overlay;
   final Color elevatedSurface;
   final Color onAccent;
-  final List<String> warnings;
+  final List<ThemeContrastWarning> warnings;
   final ColorScheme colors;
 
   static DoeverPalette? of(BuildContext context) =>
@@ -83,7 +92,7 @@ final class DoeverPalette extends ThemeExtension<DoeverPalette> {
     Color? overlay,
     Color? elevatedSurface,
     Color? onAccent,
-    List<String>? warnings,
+    List<ThemeContrastWarning>? warnings,
     ColorScheme? colors,
   }) => DoeverPalette(
     foundation: foundation ?? this.foundation,
@@ -167,24 +176,21 @@ abstract final class ThemeGenerator {
   }
 
   static DoeverPalette _generate(CustomTheme theme) {
-    final warnings = <String>[];
+    final warnings = <ThemeContrastWarning>[];
     final light = theme.baseMode == ThemeBrightnessMode.light;
     var foundation = _transform(
       theme.foundation,
       fallback: light ? const Color(0xfff8f9f5) : const Color(0xff171c19),
-      label: 'Foundation',
       warnings: warnings,
     );
     var surface = _transform(
       theme.surface,
       fallback: light ? Colors.white : const Color(0xff101512),
-      label: 'Surface',
       warnings: warnings,
     );
     var accent = _transform(
       theme.accent,
       fallback: const Color(0xff426b59),
-      label: 'Accent',
       warnings: warnings,
     );
 
@@ -194,13 +200,11 @@ abstract final class ThemeGenerator {
     foundation = _clampLayer(
       foundation,
       theme.autoBalance ? balancedFoundationRange : safeRange,
-      'Foundation',
       warnings,
     );
     surface = _clampLayer(
       surface,
       theme.autoBalance ? balancedSurfaceRange : safeRange,
-      'Surface',
       warnings,
     );
 
@@ -212,11 +216,9 @@ abstract final class ThemeGenerator {
         final correction = (4 - hierarchy) / 2;
         foundation = _shiftLayer(foundation, -correction);
         surface = _shiftLayer(surface, correction);
-        warnings.add(
-          'Foundation and Surface were balanced for clearer hierarchy.',
-        );
+        warnings.add(ThemeContrastWarning.hierarchyBalanced);
       } else {
-        warnings.add('Foundation and Surface have low visual hierarchy.');
+        warnings.add(ThemeContrastWarning.hierarchyLow);
       }
     }
 
@@ -257,14 +259,11 @@ abstract final class ThemeGenerator {
       accent = _clampLayer(
         accent,
         light ? (8.0, 45.0) : (60.0, 94.0),
-        'Accent',
         warnings,
       );
       accentSamples = _samples(accent.colors);
       onAccent = _bestBlackOrWhite(accentSamples);
-      warnings.add(
-        'Accent tones were adjusted to keep foreground text readable.',
-      );
+      warnings.add(ThemeContrastWarning.accentAdjusted);
     }
 
     final accentColor = _representative(accent.colors);
@@ -365,8 +364,7 @@ final class _LayerColors {
 _LayerColors _transform(
   LayerTheme layer, {
   required Color fallback,
-  required String label,
-  required List<String> warnings,
+  required List<ThemeContrastWarning> warnings,
 }) {
   final source = layer.colors.isEmpty
       ? [fallback.toARGB32()]
@@ -374,7 +372,7 @@ _LayerColors _transform(
   var mode = layer.mode;
   if (mode == ThemeLayerMode.gradient && source.length < 2) {
     mode = ThemeLayerMode.solid;
-    warnings.add('$label needs at least two colors for a gradient.');
+    warnings.add(ThemeContrastWarning.gradientMissing);
   }
   if (mode == ThemeLayerMode.solid && source.length > 1) {
     source.removeRange(1, source.length);
@@ -399,8 +397,7 @@ _LayerColors _transform(
 _LayerColors _clampLayer(
   _LayerColors layer,
   (double, double) range,
-  String label,
-  List<String> warnings,
+  List<ThemeContrastWarning> warnings,
 ) {
   var corrected = false;
   final colors = layer.colors.map((color) {
@@ -411,7 +408,9 @@ _LayerColors _clampLayer(
   }).toList();
   if (corrected) {
     warnings.add(
-      '$label tones were adjusted for readable ${range.$1 > 50 ? 'light' : 'dark'} mode.',
+      range.$1 > 50
+          ? ThemeContrastWarning.lightAdjusted
+          : ThemeContrastWarning.darkAdjusted,
     );
   }
   return _LayerColors(colors, layer.mode, layer.direction);

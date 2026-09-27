@@ -494,4 +494,332 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noteChoosePage => 'اختر صفحة أو أنشئ صفحة جديدة.';
+
+  @override
+  String get themeStudio => 'استوديو السمات';
+
+  @override
+  String get themeStudioSubtitle => 'اجعل Doever يعكس أسلوبك';
+
+  @override
+  String get themeLayers => 'الخلفية والأسطح ولون التمييز';
+
+  @override
+  String get themeFoundation => 'الخلفية';
+
+  @override
+  String get themeSurface => 'الأسطح';
+
+  @override
+  String get themeAccent => 'لون التمييز';
+
+  @override
+  String get themeFoundationDescription => 'خلفية مساحة العمل وطابعها العام.';
+
+  @override
+  String get themeSurfaceDescription =>
+      'البطاقات واللوحات وحقول الإدخال والمحتوى المرتفع.';
+
+  @override
+  String get themeAccentDescription =>
+      'الإجراءات والتركيز والتحديد والطابع الشخصي.';
+
+  @override
+  String get themeApply => 'تطبيق';
+
+  @override
+  String get themeUnsaved => 'تغييرات غير محفوظة في السمة';
+
+  @override
+  String get themeLeavePrompt =>
+      'هل تريد تطبيق التغييرات قبل مغادرة استوديو السمات؟';
+
+  @override
+  String get themeContinueEditing => 'متابعة التعديل';
+
+  @override
+  String get themeDiscard => 'تجاهل';
+
+  @override
+  String get themeNameInvalid => 'أدخل اسمًا للسمة يتكون من 1 إلى 200 حرف.';
+
+  @override
+  String get themeApplied => 'تم تطبيق السمة';
+
+  @override
+  String get themeApplyFailed =>
+      'تعذر تطبيق السمة. ما زالت تغييراتك محفوظة هنا.';
+
+  @override
+  String get themeUntitled => 'سمة بلا عنوان';
+
+  @override
+  String get themeRename => 'إعادة تسمية السمة';
+
+  @override
+  String themeDeleteTitle(String name) {
+    return 'هل تريد حذف «$name»؟';
+  }
+
+  @override
+  String get themeDeleteMessage => 'ستُحذف هذه السمة المحفوظة نهائيًا.';
+
+  @override
+  String get themeFile => 'سمة Doever';
+
+  @override
+  String get themeFileTooLarge =>
+      'ملف السمة كبير جدًا. اختر ملفًا أصغر من 64 كيلوبايت.';
+
+  @override
+  String get themeFileInvalid => 'هذا الملف ليس سمة Doever صالحة.';
+
+  @override
+  String get themeExportFailed => 'تعذر تصدير السمة.';
+
+  @override
+  String get themeSaveFailed => 'تعذر حفظ التغيير. حاول مرة أخرى.';
+
+  @override
+  String get themeBack => 'العودة إلى الإعدادات';
+
+  @override
+  String get themeRedo => 'إعادة';
+
+  @override
+  String get themeThemes => 'السمات';
+
+  @override
+  String get themeLivePreview => 'معاينة مباشرة';
+
+  @override
+  String get themePreviewHint => 'عاين التغييرات في Doever قبل تطبيقها';
+
+  @override
+  String get themePreviewInApp => 'معاينة في التطبيق';
+
+  @override
+  String get themeContrastGood => 'التباين · جيد';
+
+  @override
+  String get themeContrastProtected => 'التباين · وضوح القراءة محمي';
+
+  @override
+  String get themeName => 'اسم السمة';
+
+  @override
+  String get themeReset => 'إعادة ضبط السمة';
+
+  @override
+  String get themeMode => 'الوضع';
+
+  @override
+  String get themeAutoBalance => 'توازن تلقائي';
+
+  @override
+  String get themeAutoBalanceDescription =>
+      'أبقِ الطبقات مميزة ومريحة للقراءة.';
+
+  @override
+  String get themeLowContrast => 'تباين منخفض في الألوان المختارة';
+
+  @override
+  String get themeBalanceContrast => 'موازنة التباين تلقائيًا';
+
+  @override
+  String get themeBalanced => 'تمت الموازنة تلقائيًا';
+
+  @override
+  String get themeFix => 'إصلاح تلقائي';
+
+  @override
+  String get themeKeep => 'الاحتفاظ على أي حال';
+
+  @override
+  String get themeGallery => 'معرض السمات';
+
+  @override
+  String get themeImport => 'استيراد سمة';
+
+  @override
+  String get themeExport => 'تصدير سمة';
+
+  @override
+  String get themeGalleryDescription => 'ابدأ بمظهر جاهز أو بسمة حفظتها.';
+
+  @override
+  String get themeBuiltIn => 'مدمجة';
+
+  @override
+  String get themeSaved => 'محفوظة';
+
+  @override
+  String get themeNew => 'سمة جديدة';
+
+  @override
+  String get themeEmpty => 'ستظهر سماتك المحفوظة هنا.';
+
+  @override
+  String get themeActive => 'مطبقة';
+
+  @override
+  String themeActions(String name) {
+    return 'إجراءات $name';
+  }
+
+  @override
+  String get themeResetLayer => 'إعادة ضبط الطبقة';
+
+  @override
+  String get themeSolid => 'لون موحد';
+
+  @override
+  String get themeGradient => 'تدرج';
+
+  @override
+  String get themeColors => 'الألوان';
+
+  @override
+  String get themeAddStop => 'إضافة نقطة لون';
+
+  @override
+  String get themeRemoveStop => 'إزالة نقطة لون';
+
+  @override
+  String themeColorStop(int number) {
+    return 'نقطة اللون $number';
+  }
+
+  @override
+  String get themeDirection => 'الاتجاه';
+
+  @override
+  String get themeTopBottom => 'من الأعلى إلى الأسفل';
+
+  @override
+  String get themeBottomTop => 'من الأسفل إلى الأعلى';
+
+  @override
+  String get themeLeftRight => 'من اليسار إلى اليمين';
+
+  @override
+  String get themeRightLeft => 'من اليمين إلى اليسار';
+
+  @override
+  String get themeTopLeftBottomRight => 'من أعلى اليسار إلى أسفل اليمين';
+
+  @override
+  String get themeTopRightBottomLeft => 'من أعلى اليمين إلى أسفل اليسار';
+
+  @override
+  String get themeBottomLeftTopRight => 'من أسفل اليسار إلى أعلى اليمين';
+
+  @override
+  String get themeBottomRightTopLeft => 'من أسفل اليمين إلى أعلى اليسار';
+
+  @override
+  String get themeAdvanced => 'متقدم';
+
+  @override
+  String get themeAdvancedDescription => 'درجة اللون وكثافته وقوة التدرج';
+
+  @override
+  String get themeTone => 'درجة اللون';
+
+  @override
+  String get themeIntensity => 'الكثافة';
+
+  @override
+  String get themeGradientStrength => 'قوة التدرج';
+
+  @override
+  String themePercent(String label, int value) {
+    return '$label $value بالمئة';
+  }
+
+  @override
+  String get themeHexInvalid => 'استخدم #RRGGBB';
+
+  @override
+  String get themeSaturationBrightness => 'التشبع والسطوع';
+
+  @override
+  String get themeHue => 'تدرج اللون';
+
+  @override
+  String themeHueDegrees(int value) {
+    return 'تدرج اللون $value درجة';
+  }
+
+  @override
+  String get themeRecentColors => 'الألوان الأخيرة';
+
+  @override
+  String get themePreviewSemantics =>
+      'معاينة السمة: التنقل والمهام والنص والإدخال والإجراء';
+
+  @override
+  String get themePersonalSpace => 'مساحتك الشخصية';
+
+  @override
+  String get themeRoom => 'مساحة لما يهم.';
+
+  @override
+  String get themeSampleDone => 'خطط ليومك';
+
+  @override
+  String get themeSampleTask => 'راجع ملاحظات المشروع';
+
+  @override
+  String get themeLocal => 'تبقى جميع التغييرات محلية';
+
+  @override
+  String get themeCreate => 'إنشاء';
+
+  @override
+  String get themeHierarchyBalanced =>
+      'تمت موازنة الخلفية والأسطح لإظهار الطبقات بوضوح.';
+
+  @override
+  String get themeHierarchyLow => 'التمييز البصري بين الخلفية والأسطح منخفض.';
+
+  @override
+  String get themeAccentAdjusted => 'عُدّل لون التمييز للحفاظ على وضوح النص.';
+
+  @override
+  String get themeGradientMissing => 'يحتاج التدرج إلى لونين على الأقل.';
+
+  @override
+  String get themeLightAdjusted =>
+      'عُدلت درجات الطبقات لضمان القراءة في الوضع الفاتح.';
+
+  @override
+  String get themeDarkAdjusted =>
+      'عُدلت درجات الطبقات لضمان القراءة في الوضع الداكن.';
+
+  @override
+  String themeCopyName(String name) {
+    return 'نسخة من $name';
+  }
+
+  @override
+  String get themePresetMidnight => 'منتصف الليل';
+
+  @override
+  String get themePresetGraphite => 'الجرافيت';
+
+  @override
+  String get themePresetOcean => 'المحيط';
+
+  @override
+  String get themePresetAurora => 'الشفق';
+
+  @override
+  String get themePresetEmber => 'الجمر';
+
+  @override
+  String get themePresetForest => 'الغابة';
+
+  @override
+  String get themePresetSand => 'الرمال';
 }

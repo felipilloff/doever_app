@@ -191,16 +191,17 @@ final class DriftThemeRepository implements ThemeRepository {
   }
 
   @override
-  Future<CustomTheme> duplicate(CustomTheme theme) async {
+  Future<CustomTheme> duplicate(CustomTheme theme, {String? name}) async {
     final suffix = ' copy';
     final sourceName = theme.name.trim();
     if (sourceName.isEmpty) throw const AppFailure(FailureKind.validation);
-    final name =
+    final copyName =
+        name ??
         '${sourceName.substring(0, sourceName.length.clamp(0, 200 - suffix.length))}$suffix';
     final time = _now;
     final copy = theme.copyWith(
       id: uuid.v4(),
-      name: name,
+      name: copyName,
       createdAt: time,
       updatedAt: time,
     );

@@ -471,4 +471,322 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noteChoosePage => '选择页面，或创建新页面。';
+
+  @override
+  String get themeStudio => '主题工作室';
+
+  @override
+  String get themeStudioSubtitle => '让 Doever 更具个性';
+
+  @override
+  String get themeLayers => '基础、表面与强调色';
+
+  @override
+  String get themeFoundation => '基础';
+
+  @override
+  String get themeSurface => '表面';
+
+  @override
+  String get themeAccent => '强调色';
+
+  @override
+  String get themeFoundationDescription => '工作区背景和整体氛围。';
+
+  @override
+  String get themeSurfaceDescription => '卡片、面板、输入框及浮层内容。';
+
+  @override
+  String get themeAccentDescription => '操作、焦点、选中状态及个性。';
+
+  @override
+  String get themeApply => '应用';
+
+  @override
+  String get themeUnsaved => '未保存的主题更改';
+
+  @override
+  String get themeLeavePrompt => '离开主题工作室前应用更改吗？';
+
+  @override
+  String get themeContinueEditing => '继续编辑';
+
+  @override
+  String get themeDiscard => '放弃更改';
+
+  @override
+  String get themeNameInvalid => '请为主题输入 1–200 个字符的名称。';
+
+  @override
+  String get themeApplied => '主题已应用';
+
+  @override
+  String get themeApplyFailed => '无法应用此主题。你的更改仍然保留。';
+
+  @override
+  String get themeUntitled => '未命名主题';
+
+  @override
+  String get themeRename => '重命名主题';
+
+  @override
+  String themeDeleteTitle(String name) {
+    return '删除“$name”？';
+  }
+
+  @override
+  String get themeDeleteMessage => '此已保存的主题将被永久删除。';
+
+  @override
+  String get themeFile => 'Doever 主题';
+
+  @override
+  String get themeFileTooLarge => '主题文件过大。请选择小于 64 KB 的文件。';
+
+  @override
+  String get themeFileInvalid => '此文件不是有效的 Doever 主题。';
+
+  @override
+  String get themeExportFailed => '无法导出此主题。';
+
+  @override
+  String get themeSaveFailed => '无法保存更改。请重试。';
+
+  @override
+  String get themeBack => '返回设置';
+
+  @override
+  String get themeRedo => '重做';
+
+  @override
+  String get themeThemes => '主题';
+
+  @override
+  String get themeLivePreview => '实时预览';
+
+  @override
+  String get themePreviewHint => '应用前在整个 Doever 中预览更改';
+
+  @override
+  String get themePreviewInApp => '在应用中预览';
+
+  @override
+  String get themeContrastGood => '对比度 · 良好';
+
+  @override
+  String get themeContrastProtected => '对比度 · 可读性已保护';
+
+  @override
+  String get themeName => '主题名称';
+
+  @override
+  String get themeReset => '重置主题';
+
+  @override
+  String get themeMode => '模式';
+
+  @override
+  String get themeAutoBalance => '自动平衡';
+
+  @override
+  String get themeAutoBalanceDescription => '保持层次清晰且易于阅读。';
+
+  @override
+  String get themeLowContrast => '所选颜色对比度较低';
+
+  @override
+  String get themeBalanceContrast => '自动平衡对比度';
+
+  @override
+  String get themeBalanced => '已自动平衡';
+
+  @override
+  String get themeFix => '自动修复';
+
+  @override
+  String get themeKeep => '仍然保留';
+
+  @override
+  String get themeGallery => '主题库';
+
+  @override
+  String get themeImport => '导入主题';
+
+  @override
+  String get themeExport => '导出主题';
+
+  @override
+  String get themeGalleryDescription => '从精选主题或已保存的主题开始。';
+
+  @override
+  String get themeBuiltIn => '内置';
+
+  @override
+  String get themeSaved => '已保存';
+
+  @override
+  String get themeNew => '新建主题';
+
+  @override
+  String get themeEmpty => '你保存的主题将显示在这里。';
+
+  @override
+  String get themeActive => '已应用';
+
+  @override
+  String themeActions(String name) {
+    return '$name 的操作';
+  }
+
+  @override
+  String get themeResetLayer => '重置图层';
+
+  @override
+  String get themeSolid => '纯色';
+
+  @override
+  String get themeGradient => '渐变';
+
+  @override
+  String get themeColors => '颜色';
+
+  @override
+  String get themeAddStop => '添加色标';
+
+  @override
+  String get themeRemoveStop => '移除色标';
+
+  @override
+  String themeColorStop(int number) {
+    return '色标 $number';
+  }
+
+  @override
+  String get themeDirection => '方向';
+
+  @override
+  String get themeTopBottom => '从上到下';
+
+  @override
+  String get themeBottomTop => '从下到上';
+
+  @override
+  String get themeLeftRight => '从左到右';
+
+  @override
+  String get themeRightLeft => '从右到左';
+
+  @override
+  String get themeTopLeftBottomRight => '从左上到右下';
+
+  @override
+  String get themeTopRightBottomLeft => '从右上到左下';
+
+  @override
+  String get themeBottomLeftTopRight => '从左下到右上';
+
+  @override
+  String get themeBottomRightTopLeft => '从右下到左上';
+
+  @override
+  String get themeAdvanced => '高级';
+
+  @override
+  String get themeAdvancedDescription => '色调、强度和渐变强度';
+
+  @override
+  String get themeTone => '色调';
+
+  @override
+  String get themeIntensity => '强度';
+
+  @override
+  String get themeGradientStrength => '渐变强度';
+
+  @override
+  String themePercent(String label, int value) {
+    return '$label $value%';
+  }
+
+  @override
+  String get themeHexInvalid => '请使用 #RRGGBB';
+
+  @override
+  String get themeSaturationBrightness => '饱和度和亮度';
+
+  @override
+  String get themeHue => '色相';
+
+  @override
+  String themeHueDegrees(int value) {
+    return '色相 $value 度';
+  }
+
+  @override
+  String get themeRecentColors => '最近使用的颜色';
+
+  @override
+  String get themePreviewSemantics => '主题预览：导航、任务、文本、输入框及操作';
+
+  @override
+  String get themePersonalSpace => '你的个人空间';
+
+  @override
+  String get themeRoom => '为重要的事留出空间。';
+
+  @override
+  String get themeSampleDone => '规划一天';
+
+  @override
+  String get themeSampleTask => '查看项目笔记';
+
+  @override
+  String get themeLocal => '所有更改均保存在本地';
+
+  @override
+  String get themeCreate => '创建';
+
+  @override
+  String get themeHierarchyBalanced => '已平衡基础与表面，使层次更清晰。';
+
+  @override
+  String get themeHierarchyLow => '基础与表面的层次区分较弱。';
+
+  @override
+  String get themeAccentAdjusted => '已调整强调色，确保前景文字清晰可读。';
+
+  @override
+  String get themeGradientMissing => '渐变至少需要两种颜色。';
+
+  @override
+  String get themeLightAdjusted => '已调整图层色调，确保浅色模式可读。';
+
+  @override
+  String get themeDarkAdjusted => '已调整图层色调，确保深色模式可读。';
+
+  @override
+  String themeCopyName(String name) {
+    return '$name 副本';
+  }
+
+  @override
+  String get themePresetMidnight => '午夜';
+
+  @override
+  String get themePresetGraphite => '石墨';
+
+  @override
+  String get themePresetOcean => '海洋';
+
+  @override
+  String get themePresetAurora => '极光';
+
+  @override
+  String get themePresetEmber => '余烬';
+
+  @override
+  String get themePresetForest => '森林';
+
+  @override
+  String get themePresetSand => '沙色';
 }

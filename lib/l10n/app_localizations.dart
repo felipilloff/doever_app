@@ -1015,6 +1015,618 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Select a page, or create a new one.'**
   String get noteChoosePage;
+
+  /// No description provided for @themeStudio.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme Studio'**
+  String get themeStudio;
+
+  /// No description provided for @themeStudioSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make Doever feel like yours'**
+  String get themeStudioSubtitle;
+
+  /// No description provided for @themeLayers.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation, Surface & Accent'**
+  String get themeLayers;
+
+  /// No description provided for @themeFoundation.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation'**
+  String get themeFoundation;
+
+  /// No description provided for @themeSurface.
+  ///
+  /// In en, this message translates to:
+  /// **'Surface'**
+  String get themeSurface;
+
+  /// No description provided for @themeAccent.
+  ///
+  /// In en, this message translates to:
+  /// **'Accent'**
+  String get themeAccent;
+
+  /// No description provided for @themeFoundationDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'The workspace background and overall atmosphere.'**
+  String get themeFoundationDescription;
+
+  /// No description provided for @themeSurfaceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards, panels, inputs, and elevated content.'**
+  String get themeSurfaceDescription;
+
+  /// No description provided for @themeAccentDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Actions, focus, selection, and personality.'**
+  String get themeAccentDescription;
+
+  /// No description provided for @themeApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get themeApply;
+
+  /// No description provided for @themeUnsaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Unsaved theme changes'**
+  String get themeUnsaved;
+
+  /// No description provided for @themeLeavePrompt.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply your changes before leaving Theme Studio?'**
+  String get themeLeavePrompt;
+
+  /// No description provided for @themeContinueEditing.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue editing'**
+  String get themeContinueEditing;
+
+  /// No description provided for @themeDiscard.
+  ///
+  /// In en, this message translates to:
+  /// **'Discard'**
+  String get themeDiscard;
+
+  /// No description provided for @themeNameInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Give this theme a name of 1–200 characters.'**
+  String get themeNameInvalid;
+
+  /// No description provided for @themeApplied.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme applied'**
+  String get themeApplied;
+
+  /// No description provided for @themeApplyFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t apply this theme. Your changes are still here.'**
+  String get themeApplyFailed;
+
+  /// No description provided for @themeUntitled.
+  ///
+  /// In en, this message translates to:
+  /// **'Untitled theme'**
+  String get themeUntitled;
+
+  /// No description provided for @themeRename.
+  ///
+  /// In en, this message translates to:
+  /// **'Rename theme'**
+  String get themeRename;
+
+  /// No description provided for @themeDeleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete “{name}”?'**
+  String themeDeleteTitle(String name);
+
+  /// No description provided for @themeDeleteMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'This saved theme will be permanently removed.'**
+  String get themeDeleteMessage;
+
+  /// No description provided for @themeFile.
+  ///
+  /// In en, this message translates to:
+  /// **'Doever theme'**
+  String get themeFile;
+
+  /// No description provided for @themeFileTooLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'That theme file is too large. Choose a file under 64 KB.'**
+  String get themeFileTooLarge;
+
+  /// No description provided for @themeFileInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That file isn’t a valid Doever theme.'**
+  String get themeFileInvalid;
+
+  /// No description provided for @themeExportFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t export this theme.'**
+  String get themeExportFailed;
+
+  /// No description provided for @themeSaveFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn’t save that change. Please try again.'**
+  String get themeSaveFailed;
+
+  /// No description provided for @themeBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Back to settings'**
+  String get themeBack;
+
+  /// No description provided for @themeRedo.
+  ///
+  /// In en, this message translates to:
+  /// **'Redo'**
+  String get themeRedo;
+
+  /// No description provided for @themeThemes.
+  ///
+  /// In en, this message translates to:
+  /// **'Themes'**
+  String get themeThemes;
+
+  /// No description provided for @themeLivePreview.
+  ///
+  /// In en, this message translates to:
+  /// **'Live preview'**
+  String get themeLivePreview;
+
+  /// No description provided for @themePreviewHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview changes throughout Doever before applying'**
+  String get themePreviewHint;
+
+  /// No description provided for @themePreviewInApp.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview in app'**
+  String get themePreviewInApp;
+
+  /// No description provided for @themeContrastGood.
+  ///
+  /// In en, this message translates to:
+  /// **'Contrast · Good'**
+  String get themeContrastGood;
+
+  /// No description provided for @themeContrastProtected.
+  ///
+  /// In en, this message translates to:
+  /// **'Contrast · Readability protected'**
+  String get themeContrastProtected;
+
+  /// No description provided for @themeName.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme name'**
+  String get themeName;
+
+  /// No description provided for @themeReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset theme'**
+  String get themeReset;
+
+  /// No description provided for @themeMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Mode'**
+  String get themeMode;
+
+  /// No description provided for @themeAutoBalance.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto Balance'**
+  String get themeAutoBalance;
+
+  /// No description provided for @themeAutoBalanceDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep layers distinct and comfortably readable.'**
+  String get themeAutoBalanceDescription;
+
+  /// No description provided for @themeLowContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'Low contrast in selected colors'**
+  String get themeLowContrast;
+
+  /// No description provided for @themeBalanceContrast.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto balance contrast'**
+  String get themeBalanceContrast;
+
+  /// No description provided for @themeBalanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Balanced automatically'**
+  String get themeBalanced;
+
+  /// No description provided for @themeFix.
+  ///
+  /// In en, this message translates to:
+  /// **'Fix automatically'**
+  String get themeFix;
+
+  /// No description provided for @themeKeep.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep anyway'**
+  String get themeKeep;
+
+  /// No description provided for @themeGallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme gallery'**
+  String get themeGallery;
+
+  /// No description provided for @themeImport.
+  ///
+  /// In en, this message translates to:
+  /// **'Import theme'**
+  String get themeImport;
+
+  /// No description provided for @themeExport.
+  ///
+  /// In en, this message translates to:
+  /// **'Export theme'**
+  String get themeExport;
+
+  /// No description provided for @themeGalleryDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Start from a curated look or one you saved.'**
+  String get themeGalleryDescription;
+
+  /// No description provided for @themeBuiltIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Built in'**
+  String get themeBuiltIn;
+
+  /// No description provided for @themeSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved'**
+  String get themeSaved;
+
+  /// No description provided for @themeNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New theme'**
+  String get themeNew;
+
+  /// No description provided for @themeEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Your saved themes will appear here.'**
+  String get themeEmpty;
+
+  /// No description provided for @themeActive.
+  ///
+  /// In en, this message translates to:
+  /// **'Applied'**
+  String get themeActive;
+
+  /// No description provided for @themeActions.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} actions'**
+  String themeActions(String name);
+
+  /// No description provided for @themeResetLayer.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset layer'**
+  String get themeResetLayer;
+
+  /// No description provided for @themeSolid.
+  ///
+  /// In en, this message translates to:
+  /// **'Solid'**
+  String get themeSolid;
+
+  /// No description provided for @themeGradient.
+  ///
+  /// In en, this message translates to:
+  /// **'Gradient'**
+  String get themeGradient;
+
+  /// No description provided for @themeColors.
+  ///
+  /// In en, this message translates to:
+  /// **'Colors'**
+  String get themeColors;
+
+  /// No description provided for @themeAddStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Add stop'**
+  String get themeAddStop;
+
+  /// No description provided for @themeRemoveStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove stop'**
+  String get themeRemoveStop;
+
+  /// No description provided for @themeColorStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Color stop {number}'**
+  String themeColorStop(int number);
+
+  /// No description provided for @themeDirection.
+  ///
+  /// In en, this message translates to:
+  /// **'Direction'**
+  String get themeDirection;
+
+  /// No description provided for @themeTopBottom.
+  ///
+  /// In en, this message translates to:
+  /// **'Top to bottom'**
+  String get themeTopBottom;
+
+  /// No description provided for @themeBottomTop.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom to top'**
+  String get themeBottomTop;
+
+  /// No description provided for @themeLeftRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Left to right'**
+  String get themeLeftRight;
+
+  /// No description provided for @themeRightLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Right to left'**
+  String get themeRightLeft;
+
+  /// No description provided for @themeTopLeftBottomRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Top left to bottom right'**
+  String get themeTopLeftBottomRight;
+
+  /// No description provided for @themeTopRightBottomLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Top right to bottom left'**
+  String get themeTopRightBottomLeft;
+
+  /// No description provided for @themeBottomLeftTopRight.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom left to top right'**
+  String get themeBottomLeftTopRight;
+
+  /// No description provided for @themeBottomRightTopLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'Bottom right to top left'**
+  String get themeBottomRightTopLeft;
+
+  /// No description provided for @themeAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced'**
+  String get themeAdvanced;
+
+  /// No description provided for @themeAdvancedDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Tone, intensity, and gradient strength'**
+  String get themeAdvancedDescription;
+
+  /// No description provided for @themeTone.
+  ///
+  /// In en, this message translates to:
+  /// **'Tone'**
+  String get themeTone;
+
+  /// No description provided for @themeIntensity.
+  ///
+  /// In en, this message translates to:
+  /// **'Intensity'**
+  String get themeIntensity;
+
+  /// No description provided for @themeGradientStrength.
+  ///
+  /// In en, this message translates to:
+  /// **'Gradient strength'**
+  String get themeGradientStrength;
+
+  /// No description provided for @themePercent.
+  ///
+  /// In en, this message translates to:
+  /// **'{label} {value} percent'**
+  String themePercent(String label, int value);
+
+  /// No description provided for @themeHexInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'Use #RRGGBB'**
+  String get themeHexInvalid;
+
+  /// No description provided for @themeSaturationBrightness.
+  ///
+  /// In en, this message translates to:
+  /// **'Saturation and brightness'**
+  String get themeSaturationBrightness;
+
+  /// No description provided for @themeHue.
+  ///
+  /// In en, this message translates to:
+  /// **'Hue'**
+  String get themeHue;
+
+  /// No description provided for @themeHueDegrees.
+  ///
+  /// In en, this message translates to:
+  /// **'Hue {value} degrees'**
+  String themeHueDegrees(int value);
+
+  /// No description provided for @themeRecentColors.
+  ///
+  /// In en, this message translates to:
+  /// **'Recent colors'**
+  String get themeRecentColors;
+
+  /// No description provided for @themePreviewSemantics.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme preview: navigation, tasks, text, input and action'**
+  String get themePreviewSemantics;
+
+  /// No description provided for @themePersonalSpace.
+  ///
+  /// In en, this message translates to:
+  /// **'Your personal space'**
+  String get themePersonalSpace;
+
+  /// No description provided for @themeRoom.
+  ///
+  /// In en, this message translates to:
+  /// **'Room for what matters.'**
+  String get themeRoom;
+
+  /// No description provided for @themeSampleDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Shape the day'**
+  String get themeSampleDone;
+
+  /// No description provided for @themeSampleTask.
+  ///
+  /// In en, this message translates to:
+  /// **'Review project notes'**
+  String get themeSampleTask;
+
+  /// No description provided for @themeLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'All changes stay local'**
+  String get themeLocal;
+
+  /// No description provided for @themeCreate.
+  ///
+  /// In en, this message translates to:
+  /// **'Create'**
+  String get themeCreate;
+
+  /// No description provided for @themeHierarchyBalanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation and Surface were balanced for clearer hierarchy.'**
+  String get themeHierarchyBalanced;
+
+  /// No description provided for @themeHierarchyLow.
+  ///
+  /// In en, this message translates to:
+  /// **'Foundation and Surface have low visual hierarchy.'**
+  String get themeHierarchyLow;
+
+  /// No description provided for @themeAccentAdjusted.
+  ///
+  /// In en, this message translates to:
+  /// **'Accent tones were adjusted to keep foreground text readable.'**
+  String get themeAccentAdjusted;
+
+  /// No description provided for @themeGradientMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'A gradient needs at least two colors.'**
+  String get themeGradientMissing;
+
+  /// No description provided for @themeLightAdjusted.
+  ///
+  /// In en, this message translates to:
+  /// **'Layer tones were adjusted for readable light mode.'**
+  String get themeLightAdjusted;
+
+  /// No description provided for @themeDarkAdjusted.
+  ///
+  /// In en, this message translates to:
+  /// **'Layer tones were adjusted for readable dark mode.'**
+  String get themeDarkAdjusted;
+
+  /// No description provided for @themeCopyName.
+  ///
+  /// In en, this message translates to:
+  /// **'{name} Copy'**
+  String themeCopyName(String name);
+
+  /// No description provided for @themePresetMidnight.
+  ///
+  /// In en, this message translates to:
+  /// **'Midnight'**
+  String get themePresetMidnight;
+
+  /// No description provided for @themePresetGraphite.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphite'**
+  String get themePresetGraphite;
+
+  /// No description provided for @themePresetOcean.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean'**
+  String get themePresetOcean;
+
+  /// No description provided for @themePresetAurora.
+  ///
+  /// In en, this message translates to:
+  /// **'Aurora'**
+  String get themePresetAurora;
+
+  /// No description provided for @themePresetEmber.
+  ///
+  /// In en, this message translates to:
+  /// **'Ember'**
+  String get themePresetEmber;
+
+  /// No description provided for @themePresetForest.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest'**
+  String get themePresetForest;
+
+  /// No description provided for @themePresetSand.
+  ///
+  /// In en, this message translates to:
+  /// **'Sand'**
+  String get themePresetSand;
 }
 
 class _AppLocalizationsDelegate

@@ -5,7 +5,7 @@ abstract interface class ThemeRepository {
   Future<ThemeLibrary> load();
   Future<void> save(CustomTheme theme, {bool apply = false});
   Future<void> select(String id);
-  Future<CustomTheme> duplicate(CustomTheme theme);
+  Future<CustomTheme> duplicate(CustomTheme theme, {String? name});
   Future<void> delete(String id);
   Future<void> rememberColors(List<int> colors);
 }
