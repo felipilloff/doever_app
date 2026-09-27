@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../l10n/app_localizations.dart';
+import '../features/theme_studio/application/theme_providers.dart';
+import '../features/theme_studio/domain/custom_theme.dart';
 import 'providers.dart';
 import 'theme/doever_theme.dart';
 
@@ -11,16 +13,31 @@ class DoeverApp extends ConsumerWidget {
   final GoRouter router;
   final GlobalKey<ScaffoldMessengerState>? messengerKey;
   @override
-  Widget build(BuildContext context, WidgetRef ref) => MaterialApp.router(
-    title: 'Doever',
-    debugShowCheckedModeBanner: false,
-    routerConfig: router,
-    scaffoldMessengerKey: messengerKey,
-    theme: DoeverTheme.build(Brightness.light),
-    darkTheme: DoeverTheme.build(Brightness.dark),
-    themeMode: ref.watch(themeProvider),
-    locale: ref.watch(localeProvider),
-    localizationsDelegates: AppLocalizations.localizationsDelegates,
-    supportedLocales: AppLocalizations.supportedLocales,
-  );
+  Widget build(BuildContext context, WidgetRef ref) {
+    final custom =
+        ref.watch(themePreviewProvider) ??
+        ref.watch(appliedCustomThemeProvider);
+    final brightness = custom?.baseMode == ThemeBrightnessMode.light
+        ? Brightness.light
+        : Brightness.dark;
+    final theme = custom == null
+        ? null
+        : DoeverTheme.build(brightness, custom: custom);
+    return MaterialApp.router(
+      title: 'Doever',
+      debugShowCheckedModeBanner: false,
+      routerConfig: router,
+      scaffoldMessengerKey: messengerKey,
+      theme: theme ?? DoeverTheme.build(Brightness.light),
+      darkTheme: theme ?? DoeverTheme.build(Brightness.dark),
+      themeMode: custom == null
+          ? ref.watch(themeProvider)
+          : brightness == Brightness.light
+          ? ThemeMode.light
+          : ThemeMode.dark,
+      locale: ref.watch(localeProvider),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+    );
+  }
 }

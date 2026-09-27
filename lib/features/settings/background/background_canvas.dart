@@ -2,6 +2,8 @@ import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 
+import '../../../../app/theme/theme_layer_paint.dart';
+
 /// The same image treatment is used in the workspace and settings preview.
 class BackgroundCanvas extends StatelessWidget {
   const BackgroundCanvas({super.key, required this.image, required this.child});
@@ -10,7 +12,9 @@ class BackgroundCanvas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (image == null) return child;
+    if (image == null) {
+      return ThemeLayerPaint(role: ThemeLayerRole.foundation, child: child);
+    }
     return Stack(
       fit: StackFit.expand,
       children: [

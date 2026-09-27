@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme/doever_theme.dart';
+import '../../../app/theme/theme_layer_paint.dart';
 import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
 import '../../tasks/domain/task.dart';
@@ -25,8 +26,8 @@ class Sidebar extends ConsumerWidget {
     final s = AppLocalizations.of(context);
     final lists = ref.watch(listsProvider);
     final repo = ref.read(repositoryProvider);
-    return Material(
-      color: Theme.of(context).colorScheme.surfaceContainerLow,
+    return ThemeLayerPaint(
+      role: ThemeLayerRole.surface,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(Space.md),

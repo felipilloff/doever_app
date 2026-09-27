@@ -7,6 +7,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/theme/doever_theme.dart';
+import '../../../app/theme/theme_layer_paint.dart';
 import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
 import '../application/note_editor.dart';
@@ -112,8 +113,8 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
   Widget _navigation() {
     final s = AppLocalizations.of(context);
     final pages = ref.watch(notePagesProvider(_query));
-    return Material(
-      color: Theme.of(context).colorScheme.surfaceContainerLow,
+    return ThemeLayerPaint(
+      role: ThemeLayerRole.surface,
       child: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(16),
@@ -252,42 +253,45 @@ class _NotesScreenState extends ConsumerState<NotesScreen> {
               ],
             ),
             drawer: wide ? null : Drawer(child: _navigation()),
-            body: Row(
-              children: [
-                if (wide) SizedBox(width: 280, child: _navigation()),
-                Expanded(
-                  child: _editor == null
-                      ? Center(
-                          child: Padding(
-                            padding: const EdgeInsets.all(24),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Icon(
-                                  Icons.description_outlined,
-                                  size: 44,
-                                ),
-                                const SizedBox(height: 16),
-                                Text(
-                                  hasPages ? s.noteChoosePage : s.noNotes,
-                                  textAlign: TextAlign.center,
-                                ),
-                                const SizedBox(height: 16),
-                                OutlinedButton.icon(
-                                  onPressed: _busy ? null : _create,
-                                  icon: const Icon(Icons.add),
-                                  label: Text(s.newPage),
-                                ),
-                              ],
+            body: ThemeLayerPaint(
+              role: ThemeLayerRole.foundation,
+              child: Row(
+                children: [
+                  if (wide) SizedBox(width: 280, child: _navigation()),
+                  Expanded(
+                    child: _editor == null
+                        ? Center(
+                            child: Padding(
+                              padding: const EdgeInsets.all(24),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.description_outlined,
+                                    size: 44,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  Text(
+                                    hasPages ? s.noteChoosePage : s.noNotes,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                  const SizedBox(height: 16),
+                                  OutlinedButton.icon(
+                                    onPressed: _busy ? null : _create,
+                                    icon: const Icon(Icons.add),
+                                    label: Text(s.newPage),
+                                  ),
+                                ],
+                              ),
                             ),
+                          )
+                        : PageEditor(
+                            key: ValueKey(_editor!.pageId),
+                            editor: _editor!,
                           ),
-                        )
-                      : PageEditor(
-                          key: ValueKey(_editor!.pageId),
-                          editor: _editor!,
-                        ),
-                ),
-              ],
+                  ),
+                ],
+              ),
             ),
           );
         },

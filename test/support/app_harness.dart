@@ -2,6 +2,8 @@ import 'package:doever/app/app.dart';
 import 'package:doever/app/router.dart';
 import 'package:doever/app/providers.dart';
 import 'package:doever/database/app_database.dart';
+import 'package:doever/features/theme_studio/application/theme_providers.dart';
+import 'package:doever/features/theme_studio/data/drift_theme_repository.dart';
 import 'package:doever/features/tasks/data/drift_task_repository.dart';
 import 'package:drift/native.dart';
 import 'package:flutter/material.dart';
@@ -42,6 +44,9 @@ class AppHarness {
       overrides: [
         if (today != null) todayProvider.overrideWith(() => FixedToday(today)),
         repositoryProvider.overrideWithValue(repository),
+        themeRepositoryProvider.overrideWithValue(
+          DriftThemeRepository(database),
+        ),
         noteRepositoryProvider.overrideWithValue(DriftNoteRepository(database)),
         remindersProvider.overrideWithValue(FakeReminders()),
         preferencesProvider.overrideWithValue(preferences),
