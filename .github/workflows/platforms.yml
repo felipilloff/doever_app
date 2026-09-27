@@ -35,10 +35,17 @@ jobs:
       - run: flutter pub get
       - name: Verify Notes desktop workflow
         run: flutter test integration_test/notes_test.dart -d windows
-      - run: flutter build windows
+      - name: Verify Theme Studio desktop workflow
+        run: flutter test integration_test/theme_studio_test.dart -d windows
+      - name: Package Windows desktop app
+        run: ./tool/build_windows.ps1
       - name: Verify single instance and restart
         run: python tool/test_single_instance.py build/windows/x64/runner/Release/doever.exe
       - uses: actions/upload-artifact@v4
         with:
           name: windows-release
           path: build/windows/x64/runner/Release/
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-package
+          path: build/releases/doever-windows-x64.zip*

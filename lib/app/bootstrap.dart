@@ -11,6 +11,8 @@ import '../database/app_database.dart';
 import '../features/tasks/data/drift_task_repository.dart';
 import '../features/notes/data/drift_note_repository.dart';
 import '../features/notes/application/notes_providers.dart';
+import '../features/theme_studio/application/theme_providers.dart';
+import '../features/theme_studio/data/drift_theme_repository.dart';
 import '../l10n/app_localizations.dart';
 import 'app.dart';
 import 'providers.dart';
@@ -35,6 +37,8 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       final repository = DriftTaskRepository(database);
       await repository.initialize();
       final preferences = await SharedPreferences.getInstance();
+      final themes = DriftThemeRepository(database);
+      final themeLibrary = await themes.load();
       final reminders = LocalReminders(
         onOpen: (id) => _router.go('/task/${Uri.encodeComponent(id)}'),
       );
@@ -63,6 +67,8 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
             DriftNoteRepository(database),
           ),
           preferencesProvider.overrideWithValue(preferences),
+          themeRepositoryProvider.overrideWithValue(themes),
+          initialThemeLibraryProvider.overrideWithValue(themeLibrary),
           remindersProvider.overrideWithValue(reminders),
         ],
         child: DoeverApp(router: _router, messengerKey: _messenger),

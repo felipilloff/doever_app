@@ -54,6 +54,21 @@ accept http/https and open only when explicitly clicked. Toggles contain a title
 and one collapsible text area. There are no nested pages, accounts, synchronization,
 collaboration, or mobile/web Notes views in this release.
 
+## Theme Studio (Windows and Linux)
+
+Open **Settings → Theme Studio** to preview and apply a custom appearance on the
+desktop. Theme Studio edits three semantic layers: **Foundation** controls the
+workspace canvas and atmosphere, **Surface** controls panels, dialogs, cards, and
+forms, and **Accent** controls interactive emphasis such as buttons, links,
+selection, and focus. Start from a built-in preset or create a saved theme; built-in
+presets remain unchanged when edited.
+
+Saved themes live in the local SQLite database and can be renamed, duplicated,
+deleted, imported, or exported as `.doever-theme.json` files. Changes stay in the
+live preview until you apply them. Use **Ctrl/Cmd+Z** to undo, **Ctrl/Cmd+Y** or
+**Ctrl/Cmd+Shift+Z** to redo, and the layer reset controls to restore one layer or
+the full theme.
+
 ## Screenshots
 
 Generated from deterministic widget tests using the bundled font:

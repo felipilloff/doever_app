@@ -13,7 +13,7 @@ Both packages are available locally after this build:
 
 SHA-256 files and `BUILD_INFO.txt` are beside the archives. Linux was built and
 launched on Ubuntu 26.04 x86_64. Windows was built successfully on its native
-[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36227397981);
+[GitHub Actions runner](https://github.com/felipilloff/doever_app/actions/runs/36301612878);
 its native process smoke test passed in CI. Foreground focus has not been visually
 verified on Windows.
 
@@ -21,9 +21,18 @@ verified on Windows.
 
 These packages include local Notes for Windows and Linux: independent blocks,
 autosave, session undo/redo, search, managed images and TODO-to-task creation.
-The first launch upgrades schema v1 to v2 by adding Notes tables and indexes;
-existing task/list/reminder data is preserved. See [Notes architecture](ARCHITECTURE.md#notes-desktop-module)
+The first launch upgrades older databases to schema v3, adding Notes tables for
+v1 users and Theme Studio storage for v1/v2 users; existing task/list/reminder
+and Notes data is preserved. See [Notes architecture](ARCHITECTURE.md#notes-desktop-module)
 and [validation coverage](VALIDATION.md#notes--pages-update).
+
+## Theme Studio
+
+**Settings → Theme Studio** edits Foundation, Surface, and Accent with solid
+colors or gradients, tone/intensity controls, automatic readability protection,
+eight presets, saved custom themes, and validated JSON import/export. Drafts and
+temporary app previews stay in memory until Apply; themes persist locally.
+See [Theme Studio architecture](theme-studio-architecture.md).
 
 ## Workspace background
 

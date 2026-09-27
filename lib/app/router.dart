@@ -3,6 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../features/notes/application/notes_providers.dart';
 import '../features/notes/presentation/notes_screen.dart';
+import '../features/theme_studio/application/theme_providers.dart';
+import '../features/theme_studio/presentation/theme_studio_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
@@ -30,7 +32,21 @@ GoRouter createRouter() => GoRouter(
                   .flush(),
           builder: (_, _) => const NotesScreen(),
         ),
-        GoRoute(path: 'settings', builder: (_, _) => const SettingsScreen()),
+        GoRoute(
+          path: 'settings',
+          builder: (_, _) => const SettingsScreen(),
+          routes: [
+            GoRoute(
+              path: 'theme-studio',
+              redirect: (_, _) => supportsThemeStudio ? null : '/settings',
+              onExit: (context, _) =>
+                  ProviderScope.containerOf(context)
+                      .read(themeLeaveGuardProvider)
+                      .canLeave(),
+              builder: (_, _) => const ThemeStudioScreen(),
+            ),
+          ],
+        ),
       ],
     ),
   ],

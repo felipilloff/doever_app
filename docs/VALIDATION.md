@@ -93,6 +93,30 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
   rejection. Native file-dialog interaction and browser launching require manual
   validation; tests do not open remote URLs.
 
+## Theme Studio update
+
+- 70 unit/widget tests pass, including the existing task, Notes, localization,
+  background, and golden tests. Static analysis and formatting are clean.
+- Theme tests cover strict import validation, immutable presets, draft history,
+  atomic persistence, active-theme fallback, deletion, duplication, and restart.
+- Contrast tests use independent sRGB calculations across presets and 64 seeded
+  extreme palettes, sampling intermediate gradient colors in light/dark modes.
+- Migrations from both v1 and v2 preserve existing rows, including Notes metadata
+  and soft-deleted blocks. The generated Drift schema matches both upgrade paths.
+- Widget checks cover all layers, HEX validation, gradients, advanced controls,
+  preview/cancel, inactive-theme rename, and 600/900/1440-pixel desktop layouts.
+  Changing themes retains the same Notes editor and its pending text.
+- Native Linux integration edits all three layers and a two-stop gradient,
+  adjusts tone/intensity/strength, verifies preview does not persist, applies,
+  checks Tasks/Notes propagation, reopens the database, and restores the default.
+  The existing Notes-to-task/reopen integration also passes.
+- Both native workflows also pass on Windows in
+  [run 36301612878](https://github.com/felipilloff/doever_app/actions/runs/36301612878).
+- CI formatting, analysis, all 70 tests, and generated Drift consistency pass in
+  [run 36301612994](https://github.com/felipilloff/doever_app/actions/runs/36301612994).
+- The extracted Linux release passes duplicate/concurrent launch and restart
+  checks; its native libraries resolve and its SHA-256 manifest verifies.
+
 ## Still requires target hardware / release validation
 
 Windows was compiled on its native GitHub Actions runner, since this local host

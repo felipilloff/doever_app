@@ -41,6 +41,9 @@ an appropriate persistent browser backend on web. Foreign keys are enabled.
 Schema versions are exported under `drift_schemas/app/`. Version 2 adds Notes
 tables and indexes to v1 without altering existing task tables. Migration tests
 compare all legacy columns, including recurrence and reminder jobs, before/after.
+Version 3 adds custom themes and a singleton active-theme/recent-color record.
+Migration tests cover both v1 and v2, including preserved Notes content. Theme
+Studio extends the existing design system; see [its architecture](theme-studio-architecture.md).
 Unimplemented upgrade paths fail safely rather than destroying data.
 
 For every future schema change:

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../features/theme_studio/domain/custom_theme.dart';
+import 'theme_generator.dart';
+
 abstract final class Space {
   static const double xs = 4, sm = 8, md = 16, lg = 24, xl = 32, xxl = 48;
 }
@@ -15,17 +18,52 @@ abstract final class Layout {
 
 abstract final class DoeverTheme {
   static const seed = Color(0xff426b59);
-  static ThemeData build(Brightness brightness) {
+  static ThemeData build(Brightness brightness, {CustomTheme? custom}) {
     final dark = brightness == Brightness.dark;
-    final colors = ColorScheme.fromSeed(
-      seedColor: seed,
-      brightness: brightness,
-      surface: dark ? const Color(0xff171c19) : const Color(0xfff8f9f5),
-    );
+    final palette = custom == null ? null : ThemeGenerator.generate(custom);
+    final colors =
+        palette?.colors ??
+        ColorScheme.fromSeed(
+          seedColor: seed,
+          brightness: brightness,
+          surface: dark ? const Color(0xff171c19) : const Color(0xfff8f9f5),
+        );
     return ThemeData(
       useMaterial3: true,
       fontFamily: 'Lato',
       colorScheme: colors,
+      extensions: [?palette],
+      filledButtonTheme: palette == null
+          ? null
+          : FilledButtonThemeData(
+              style: ButtonStyle(
+                foregroundColor: WidgetStateProperty.resolveWith(
+                  (states) => states.contains(WidgetState.disabled)
+                      ? colors.onSurface.withValues(alpha: .38)
+                      : palette.onAccent,
+                ),
+                backgroundColor: WidgetStateProperty.resolveWith(
+                  (states) => states.contains(WidgetState.disabled)
+                      ? colors.onSurface.withValues(alpha: .12)
+                      : Colors.transparent,
+                ),
+                backgroundBuilder: (context, states, child) {
+                  if (states.contains(WidgetState.disabled)) {
+                    return child ?? const SizedBox.shrink();
+                  }
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(24),
+                      color: palette.accentGradient == null
+                          ? palette.accent.first
+                          : null,
+                      gradient: palette.accentGradient,
+                    ),
+                    child: child,
+                  );
+                },
+              ),
+            ),
       scaffoldBackgroundColor: colors.surface,
       visualDensity: VisualDensity.standard,
       appBarTheme: AppBarTheme(
@@ -43,6 +81,12 @@ abstract final class DoeverTheme {
           borderRadius: BorderRadius.circular(Layout.radius),
           borderSide: BorderSide.none,
         ),
+        focusedBorder: palette == null
+            ? null
+            : OutlineInputBorder(
+                borderRadius: BorderRadius.circular(Layout.radius),
+                borderSide: BorderSide(color: palette.focus, width: 2),
+              ),
         contentPadding: const EdgeInsets.all(Space.md),
       ),
       listTileTheme: ListTileThemeData(

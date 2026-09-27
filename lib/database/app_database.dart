@@ -101,8 +101,44 @@ class NoteBlocks extends Table {
   Set<Column<Object>> get primaryKey => {id};
 }
 
+@DataClassName('CustomThemeRow')
+class CustomThemes extends Table {
+  TextColumn get id => text()();
+  TextColumn get document => text()();
+  DateTimeColumn get createdAt => dateTime()();
+  DateTimeColumn get updatedAt => dateTime()();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+@DataClassName('ThemeSettingsRow')
+class ThemeSettings extends Table {
+  IntColumn get id => integer()();
+  TextColumn get activeCustomThemeId =>
+      text().nullable().references(CustomThemes, #id)();
+  TextColumn get activePresetId =>
+      text().nullable().withDefault(const Constant('preset:default'))();
+  TextColumn get recentColors => text().withDefault(const Constant('[]'))();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+  @override
+  List<String> get customConstraints => const [
+    'CHECK (id = 1)',
+    'CHECK ((active_custom_theme_id IS NULL) != (active_preset_id IS NULL))',
+  ];
+}
+
 @DriftDatabase(
-  tables: [Lists, Tasks, Steps, ReminderJobs, NotePages, NoteBlocks],
+  tables: [
+    Lists,
+    Tasks,
+    Steps,
+    ReminderJobs,
+    NotePages,
+    NoteBlocks,
+    CustomThemes,
+    ThemeSettings,
+  ],
 )
 class AppDatabase extends _$AppDatabase {
   AppDatabase([QueryExecutor? executor])
@@ -120,12 +156,15 @@ class AppDatabase extends _$AppDatabase {
             ),
       );
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 3;
   @override
   MigrationStrategy get migration => MigrationStrategy(
-    onCreate: (m) => m.createAll(),
+    onCreate: (m) async {
+      await m.createAll();
+      await _insertThemeSettings();
+    },
     onUpgrade: (m, from, to) async {
-      if (from == 1 && to == 2) {
+      if (from < 2) {
         await m.createTable(notePages);
         await m.createTable(noteBlocks);
         await customStatement(
@@ -134,10 +173,16 @@ class AppDatabase extends _$AppDatabase {
         await customStatement(
           'CREATE INDEX note_blocks_page ON note_blocks (page_id, deleted_at, sort_order)',
         );
-      } else {
-        throw StateError('No migration from $from to $to');
+      }
+      if (from < 3) {
+        await m.createTable(customThemes);
+        await m.createTable(themeSettings);
+        await _insertThemeSettings();
       }
     },
     beforeOpen: (_) async => customStatement('PRAGMA foreign_keys = ON'),
   );
+
+  Future<void> _insertThemeSettings() =>
+      customStatement("INSERT OR IGNORE INTO theme_settings (id) VALUES (1)");
 }

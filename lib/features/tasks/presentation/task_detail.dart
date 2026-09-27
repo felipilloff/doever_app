@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme/doever_theme.dart';
+import '../../../app/theme/theme_layer_paint.dart';
 import '../../../core/widgets/feedback.dart';
 import '../../../l10n/app_localizations.dart';
 import '../domain/calendar_date.dart';
@@ -30,8 +31,9 @@ class TaskDetail extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final s = AppLocalizations.of(context);
-    return Material(
-      color: Theme.of(context).colorScheme.surfaceContainerLowest,
+    return ThemeLayerPaint(
+      role: ThemeLayerRole.surface,
+      fallbackColor: Theme.of(context).colorScheme.surfaceContainerLowest,
       child: SafeArea(
         child: Column(
           children: [
