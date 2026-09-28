@@ -1006,4 +1006,8 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get focusJourneyPreset => 'Viaje tranquilo';
+
+  @override
+  String get focusLoadError =>
+      'No se pudo cargar Concentración. Inténtalo de nuevo.';
 }

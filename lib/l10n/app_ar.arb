@@ -331,5 +331,6 @@
   "focusNightPreset": "برمجة ليلية",
   "focusForestPreset": "دراسة في الغابة",
   "focusStormPreset": "مساء عاصف",
-  "focusJourneyPreset": "رحلة هادئة"
+  "focusJourneyPreset": "رحلة هادئة",
+  "focusLoadError": "تعذر تحميل التركيز. حاول مجددًا."
 }

@@ -1000,4 +1000,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get focusJourneyPreset => 'Quiet journey';
+
+  @override
+  String get focusLoadError => 'Could not load Focus. Please try again.';
 }

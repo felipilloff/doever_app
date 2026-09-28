@@ -15,6 +15,39 @@ import 'support/fake_focus_audio.dart';
 
 void main() {
   testWidgets(
+    'unsupported platforms hide Focus and redirect its route without audio',
+    (tester) async {
+      final h = AppHarness();
+      await tester.runAsync(h.initialize);
+      final audio = FakeFocusAudio();
+      final player = FocusPlayer(
+        DriftFocusRepository(h.database),
+        audio,
+        FocusPreferences(mix: focusPresets.first),
+      );
+      await tester.pumpWidget(h.app(focusPlayer: player));
+      await tester.pumpAndSettle();
+      expect(find.text('Focus'), findsNothing);
+      expect(find.byType(FocusPlayButton), findsNothing);
+      h.router.go('/focus');
+      await tester.pumpAndSettle();
+      expect(h.router.routeInformationProvider.value.uri.path, '/');
+      expect(find.byType(FocusScreen), findsNothing);
+      expect(audio.calls, isEmpty);
+      await tester.pumpWidget(const SizedBox());
+      await tester.pumpAndSettle();
+      await tester.runAsync(() async {
+        await player.shutdown();
+        await h.dispose();
+      });
+    },
+    variant: TargetPlatformVariant({
+      TargetPlatform.android,
+      TargetPlatform.iOS,
+      TargetPlatform.macOS,
+    }),
+  );
+  testWidgets(
     'Focus mix edits, save, mini-player and navigation retain playback',
     (tester) async {
       tester.view.physicalSize = const Size(1440, 1100);

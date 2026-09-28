@@ -960,4 +960,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get focusJourneyPreset => '宁静旅途';
+
+  @override
+  String get focusLoadError => '无法加载专注。请重试。';
 }

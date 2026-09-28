@@ -21,7 +21,7 @@ class FocusScreen extends ConsumerWidget {
     if (player == null) {
       return Scaffold(
         appBar: AppBar(title: Text(s.focusLabel)),
-        body: Center(child: Text(s.loadError)),
+        body: Center(child: Text(s.focusLoadError)),
       );
     }
     return ListenableBuilder(
@@ -95,6 +95,8 @@ class FocusScreen extends ConsumerWidget {
                                 Text(
                                   player.failure == FocusFailure.audio
                                       ? s.focusAudioError
+                                      : player.failure == FocusFailure.load
+                                      ? s.focusLoadError
                                       : s.focusStorageError,
                                 ),
                                 TextButton(
@@ -153,7 +155,7 @@ class FocusScreen extends ConsumerWidget {
                           data: (mixes) => mixes.isEmpty
                               ? Text(s.focusEmpty)
                               : _MixGallery(mixes: mixes, player: player),
-                          error: (_, _) => Text(s.loadError),
+                          error: (_, _) => Text(s.focusLoadError),
                           loading: () => const LinearProgressIndicator(),
                         ),
                       ],

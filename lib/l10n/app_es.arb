@@ -331,5 +331,6 @@
   "focusNightPreset": "Código nocturno",
   "focusForestPreset": "Estudio en el bosque",
   "focusStormPreset": "Tarde de tormenta",
-  "focusJourneyPreset": "Viaje tranquilo"
+  "focusJourneyPreset": "Viaje tranquilo",
+  "focusLoadError": "No se pudo cargar Concentración. Inténtalo de nuevo."
 }

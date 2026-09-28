@@ -989,4 +989,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get focusJourneyPreset => 'शांत यात्रा';
+
+  @override
+  String get focusLoadError => 'एकाग्रता लोड नहीं हो सकी। फिर प्रयास करें।';
 }

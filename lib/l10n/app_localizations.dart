@@ -1969,6 +1969,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Quiet journey'**
   String get focusJourneyPreset;
+
+  /// No description provided for @focusLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load Focus. Please try again.'**
+  String get focusLoadError;
 }
 
 class _AppLocalizationsDelegate

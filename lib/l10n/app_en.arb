@@ -376,5 +376,6 @@
   "focusNightPreset": "Night coding",
   "focusForestPreset": "Forest study",
   "focusStormPreset": "Stormy evening",
-  "focusJourneyPreset": "Quiet journey"
+  "focusJourneyPreset": "Quiet journey",
+  "focusLoadError": "Could not load Focus. Please try again."
 }

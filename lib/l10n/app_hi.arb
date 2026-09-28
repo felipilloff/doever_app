@@ -331,5 +331,6 @@
   "focusNightPreset": "रात की कोडिंग",
   "focusForestPreset": "जंगल में अध्ययन",
   "focusStormPreset": "तूफ़ानी शाम",
-  "focusJourneyPreset": "शांत यात्रा"
+  "focusJourneyPreset": "शांत यात्रा",
+  "focusLoadError": "एकाग्रता लोड नहीं हो सकी। फिर प्रयास करें।"
 }

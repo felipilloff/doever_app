@@ -995,4 +995,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get focusJourneyPreset => 'رحلة هادئة';
+
+  @override
+  String get focusLoadError => 'تعذر تحميل التركيز. حاول مجددًا.';
 }

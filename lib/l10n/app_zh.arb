@@ -331,5 +331,6 @@
   "focusNightPreset": "夜间编程",
   "focusForestPreset": "林间学习",
   "focusStormPreset": "暴风雨之夜",
-  "focusJourneyPreset": "宁静旅途"
+  "focusJourneyPreset": "宁静旅途",
+  "focusLoadError": "无法加载专注。请重试。"
 }
