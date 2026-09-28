@@ -8,6 +8,9 @@ import '../features/theme_studio/presentation/theme_studio_screen.dart';
 
 import 'package:go_router/go_router.dart';
 
+import '../features/focus/application/focus_providers.dart';
+import '../features/focus/presentation/focus_screen.dart';
+
 import '../features/tasks/presentation/task_screen.dart';
 import '../features/tasks/presentation/task_detail.dart';
 import '../features/settings/settings_screen.dart';
@@ -18,6 +21,11 @@ GoRouter createRouter() => GoRouter(
       path: '/',
       builder: (_, _) => const TaskScreen(),
       routes: [
+        GoRoute(
+          path: 'focus',
+          redirect: (_, _) => supportsFocus ? null : '/',
+          builder: (_, _) => const FocusScreen(),
+        ),
         GoRoute(
           path: 'task/:id',
           builder: (_, state) =>

@@ -13,6 +13,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'fake_reminders.dart';
 
+import 'package:doever/features/focus/application/focus_player.dart';
+import 'package:doever/features/focus/application/focus_providers.dart';
+
 import 'package:doever/features/notes/application/notes_providers.dart';
 import 'package:doever/features/notes/data/drift_note_repository.dart';
 
@@ -39,9 +42,14 @@ class AppHarness {
     await icons.load();
   }
 
-  Widget app({Widget Function(Widget)? wrap, CalendarDate? today}) {
+  Widget app({
+    Widget Function(Widget)? wrap,
+    CalendarDate? today,
+    FocusPlayer? focusPlayer,
+  }) {
     final child = ProviderScope(
       overrides: [
+        focusPlayerProvider.overrideWithValue(focusPlayer),
         if (today != null) todayProvider.overrideWith(() => FixedToday(today)),
         repositoryProvider.overrideWithValue(repository),
         themeRepositoryProvider.overrideWithValue(

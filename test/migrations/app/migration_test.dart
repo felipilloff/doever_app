@@ -6,17 +6,20 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'generated/schema.dart';
 import 'generated/schema_v1.dart' as v1;
 import 'generated/schema_v2.dart' as v2;
+import 'generated/schema_v3.dart' as v3;
 
 void main() {
-  for (final version in [1, 2]) {
+  for (final version in [1, 2, 3]) {
     test(
-      'v$version → v3 retains task/list/step/reminder/Notes data and preferences',
+      'v$version → v4 retains tasks, Notes, themes and preferences',
       () async {
         final verifier = SchemaVerifier(GeneratedHelper());
         final schema = await verifier.schemaAt(version);
         final old = version == 1
             ? v1.DatabaseAtV1(schema.newConnection())
-            : v2.DatabaseAtV2(schema.newConnection());
+            : version == 2
+            ? v2.DatabaseAtV2(schema.newConnection())
+            : v3.DatabaseAtV3(schema.newConnection());
         await old.customStatement(
           "INSERT INTO lists (id,name,sort_order,created_at,updated_at) VALUES ('inbox','Tasks',1024,1,2),('custom','Work',2048,1,2)",
         );
@@ -29,12 +32,20 @@ void main() {
         await old.customStatement(
           "INSERT INTO reminder_jobs (task_id,revision,pending) VALUES ('task',4,1)",
         );
-        if (version == 2) {
+        if (version >= 2) {
           await old.customStatement(
             "INSERT INTO note_pages (id,title,sort_order,created_at,updated_at) VALUES ('page','Local page',1024,1,2)",
           );
           await old.customStatement(
             "INSERT INTO note_blocks (id,page_id,type,content,checked,url,image_name,detail,icon,expanded,sort_order,created_at,updated_at,deleted_at) VALUES ('block','page','toggle','Keep this text',1,'https://example.com','kept.png','Nested text','info',0,1024,1,2,3)",
+          );
+        }
+        if (version == 3) {
+          await old.customStatement(
+            "INSERT INTO custom_themes (id,document,created_at,updated_at) VALUES ('theme','preserve exact serialized theme',1,2)",
+          );
+          await old.customStatement(
+            "INSERT INTO theme_settings (id,active_custom_theme_id,active_preset_id,recent_colors) VALUES (1,'theme',NULL,'[4278190080]')",
           );
         }
         final before = <String, List<Map<String, Object?>>>{};
@@ -43,7 +54,8 @@ void main() {
           'tasks',
           'steps',
           'reminder_jobs',
-          if (version == 2) ...['note_pages', 'note_blocks'],
+          if (version >= 2) ...['note_pages', 'note_blocks'],
+          if (version == 3) ...['custom_themes', 'theme_settings'],
         ]) {
           before[table] = (await old.customSelect('SELECT * FROM $table').get())
               .map((r) => r.data)
@@ -57,7 +69,7 @@ void main() {
         });
         final prefs = await SharedPreferences.getInstance();
         final database = AppDatabase(schema.newConnection());
-        await verifier.migrateAndValidate(database, 3);
+        await verifier.migrateAndValidate(database, 4);
         for (final table in before.keys) {
           expect(
             (await database.customSelect('SELECT * FROM $table').get())
@@ -70,14 +82,18 @@ void main() {
           expect(await database.select(database.notePages).get(), isEmpty);
           expect(await database.select(database.noteBlocks).get(), isEmpty);
         }
-        expect(await database.select(database.customThemes).get(), isEmpty);
-        final themeSettings = await database
-            .select(database.themeSettings)
-            .getSingle();
-        expect(themeSettings.id, 1);
-        expect(themeSettings.activePresetId, 'preset:default');
-        expect(themeSettings.activeCustomThemeId, isNull);
-        expect(themeSettings.recentColors, '[]');
+        if (version < 3) {
+          expect(await database.select(database.customThemes).get(), isEmpty);
+          final themeSettings = await database
+              .select(database.themeSettings)
+              .getSingle();
+          expect(themeSettings.id, 1);
+          expect(themeSettings.activePresetId, 'preset:default');
+          expect(themeSettings.activeCustomThemeId, isNull);
+          expect(themeSettings.recentColors, '[]');
+        }
+        expect(await database.select(database.focusSoundscapes).get(), isEmpty);
+        expect(await database.select(database.focusSettings).get(), isEmpty);
         expect(
           await database.customSelect('PRAGMA foreign_key_check').get(),
           isEmpty,

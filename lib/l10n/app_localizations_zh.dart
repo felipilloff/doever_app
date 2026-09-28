@@ -789,4 +789,178 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get themePresetSand => '沙色';
+
+  @override
+  String get focusLabel => '专注';
+
+  @override
+  String get focusTagline => '为思绪留一片宁静。';
+
+  @override
+  String get focusLocal => '原创合成环境音，完全离线。';
+
+  @override
+  String get focusMixer => '你的混音';
+
+  @override
+  String get focusLibrary => '声音库';
+
+  @override
+  String get focusPresets => '适合此刻';
+
+  @override
+  String get focusCustom => '你的声景';
+
+  @override
+  String get focusNew => '新建声景';
+
+  @override
+  String get focusSave => '保存声景';
+
+  @override
+  String get focusCopy => '保存副本';
+
+  @override
+  String get focusDelete => '删除此声景？';
+
+  @override
+  String get focusPlay => '播放';
+
+  @override
+  String get focusPause => '暂停';
+
+  @override
+  String get focusStop => '停止';
+
+  @override
+  String get focusMute => '静音';
+
+  @override
+  String get focusUnmute => '取消静音';
+
+  @override
+  String get focusMaster => '总音量';
+
+  @override
+  String get focusDynamic => '动态氛围';
+
+  @override
+  String get focusDynamicHint => '缓慢而细微的音量变化。';
+
+  @override
+  String get focusAdd => '添加声音';
+
+  @override
+  String get focusRemove => '移除声音';
+
+  @override
+  String get focusLimit => '每个混音最多八种声音。';
+
+  @override
+  String get focusEmpty => '选择一个声景，或创建自己的声景。';
+
+  @override
+  String get focusAddHint => '从声音库添加声音以开始。';
+
+  @override
+  String get focusUnsaved => '已编辑混音 · 保存到声音库';
+
+  @override
+  String get focusAudioError => '无法启动或更新音频。请重试播放。';
+
+  @override
+  String get focusStorageError => '无法保存更改。关闭前请重试。';
+
+  @override
+  String get focusNoise => '噪声';
+
+  @override
+  String get focusWeather => '天气';
+
+  @override
+  String get focusNature => '自然';
+
+  @override
+  String get focusCozy => '温馨';
+
+  @override
+  String get focusUrban => '城市';
+
+  @override
+  String get focusWorkspace => '工作空间';
+
+  @override
+  String get focusWhite => '白噪声';
+
+  @override
+  String get focusPink => '粉红噪声';
+
+  @override
+  String get focusBrown => '棕噪声';
+
+  @override
+  String get focusGrey => '灰噪声';
+
+  @override
+  String get focusLightRain => '小雨';
+
+  @override
+  String get focusHeavyRain => '大雨';
+
+  @override
+  String get focusThunder => '滚雷';
+
+  @override
+  String get focusWind => '风';
+
+  @override
+  String get focusOcean => '海浪';
+
+  @override
+  String get focusStream => '溪流';
+
+  @override
+  String get focusBirds => '鸟鸣';
+
+  @override
+  String get focusCrickets => '夜间蟋蟀';
+
+  @override
+  String get focusFireplace => '壁炉';
+
+  @override
+  String get focusVinyl => '黑胶杂音';
+
+  @override
+  String get focusCafe => '咖啡馆氛围';
+
+  @override
+  String get focusTrain => '火车旅程';
+
+  @override
+  String get focusKeyboard => '轻柔键盘声';
+
+  @override
+  String get focusOffice => '安静办公室';
+
+  @override
+  String get focusDeepPreset => '深度专注';
+
+  @override
+  String get focusCafePreset => '雨中咖啡馆';
+
+  @override
+  String get focusNightPreset => '夜间编程';
+
+  @override
+  String get focusForestPreset => '林间学习';
+
+  @override
+  String get focusStormPreset => '暴风雨之夜';
+
+  @override
+  String get focusJourneyPreset => '宁静旅途';
+
+  @override
+  String get focusLoadError => '无法加载专注。请重试。';
 }

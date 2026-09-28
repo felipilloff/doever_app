@@ -6,11 +6,11 @@ import 'package:flutter_test/flutter_test.dart';
 import 'app/generated/schema.dart';
 
 void main() {
-  test('fresh schema matches the committed v3 baseline', () async {
+  test('fresh schema matches the committed v4 baseline', () async {
     final verifier = SchemaVerifier(GeneratedHelper());
     final db = AppDatabase(NativeDatabase.memory());
     try {
-      await verifier.migrateAndValidate(db, 3);
+      await verifier.migrateAndValidate(db, 4);
     } finally {
       await db.close();
     }
@@ -23,7 +23,7 @@ void main() {
       await db.customStatement(
         "INSERT INTO lists (id,name,sort_order,created_at,updated_at) VALUES ('existing','Preserved',0,0,0)",
       );
-      await verifier.migrateAndValidate(db, 3);
+      await verifier.migrateAndValidate(db, 4);
       expect((await db.select(db.lists).get()).single.name, 'Preserved');
     } finally {
       await db.close();

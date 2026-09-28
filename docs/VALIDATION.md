@@ -5,7 +5,7 @@ Environment: Ubuntu 26.04, Flutter 3.47.2 stable, Dart 3.13.2.
 ## Completed
 
 - Strict static analysis, including compatible Riverpod analysis-server lint rules.
-- 45 deterministic unit, repository, migration, reminder, widget, accessibility,
+- 96 deterministic unit, repository, migration, reminder, widget, accessibility,
   responsive/text-scaling, and golden-image tests.
 - Android debug APK build, including native SQLite assets, notification receivers,
   Java desugaring, and the application runner.
@@ -128,6 +128,37 @@ with the full test suite validated in
 [run 36332090952](https://github.com/felipilloff/doever_app/actions/runs/36332090952).
 Windows packaging also excludes stale debug kernels left by native tests; the
 delivered release retains the exact executable, AOT library, and other CI assets.
+
+## Focus v1 validation
+
+- Schema v4 migrations from committed v1, v2 and v3 snapshots preserve exact
+  task/list/step/reminder, Notes and theme rows, plus existing preferences.
+- Unit tests cover immutable presets, validation, serialization, custom CRUD,
+  file-backed restart, playback commands, dynamics bounds and persistence failures.
+- Widget checks cover mixer controls, saved soundscapes, persistent playback across
+  Tasks/Notes/Settings, platform gating, all five languages and scaled layouts.
+  Custom light/dark, near-black, monochrome, saturated and three-layer gradient
+  appearances were rendered and checked for layout errors.
+- Linux native SoLoud playback passed initialization, two simultaneous sources,
+  a complete 24-second loop, pause/resume, crossfade and source disposal. Output
+  stayed muted: this confirms native engine behavior, not physical speaker quality.
+- Linux Focus integration passed navigation and file-backed restart with a fake
+  engine. The release TAR.GZ was extracted, its libraries/assets/licenses checked,
+  and duplicate launch/concurrent launch/restart process checks passed.
+- Signal analysis measured approximately −0.01, −3.12 and −5.98 dB/octave for
+  white, pink and brown noise respectively (125–4000 Hz). All generated noises
+  and bundled loops stay within the documented 0.65 peak bound.
+- Web release compilation passed; desktop audio assets are excluded from web.
+  Android also compiled successfully. Windows release packaging, Notes/Theme
+  Studio/Focus native workflows and single-instance checks passed in
+  [run 36373056141](https://github.com/felipilloff/doever_app/actions/runs/36373056141).
+  Format, static analysis, all 96 tests and generated Drift consistency passed in
+  [run 36373056536](https://github.com/felipilloff/doever_app/actions/runs/36373056536).
+- Windows CI has no playback device, so its native-audio smoke test explicitly
+  skipped. Native application navigation/persistence and packaging still ran;
+  physical Windows audio output and subjective listening quality remain manual checks.
+- Both delivered archives passed SHA-256 and integrity checks and contain all
+  fourteen loops, the native audio library, attribution and license notices.
 
 ## Still requires target hardware / release validation
 

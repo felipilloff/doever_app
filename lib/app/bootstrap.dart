@@ -18,6 +18,11 @@ import 'app.dart';
 import 'providers.dart';
 import 'router.dart';
 import 'theme/doever_theme.dart';
+import '../features/focus/application/focus_player.dart';
+import '../features/focus/application/focus_providers.dart';
+import '../features/focus/data/drift_focus_repository.dart';
+import '../features/focus/data/soloud_audio_engine.dart';
+import '../features/focus/domain/soundscape.dart';
 
 class DoeverBootstrap extends StatefulWidget {
   const DoeverBootstrap({super.key});
@@ -30,6 +35,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
   final _messenger = GlobalKey<ScaffoldMessengerState>();
   AppDatabase? _database;
   ReminderWorker? _worker;
+  FocusPlayer? _focus;
   late Future<Widget> _app = _initialize();
   Future<Widget> _initialize() async {
     final database = _database = AppDatabase();
@@ -39,6 +45,16 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       final preferences = await SharedPreferences.getInstance();
       final themes = DriftThemeRepository(database);
       final themeLibrary = await themes.load();
+      if (supportsFocus) {
+        final focusRepository = DriftFocusRepository(database);
+        _focus = FocusPlayer(
+          focusRepository,
+          SoloudAudioEngine(),
+          FocusPreferences(),
+        );
+        // A damaged Focus preference must not prevent access to Tasks/Notes.
+        await _focus!.reloadPreferences();
+      }
       final reminders = LocalReminders(
         onOpen: (id) => _router.go('/task/${Uri.encodeComponent(id)}'),
       );
@@ -62,6 +78,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       )..start();
       return ProviderScope(
         overrides: [
+          focusPlayerProvider.overrideWithValue(_focus),
           repositoryProvider.overrideWithValue(repository),
           noteRepositoryProvider.overrideWithValue(
             DriftNoteRepository(database),
@@ -75,6 +92,8 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       );
     } catch (error, stack) {
       logFailure('bootstrap.database_or_preferences', error, stack);
+      await _focus?.shutdown();
+      _focus = null;
       await database.close();
       _database = null;
       rethrow;
@@ -90,6 +109,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
 
   Future<void> _close() async {
     await _worker?.dispose();
+    await _focus?.shutdown();
     await _database?.close();
   }
 

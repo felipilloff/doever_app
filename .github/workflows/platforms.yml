@@ -37,6 +37,10 @@ jobs:
         run: flutter test integration_test/notes_test.dart -d windows
       - name: Verify Theme Studio desktop workflow
         run: flutter test integration_test/theme_studio_test.dart -d windows
+      - name: Verify Focus desktop workflow
+        run: flutter test integration_test/focus_test.dart -d windows
+      - name: Verify native Focus audio when a device is available
+        run: flutter test integration_test/focus_audio_test.dart -d windows --dart-define=allowNoAudioDevice=true
       - name: Package Windows desktop app
         run: ./tool/build_windows.ps1
       - name: Verify single instance and restart

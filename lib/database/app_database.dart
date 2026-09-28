@@ -128,6 +128,29 @@ class ThemeSettings extends Table {
   ];
 }
 
+@DataClassName('FocusSoundscapeRow')
+class FocusSoundscapes extends Table {
+  TextColumn get id => text()();
+  TextColumn get document => text()();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
+@DataClassName('FocusPreferenceRow')
+class FocusSettings extends Table {
+  IntColumn get id => integer()();
+  TextColumn get mix => text().nullable()();
+  RealColumn get masterVolume => real().withDefault(const Constant(.5))();
+  BoolColumn get muted => boolean().withDefault(const Constant(false))();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+  @override
+  List<String> get customConstraints => const [
+    'CHECK (id = 1)',
+    'CHECK (master_volume BETWEEN 0 AND 1)',
+  ];
+}
+
 @DriftDatabase(
   tables: [
     Lists,
@@ -138,6 +161,8 @@ class ThemeSettings extends Table {
     NoteBlocks,
     CustomThemes,
     ThemeSettings,
+    FocusSoundscapes,
+    FocusSettings,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -156,7 +181,7 @@ class AppDatabase extends _$AppDatabase {
             ),
       );
   @override
-  int get schemaVersion => 3;
+  int get schemaVersion => 4;
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
@@ -178,6 +203,10 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(customThemes);
         await m.createTable(themeSettings);
         await _insertThemeSettings();
+      }
+      if (from < 4) {
+        await m.createTable(focusSoundscapes);
+        await m.createTable(focusSettings);
       }
     },
     beforeOpen: (_) async => customStatement('PRAGMA foreign_keys = ON'),

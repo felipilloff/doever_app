@@ -862,9 +862,279 @@ i1.GeneratedColumn<String> _column_38(String aliasedName) =>
       $customConstraints: 'NOT NULL DEFAULT \'[]\'',
       defaultValue: const i1.CustomExpression('\'[]\''),
     );
+
+final class Schema4 extends i0.VersionedSchema {
+  Schema4({required super.database}) : super(version: 4);
+  @override
+  late final List<i1.DatabaseSchemaEntity> entities = [
+    lists,
+    tasks,
+    steps,
+    reminderJobs,
+    notePages,
+    noteBlocks,
+    customThemes,
+    themeSettings,
+    focusSoundscapes,
+    focusSettings,
+    tasksList,
+    tasksDay,
+    tasksDue,
+    stepsTask,
+    notesOrder,
+    noteBlocksPage,
+  ];
+  late final Shape0 lists = Shape0(
+    source: i0.VersionedTable(
+      entityName: 'lists',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_1,
+        _column_2,
+        _column_3,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape1 tasks = Shape1(
+    source: i0.VersionedTable(
+      entityName: 'tasks',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_8,
+        _column_9,
+        _column_10,
+        _column_11,
+        _column_12,
+        _column_13,
+        _column_14,
+        _column_15,
+        _column_16,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_17,
+        _column_7,
+        _column_18,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape2 steps = Shape2(
+    source: i0.VersionedTable(
+      entityName: 'steps',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_19,
+        _column_9,
+        _column_11,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape3 reminderJobs = Shape3(
+    source: i0.VersionedTable(
+      entityName: 'reminder_jobs',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [],
+      columns: [_column_20, _column_21, _column_22, _column_23],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape4 notePages = Shape4(
+    source: i0.VersionedTable(
+      entityName: 'note_pages',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_24,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape5 noteBlocks = Shape5(
+    source: i0.VersionedTable(
+      entityName: 'note_blocks',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [
+        _column_0,
+        _column_25,
+        _column_26,
+        _column_27,
+        _column_28,
+        _column_29,
+        _column_30,
+        _column_31,
+        _column_32,
+        _column_33,
+        _column_4,
+        _column_5,
+        _column_6,
+        _column_7,
+      ],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape6 customThemes = Shape6(
+    source: i0.VersionedTable(
+      entityName: 'custom_themes',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [_column_0, _column_34, _column_5, _column_6],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape7 themeSettings = Shape7(
+    source: i0.VersionedTable(
+      entityName: 'theme_settings',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [
+        'PRIMARY KEY(id)',
+        'CHECK(id = 1)',
+        'CHECK((active_custom_theme_id IS NULL)!=(active_preset_id IS NULL))',
+      ],
+      columns: [_column_35, _column_36, _column_37, _column_38],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape8 focusSoundscapes = Shape8(
+    source: i0.VersionedTable(
+      entityName: 'focus_soundscapes',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: ['PRIMARY KEY(id)'],
+      columns: [_column_0, _column_34],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  late final Shape9 focusSettings = Shape9(
+    source: i0.VersionedTable(
+      entityName: 'focus_settings',
+      withoutRowId: false,
+      isStrict: false,
+      tableConstraints: [
+        'PRIMARY KEY(id)',
+        'CHECK(id = 1)',
+        'CHECK(master_volume BETWEEN 0 AND 1)',
+      ],
+      columns: [_column_35, _column_39, _column_40, _column_41],
+      attachedDatabase: database,
+    ),
+    alias: null,
+  );
+  final i1.Index tasksList = i1.Index(
+    'tasks_list',
+    'CREATE INDEX tasks_list ON tasks (list_id, deleted_at, sort_order)',
+  );
+  final i1.Index tasksDay = i1.Index(
+    'tasks_day',
+    'CREATE INDEX tasks_day ON tasks (my_day_date, is_completed, deleted_at)',
+  );
+  final i1.Index tasksDue = i1.Index(
+    'tasks_due',
+    'CREATE INDEX tasks_due ON tasks (due_date, is_completed, deleted_at)',
+  );
+  final i1.Index stepsTask = i1.Index(
+    'steps_task',
+    'CREATE INDEX steps_task ON steps (task_id, deleted_at, sort_order)',
+  );
+  final i1.Index notesOrder = i1.Index(
+    'notes_order',
+    'CREATE INDEX notes_order ON note_pages (deleted_at, sort_order)',
+  );
+  final i1.Index noteBlocksPage = i1.Index(
+    'note_blocks_page',
+    'CREATE INDEX note_blocks_page ON note_blocks (page_id, deleted_at, sort_order)',
+  );
+}
+
+class Shape8 extends i0.VersionedTable {
+  Shape8({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<String> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<String> get document =>
+      columnsByName['document']! as i1.GeneratedColumn<String>;
+}
+
+class Shape9 extends i0.VersionedTable {
+  Shape9({required super.source, required super.alias}) : super.aliased();
+  i1.GeneratedColumn<int> get id =>
+      columnsByName['id']! as i1.GeneratedColumn<int>;
+  i1.GeneratedColumn<String> get mix =>
+      columnsByName['mix']! as i1.GeneratedColumn<String>;
+  i1.GeneratedColumn<double> get masterVolume =>
+      columnsByName['master_volume']! as i1.GeneratedColumn<double>;
+  i1.GeneratedColumn<int> get muted =>
+      columnsByName['muted']! as i1.GeneratedColumn<int>;
+}
+
+i1.GeneratedColumn<String> _column_39(String aliasedName) =>
+    i1.GeneratedColumn<String>(
+      'mix',
+      aliasedName,
+      true,
+      type: i1.DriftSqlType.string,
+      $customConstraints: 'NULL',
+    );
+i1.GeneratedColumn<double> _column_40(String aliasedName) =>
+    i1.GeneratedColumn<double>(
+      'master_volume',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.double,
+      $customConstraints: 'NOT NULL DEFAULT 0.5',
+      defaultValue: const i1.CustomExpression('0.5'),
+    );
+i1.GeneratedColumn<int> _column_41(String aliasedName) =>
+    i1.GeneratedColumn<int>(
+      'muted',
+      aliasedName,
+      false,
+      type: i1.DriftSqlType.int,
+      $customConstraints: 'NOT NULL DEFAULT 0 CHECK (muted IN (0, 1))',
+      defaultValue: const i1.CustomExpression('0'),
+    );
 i0.MigrationStepWithVersion migrationSteps({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
+  required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
 }) {
   return (currentVersion, database) async {
     switch (currentVersion) {
@@ -878,6 +1148,11 @@ i0.MigrationStepWithVersion migrationSteps({
         final migrator = i1.Migrator(database, schema);
         await from2To3(migrator, schema);
         return 3;
+      case 3:
+        final schema = Schema4(database: database);
+        final migrator = i1.Migrator(database, schema);
+        await from3To4(migrator, schema);
+        return 4;
       default:
         throw ArgumentError.value('Unknown migration from $currentVersion');
     }
@@ -887,6 +1162,11 @@ i0.MigrationStepWithVersion migrationSteps({
 i1.OnUpgrade stepByStep({
   required Future<void> Function(i1.Migrator m, Schema2 schema) from1To2,
   required Future<void> Function(i1.Migrator m, Schema3 schema) from2To3,
+  required Future<void> Function(i1.Migrator m, Schema4 schema) from3To4,
 }) => i0.VersionedSchema.stepByStepHelper(
-  step: migrationSteps(from1To2: from1To2, from2To3: from2To3),
+  step: migrationSteps(
+    from1To2: from1To2,
+    from2To3: from2To3,
+    from3To4: from3To4,
+  ),
 );

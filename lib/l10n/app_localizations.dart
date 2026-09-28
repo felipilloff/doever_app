@@ -1627,6 +1627,354 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sand'**
   String get themePresetSand;
+
+  /// No description provided for @focusLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Focus'**
+  String get focusLabel;
+
+  /// No description provided for @focusTagline.
+  ///
+  /// In en, this message translates to:
+  /// **'Make room for a quieter mind.'**
+  String get focusTagline;
+
+  /// No description provided for @focusLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Original synthetic ambience. Entirely offline.'**
+  String get focusLocal;
+
+  /// No description provided for @focusMixer.
+  ///
+  /// In en, this message translates to:
+  /// **'Your mix'**
+  String get focusMixer;
+
+  /// No description provided for @focusLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Sound library'**
+  String get focusLibrary;
+
+  /// No description provided for @focusPresets.
+  ///
+  /// In en, this message translates to:
+  /// **'Made for the moment'**
+  String get focusPresets;
+
+  /// No description provided for @focusCustom.
+  ///
+  /// In en, this message translates to:
+  /// **'Your soundscapes'**
+  String get focusCustom;
+
+  /// No description provided for @focusNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New soundscape'**
+  String get focusNew;
+
+  /// No description provided for @focusSave.
+  ///
+  /// In en, this message translates to:
+  /// **'Save soundscape'**
+  String get focusSave;
+
+  /// No description provided for @focusCopy.
+  ///
+  /// In en, this message translates to:
+  /// **'Save a copy'**
+  String get focusCopy;
+
+  /// No description provided for @focusDelete.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete this soundscape?'**
+  String get focusDelete;
+
+  /// No description provided for @focusPlay.
+  ///
+  /// In en, this message translates to:
+  /// **'Play'**
+  String get focusPlay;
+
+  /// No description provided for @focusPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get focusPause;
+
+  /// No description provided for @focusStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop'**
+  String get focusStop;
+
+  /// No description provided for @focusMute.
+  ///
+  /// In en, this message translates to:
+  /// **'Mute'**
+  String get focusMute;
+
+  /// No description provided for @focusUnmute.
+  ///
+  /// In en, this message translates to:
+  /// **'Unmute'**
+  String get focusUnmute;
+
+  /// No description provided for @focusMaster.
+  ///
+  /// In en, this message translates to:
+  /// **'Master volume'**
+  String get focusMaster;
+
+  /// No description provided for @focusDynamic.
+  ///
+  /// In en, this message translates to:
+  /// **'Dynamic ambience'**
+  String get focusDynamic;
+
+  /// No description provided for @focusDynamicHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Slow, subtle variation in volume.'**
+  String get focusDynamicHint;
+
+  /// No description provided for @focusAdd.
+  ///
+  /// In en, this message translates to:
+  /// **'Add sound'**
+  String get focusAdd;
+
+  /// No description provided for @focusRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove sound'**
+  String get focusRemove;
+
+  /// No description provided for @focusLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'Up to eight sounds per mix.'**
+  String get focusLimit;
+
+  /// No description provided for @focusEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a soundscape, or create your own.'**
+  String get focusEmpty;
+
+  /// No description provided for @focusAddHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a sound from the library to begin.'**
+  String get focusAddHint;
+
+  /// No description provided for @focusUnsaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Edited mix · save to your library'**
+  String get focusUnsaved;
+
+  /// No description provided for @focusAudioError.
+  ///
+  /// In en, this message translates to:
+  /// **'Audio could not start or update. Try playing again.'**
+  String get focusAudioError;
+
+  /// No description provided for @focusStorageError.
+  ///
+  /// In en, this message translates to:
+  /// **'Changes could not be saved. Retry before closing.'**
+  String get focusStorageError;
+
+  /// No description provided for @focusNoise.
+  ///
+  /// In en, this message translates to:
+  /// **'Noise'**
+  String get focusNoise;
+
+  /// No description provided for @focusWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get focusWeather;
+
+  /// No description provided for @focusNature.
+  ///
+  /// In en, this message translates to:
+  /// **'Nature'**
+  String get focusNature;
+
+  /// No description provided for @focusCozy.
+  ///
+  /// In en, this message translates to:
+  /// **'Cozy'**
+  String get focusCozy;
+
+  /// No description provided for @focusUrban.
+  ///
+  /// In en, this message translates to:
+  /// **'Urban'**
+  String get focusUrban;
+
+  /// No description provided for @focusWorkspace.
+  ///
+  /// In en, this message translates to:
+  /// **'Workspace'**
+  String get focusWorkspace;
+
+  /// No description provided for @focusWhite.
+  ///
+  /// In en, this message translates to:
+  /// **'White noise'**
+  String get focusWhite;
+
+  /// No description provided for @focusPink.
+  ///
+  /// In en, this message translates to:
+  /// **'Pink noise'**
+  String get focusPink;
+
+  /// No description provided for @focusBrown.
+  ///
+  /// In en, this message translates to:
+  /// **'Brown noise'**
+  String get focusBrown;
+
+  /// No description provided for @focusGrey.
+  ///
+  /// In en, this message translates to:
+  /// **'Grey noise'**
+  String get focusGrey;
+
+  /// No description provided for @focusLightRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Light rain'**
+  String get focusLightRain;
+
+  /// No description provided for @focusHeavyRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Heavy rain'**
+  String get focusHeavyRain;
+
+  /// No description provided for @focusThunder.
+  ///
+  /// In en, this message translates to:
+  /// **'Rolling thunder'**
+  String get focusThunder;
+
+  /// No description provided for @focusWind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get focusWind;
+
+  /// No description provided for @focusOcean.
+  ///
+  /// In en, this message translates to:
+  /// **'Ocean waves'**
+  String get focusOcean;
+
+  /// No description provided for @focusStream.
+  ///
+  /// In en, this message translates to:
+  /// **'Stream'**
+  String get focusStream;
+
+  /// No description provided for @focusBirds.
+  ///
+  /// In en, this message translates to:
+  /// **'Birdsong'**
+  String get focusBirds;
+
+  /// No description provided for @focusCrickets.
+  ///
+  /// In en, this message translates to:
+  /// **'Night crickets'**
+  String get focusCrickets;
+
+  /// No description provided for @focusFireplace.
+  ///
+  /// In en, this message translates to:
+  /// **'Fireplace'**
+  String get focusFireplace;
+
+  /// No description provided for @focusVinyl.
+  ///
+  /// In en, this message translates to:
+  /// **'Vinyl crackle'**
+  String get focusVinyl;
+
+  /// No description provided for @focusCafe.
+  ///
+  /// In en, this message translates to:
+  /// **'Café ambience'**
+  String get focusCafe;
+
+  /// No description provided for @focusTrain.
+  ///
+  /// In en, this message translates to:
+  /// **'Train journey'**
+  String get focusTrain;
+
+  /// No description provided for @focusKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft keyboard'**
+  String get focusKeyboard;
+
+  /// No description provided for @focusOffice.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet office'**
+  String get focusOffice;
+
+  /// No description provided for @focusDeepPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Deep focus'**
+  String get focusDeepPreset;
+
+  /// No description provided for @focusCafePreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Rainy café'**
+  String get focusCafePreset;
+
+  /// No description provided for @focusNightPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Night coding'**
+  String get focusNightPreset;
+
+  /// No description provided for @focusForestPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Forest study'**
+  String get focusForestPreset;
+
+  /// No description provided for @focusStormPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Stormy evening'**
+  String get focusStormPreset;
+
+  /// No description provided for @focusJourneyPreset.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet journey'**
+  String get focusJourneyPreset;
+
+  /// No description provided for @focusLoadError.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load Focus. Please try again.'**
+  String get focusLoadError;
 }
 
 class _AppLocalizationsDelegate

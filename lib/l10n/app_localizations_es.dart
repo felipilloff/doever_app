@@ -833,4 +833,181 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get themePresetSand => 'Arena';
+
+  @override
+  String get focusLabel => 'Concentración';
+
+  @override
+  String get focusTagline => 'Un espacio para concentrarte.';
+
+  @override
+  String get focusLocal => 'Ambientes sintéticos originales. Sin conexión.';
+
+  @override
+  String get focusMixer => 'Tu mezcla';
+
+  @override
+  String get focusLibrary => 'Biblioteca de sonidos';
+
+  @override
+  String get focusPresets => 'Para cada momento';
+
+  @override
+  String get focusCustom => 'Tus ambientes';
+
+  @override
+  String get focusNew => 'Nuevo ambiente';
+
+  @override
+  String get focusSave => 'Guardar ambiente';
+
+  @override
+  String get focusCopy => 'Guardar una copia';
+
+  @override
+  String get focusDelete => '¿Eliminar este ambiente?';
+
+  @override
+  String get focusPlay => 'Reproducir';
+
+  @override
+  String get focusPause => 'Pausar';
+
+  @override
+  String get focusStop => 'Detener';
+
+  @override
+  String get focusMute => 'Silenciar';
+
+  @override
+  String get focusUnmute => 'Activar sonido';
+
+  @override
+  String get focusMaster => 'Volumen general';
+
+  @override
+  String get focusDynamic => 'Ambiente dinámico';
+
+  @override
+  String get focusDynamicHint => 'Variaciones lentas y sutiles del volumen.';
+
+  @override
+  String get focusAdd => 'Añadir sonido';
+
+  @override
+  String get focusRemove => 'Quitar sonido';
+
+  @override
+  String get focusLimit => 'Hasta ocho sonidos por mezcla.';
+
+  @override
+  String get focusEmpty => 'Elige un ambiente o crea el tuyo.';
+
+  @override
+  String get focusAddHint => 'Añade un sonido de la biblioteca para empezar.';
+
+  @override
+  String get focusUnsaved => 'Mezcla editada · guárdala en tu biblioteca';
+
+  @override
+  String get focusAudioError =>
+      'No se pudo iniciar o actualizar el audio. Intenta reproducir otra vez.';
+
+  @override
+  String get focusStorageError =>
+      'No se pudieron guardar los cambios. Reintenta antes de cerrar.';
+
+  @override
+  String get focusNoise => 'Ruido';
+
+  @override
+  String get focusWeather => 'Clima';
+
+  @override
+  String get focusNature => 'Naturaleza';
+
+  @override
+  String get focusCozy => 'Acogedor';
+
+  @override
+  String get focusUrban => 'Urbano';
+
+  @override
+  String get focusWorkspace => 'Espacio de trabajo';
+
+  @override
+  String get focusWhite => 'Ruido blanco';
+
+  @override
+  String get focusPink => 'Ruido rosa';
+
+  @override
+  String get focusBrown => 'Ruido marrón';
+
+  @override
+  String get focusGrey => 'Ruido gris';
+
+  @override
+  String get focusLightRain => 'Lluvia suave';
+
+  @override
+  String get focusHeavyRain => 'Lluvia intensa';
+
+  @override
+  String get focusThunder => 'Truenos lejanos';
+
+  @override
+  String get focusWind => 'Viento';
+
+  @override
+  String get focusOcean => 'Olas del mar';
+
+  @override
+  String get focusStream => 'Arroyo';
+
+  @override
+  String get focusBirds => 'Canto de aves';
+
+  @override
+  String get focusCrickets => 'Grillos nocturnos';
+
+  @override
+  String get focusFireplace => 'Chimenea';
+
+  @override
+  String get focusVinyl => 'Crujido de vinilo';
+
+  @override
+  String get focusCafe => 'Ambiente de cafetería';
+
+  @override
+  String get focusTrain => 'Viaje en tren';
+
+  @override
+  String get focusKeyboard => 'Teclado suave';
+
+  @override
+  String get focusOffice => 'Oficina tranquila';
+
+  @override
+  String get focusDeepPreset => 'Concentración profunda';
+
+  @override
+  String get focusCafePreset => 'Cafetería bajo la lluvia';
+
+  @override
+  String get focusNightPreset => 'Código nocturno';
+
+  @override
+  String get focusForestPreset => 'Estudio en el bosque';
+
+  @override
+  String get focusStormPreset => 'Tarde de tormenta';
+
+  @override
+  String get focusJourneyPreset => 'Viaje tranquilo';
+
+  @override
+  String get focusLoadError =>
+      'No se pudo cargar Concentración. Inténtalo de nuevo.';
 }
