@@ -149,3 +149,14 @@ TODO-to-task conversion calls `TaskRepository.createTask` with its Inbox default
 and validation. No task-table writes or two-way links originate in Notes. Only
 user-clicked http/https links use Flutter's `url_launcher` system integration;
 no content, titles or URLs are fetched for previews or sent to a service.
+
+## Focus desktop module
+
+Focus adds an application-scoped Riverpod player and a SoLoud audio adapter,
+independent of route lifecycles. Its mini player wraps the routed workspace;
+Theme Studio's existing semantic paint layers style both the page and controls.
+Schema v4 adds only `focus_soundscapes` and `focus_settings`. Typed soundscape
+values cross repository boundaries; serialized tracks stay in the data layer.
+Playback never autostarts, never streams, and never writes to task/Notes tables.
+See [Focus architecture](focus-architecture.md) for gain, looping, dynamics,
+shutdown, persistence and audio-provenance details.

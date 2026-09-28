@@ -49,6 +49,14 @@ dependencies:
   cupertino_icons: ^1.0.9
   file_selector: ^1.1.0
   url_launcher: ^6.3.2
+  flutter_soloud: ^5.1.2
+
+# Focus uses PCM WAV exclusively; omit unused streaming codecs and their native
+# downloads. SoLoud's maintained build hook supplies the desktop mixer itself.
+hooks:
+  user_defines:
+    flutter_soloud:
+      no_xiph_libs: true
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +86,9 @@ flutter:
   # the material Icons class.
   generate: true
   uses-material-design: true
+  assets:
+    - path: assets/audio/ambience/
+      platforms: [windows, linux]
   fonts:
     - family: DoeverMono
       fonts:

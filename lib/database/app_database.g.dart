@@ -4114,6 +4114,514 @@ class ThemeSettingsCompanion extends UpdateCompanion<ThemeSettingsRow> {
   }
 }
 
+class $FocusSoundscapesTable extends FocusSoundscapes
+    with TableInfo<$FocusSoundscapesTable, FocusSoundscapeRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FocusSoundscapesTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<String> id = GeneratedColumn<String>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _documentMeta = const VerificationMeta(
+    'document',
+  );
+  @override
+  late final GeneratedColumn<String> document = GeneratedColumn<String>(
+    'document',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, document];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'focus_soundscapes';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<FocusSoundscapeRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    } else if (isInserting) {
+      context.missing(_idMeta);
+    }
+    if (data.containsKey('document')) {
+      context.handle(
+        _documentMeta,
+        document.isAcceptableOrUnknown(data['document']!, _documentMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_documentMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  FocusSoundscapeRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return FocusSoundscapeRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}id'],
+      )!,
+      document: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}document'],
+      )!,
+    );
+  }
+
+  @override
+  $FocusSoundscapesTable createAlias(String alias) {
+    return $FocusSoundscapesTable(attachedDatabase, alias);
+  }
+}
+
+class FocusSoundscapeRow extends DataClass
+    implements Insertable<FocusSoundscapeRow> {
+  final String id;
+  final String document;
+  const FocusSoundscapeRow({required this.id, required this.document});
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<String>(id);
+    map['document'] = Variable<String>(document);
+    return map;
+  }
+
+  FocusSoundscapesCompanion toCompanion(bool nullToAbsent) {
+    return FocusSoundscapesCompanion(id: Value(id), document: Value(document));
+  }
+
+  factory FocusSoundscapeRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return FocusSoundscapeRow(
+      id: serializer.fromJson<String>(json['id']),
+      document: serializer.fromJson<String>(json['document']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<String>(id),
+      'document': serializer.toJson<String>(document),
+    };
+  }
+
+  FocusSoundscapeRow copyWith({String? id, String? document}) =>
+      FocusSoundscapeRow(
+        id: id ?? this.id,
+        document: document ?? this.document,
+      );
+  FocusSoundscapeRow copyWithCompanion(FocusSoundscapesCompanion data) {
+    return FocusSoundscapeRow(
+      id: data.id.present ? data.id.value : this.id,
+      document: data.document.present ? data.document.value : this.document,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FocusSoundscapeRow(')
+          ..write('id: $id, ')
+          ..write('document: $document')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, document);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FocusSoundscapeRow &&
+          other.id == this.id &&
+          other.document == this.document);
+}
+
+class FocusSoundscapesCompanion extends UpdateCompanion<FocusSoundscapeRow> {
+  final Value<String> id;
+  final Value<String> document;
+  final Value<int> rowid;
+  const FocusSoundscapesCompanion({
+    this.id = const Value.absent(),
+    this.document = const Value.absent(),
+    this.rowid = const Value.absent(),
+  });
+  FocusSoundscapesCompanion.insert({
+    required String id,
+    required String document,
+    this.rowid = const Value.absent(),
+  }) : id = Value(id),
+       document = Value(document);
+  static Insertable<FocusSoundscapeRow> custom({
+    Expression<String>? id,
+    Expression<String>? document,
+    Expression<int>? rowid,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (document != null) 'document': document,
+      if (rowid != null) 'rowid': rowid,
+    });
+  }
+
+  FocusSoundscapesCompanion copyWith({
+    Value<String>? id,
+    Value<String>? document,
+    Value<int>? rowid,
+  }) {
+    return FocusSoundscapesCompanion(
+      id: id ?? this.id,
+      document: document ?? this.document,
+      rowid: rowid ?? this.rowid,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<String>(id.value);
+    }
+    if (document.present) {
+      map['document'] = Variable<String>(document.value);
+    }
+    if (rowid.present) {
+      map['rowid'] = Variable<int>(rowid.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FocusSoundscapesCompanion(')
+          ..write('id: $id, ')
+          ..write('document: $document, ')
+          ..write('rowid: $rowid')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $FocusSettingsTable extends FocusSettings
+    with TableInfo<$FocusSettingsTable, FocusPreferenceRow> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $FocusSettingsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _mixMeta = const VerificationMeta('mix');
+  @override
+  late final GeneratedColumn<String> mix = GeneratedColumn<String>(
+    'mix',
+    aliasedName,
+    true,
+    type: DriftSqlType.string,
+    requiredDuringInsert: false,
+  );
+  static const VerificationMeta _masterVolumeMeta = const VerificationMeta(
+    'masterVolume',
+  );
+  @override
+  late final GeneratedColumn<double> masterVolume = GeneratedColumn<double>(
+    'master_volume',
+    aliasedName,
+    false,
+    type: DriftSqlType.double,
+    requiredDuringInsert: false,
+    defaultValue: const Constant(.5),
+  );
+  static const VerificationMeta _mutedMeta = const VerificationMeta('muted');
+  @override
+  late final GeneratedColumn<bool> muted = GeneratedColumn<bool>(
+    'muted',
+    aliasedName,
+    false,
+    type: DriftSqlType.bool,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'CHECK ("muted" IN (0, 1))',
+    ),
+    defaultValue: const Constant(false),
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, mix, masterVolume, muted];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'focus_settings';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<FocusPreferenceRow> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('mix')) {
+      context.handle(
+        _mixMeta,
+        mix.isAcceptableOrUnknown(data['mix']!, _mixMeta),
+      );
+    }
+    if (data.containsKey('master_volume')) {
+      context.handle(
+        _masterVolumeMeta,
+        masterVolume.isAcceptableOrUnknown(
+          data['master_volume']!,
+          _masterVolumeMeta,
+        ),
+      );
+    }
+    if (data.containsKey('muted')) {
+      context.handle(
+        _mutedMeta,
+        muted.isAcceptableOrUnknown(data['muted']!, _mutedMeta),
+      );
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  FocusPreferenceRow map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return FocusPreferenceRow(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      mix: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}mix'],
+      ),
+      masterVolume: attachedDatabase.typeMapping.read(
+        DriftSqlType.double,
+        data['${effectivePrefix}master_volume'],
+      )!,
+      muted: attachedDatabase.typeMapping.read(
+        DriftSqlType.bool,
+        data['${effectivePrefix}muted'],
+      )!,
+    );
+  }
+
+  @override
+  $FocusSettingsTable createAlias(String alias) {
+    return $FocusSettingsTable(attachedDatabase, alias);
+  }
+}
+
+class FocusPreferenceRow extends DataClass
+    implements Insertable<FocusPreferenceRow> {
+  final int id;
+  final String? mix;
+  final double masterVolume;
+  final bool muted;
+  const FocusPreferenceRow({
+    required this.id,
+    this.mix,
+    required this.masterVolume,
+    required this.muted,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    if (!nullToAbsent || mix != null) {
+      map['mix'] = Variable<String>(mix);
+    }
+    map['master_volume'] = Variable<double>(masterVolume);
+    map['muted'] = Variable<bool>(muted);
+    return map;
+  }
+
+  FocusSettingsCompanion toCompanion(bool nullToAbsent) {
+    return FocusSettingsCompanion(
+      id: Value(id),
+      mix: mix == null && nullToAbsent ? const Value.absent() : Value(mix),
+      masterVolume: Value(masterVolume),
+      muted: Value(muted),
+    );
+  }
+
+  factory FocusPreferenceRow.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return FocusPreferenceRow(
+      id: serializer.fromJson<int>(json['id']),
+      mix: serializer.fromJson<String?>(json['mix']),
+      masterVolume: serializer.fromJson<double>(json['masterVolume']),
+      muted: serializer.fromJson<bool>(json['muted']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'mix': serializer.toJson<String?>(mix),
+      'masterVolume': serializer.toJson<double>(masterVolume),
+      'muted': serializer.toJson<bool>(muted),
+    };
+  }
+
+  FocusPreferenceRow copyWith({
+    int? id,
+    Value<String?> mix = const Value.absent(),
+    double? masterVolume,
+    bool? muted,
+  }) => FocusPreferenceRow(
+    id: id ?? this.id,
+    mix: mix.present ? mix.value : this.mix,
+    masterVolume: masterVolume ?? this.masterVolume,
+    muted: muted ?? this.muted,
+  );
+  FocusPreferenceRow copyWithCompanion(FocusSettingsCompanion data) {
+    return FocusPreferenceRow(
+      id: data.id.present ? data.id.value : this.id,
+      mix: data.mix.present ? data.mix.value : this.mix,
+      masterVolume: data.masterVolume.present
+          ? data.masterVolume.value
+          : this.masterVolume,
+      muted: data.muted.present ? data.muted.value : this.muted,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FocusPreferenceRow(')
+          ..write('id: $id, ')
+          ..write('mix: $mix, ')
+          ..write('masterVolume: $masterVolume, ')
+          ..write('muted: $muted')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, mix, masterVolume, muted);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is FocusPreferenceRow &&
+          other.id == this.id &&
+          other.mix == this.mix &&
+          other.masterVolume == this.masterVolume &&
+          other.muted == this.muted);
+}
+
+class FocusSettingsCompanion extends UpdateCompanion<FocusPreferenceRow> {
+  final Value<int> id;
+  final Value<String?> mix;
+  final Value<double> masterVolume;
+  final Value<bool> muted;
+  const FocusSettingsCompanion({
+    this.id = const Value.absent(),
+    this.mix = const Value.absent(),
+    this.masterVolume = const Value.absent(),
+    this.muted = const Value.absent(),
+  });
+  FocusSettingsCompanion.insert({
+    this.id = const Value.absent(),
+    this.mix = const Value.absent(),
+    this.masterVolume = const Value.absent(),
+    this.muted = const Value.absent(),
+  });
+  static Insertable<FocusPreferenceRow> custom({
+    Expression<int>? id,
+    Expression<String>? mix,
+    Expression<double>? masterVolume,
+    Expression<bool>? muted,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (mix != null) 'mix': mix,
+      if (masterVolume != null) 'master_volume': masterVolume,
+      if (muted != null) 'muted': muted,
+    });
+  }
+
+  FocusSettingsCompanion copyWith({
+    Value<int>? id,
+    Value<String?>? mix,
+    Value<double>? masterVolume,
+    Value<bool>? muted,
+  }) {
+    return FocusSettingsCompanion(
+      id: id ?? this.id,
+      mix: mix ?? this.mix,
+      masterVolume: masterVolume ?? this.masterVolume,
+      muted: muted ?? this.muted,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (mix.present) {
+      map['mix'] = Variable<String>(mix.value);
+    }
+    if (masterVolume.present) {
+      map['master_volume'] = Variable<double>(masterVolume.value);
+    }
+    if (muted.present) {
+      map['muted'] = Variable<bool>(muted.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('FocusSettingsCompanion(')
+          ..write('id: $id, ')
+          ..write('mix: $mix, ')
+          ..write('masterVolume: $masterVolume, ')
+          ..write('muted: $muted')
+          ..write(')'))
+        .toString();
+  }
+}
+
 abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
@@ -4125,6 +4633,10 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   late final $NoteBlocksTable noteBlocks = $NoteBlocksTable(this);
   late final $CustomThemesTable customThemes = $CustomThemesTable(this);
   late final $ThemeSettingsTable themeSettings = $ThemeSettingsTable(this);
+  late final $FocusSoundscapesTable focusSoundscapes = $FocusSoundscapesTable(
+    this,
+  );
+  late final $FocusSettingsTable focusSettings = $FocusSettingsTable(this);
   late final Index tasksList = Index(
     'tasks_list',
     'CREATE INDEX tasks_list ON tasks (list_id, deleted_at, sort_order)',
@@ -4162,6 +4674,8 @@ abstract class _$AppDatabase extends GeneratedDatabase {
     noteBlocks,
     customThemes,
     themeSettings,
+    focusSoundscapes,
+    focusSettings,
     tasksList,
     tasksDay,
     tasksDue,
@@ -7290,6 +7804,360 @@ typedef $$ThemeSettingsTableProcessedTableManager =
       ThemeSettingsRow,
       PrefetchHooks Function({bool activeCustomThemeId})
     >;
+typedef $$FocusSoundscapesTableCreateCompanionBuilder =
+    FocusSoundscapesCompanion Function({
+      required String id,
+      required String document,
+      Value<int> rowid,
+    });
+typedef $$FocusSoundscapesTableUpdateCompanionBuilder =
+    FocusSoundscapesCompanion Function({
+      Value<String> id,
+      Value<String> document,
+      Value<int> rowid,
+    });
+
+class $$FocusSoundscapesTableFilterComposer
+    extends Composer<_$AppDatabase, $FocusSoundscapesTable> {
+  $$FocusSoundscapesTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get document => $composableBuilder(
+    column: $table.document,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FocusSoundscapesTableOrderingComposer
+    extends Composer<_$AppDatabase, $FocusSoundscapesTable> {
+  $$FocusSoundscapesTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<String> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get document => $composableBuilder(
+    column: $table.document,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FocusSoundscapesTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FocusSoundscapesTable> {
+  $$FocusSoundscapesTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<String> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get document =>
+      $composableBuilder(column: $table.document, builder: (column) => column);
+}
+
+class $$FocusSoundscapesTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FocusSoundscapesTable,
+          FocusSoundscapeRow,
+          $$FocusSoundscapesTableFilterComposer,
+          $$FocusSoundscapesTableOrderingComposer,
+          $$FocusSoundscapesTableAnnotationComposer,
+          $$FocusSoundscapesTableCreateCompanionBuilder,
+          $$FocusSoundscapesTableUpdateCompanionBuilder,
+          (
+            FocusSoundscapeRow,
+            BaseReferences<
+              _$AppDatabase,
+              $FocusSoundscapesTable,
+              FocusSoundscapeRow
+            >,
+          ),
+          FocusSoundscapeRow,
+          PrefetchHooks Function()
+        > {
+  $$FocusSoundscapesTableTableManager(
+    _$AppDatabase db,
+    $FocusSoundscapesTable table,
+  ) : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FocusSoundscapesTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FocusSoundscapesTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FocusSoundscapesTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<String> id = const Value.absent(),
+                Value<String> document = const Value.absent(),
+                Value<int> rowid = const Value.absent(),
+              }) => FocusSoundscapesCompanion(
+                id: id,
+                document: document,
+                rowid: rowid,
+              ),
+          createCompanionCallback:
+              ({
+                required String id,
+                required String document,
+                Value<int> rowid = const Value.absent(),
+              }) => FocusSoundscapesCompanion.insert(
+                id: id,
+                document: document,
+                rowid: rowid,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$FocusSoundscapesTable, FocusSoundscapeRow>(
+                    table,
+                  ),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $FocusSoundscapesTable,
+                    FocusSoundscapeRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FocusSoundscapesTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FocusSoundscapesTable,
+      FocusSoundscapeRow,
+      $$FocusSoundscapesTableFilterComposer,
+      $$FocusSoundscapesTableOrderingComposer,
+      $$FocusSoundscapesTableAnnotationComposer,
+      $$FocusSoundscapesTableCreateCompanionBuilder,
+      $$FocusSoundscapesTableUpdateCompanionBuilder,
+      (
+        FocusSoundscapeRow,
+        BaseReferences<
+          _$AppDatabase,
+          $FocusSoundscapesTable,
+          FocusSoundscapeRow
+        >,
+      ),
+      FocusSoundscapeRow,
+      PrefetchHooks Function()
+    >;
+typedef $$FocusSettingsTableCreateCompanionBuilder =
+    FocusSettingsCompanion Function({
+      Value<int> id,
+      Value<String?> mix,
+      Value<double> masterVolume,
+      Value<bool> muted,
+    });
+typedef $$FocusSettingsTableUpdateCompanionBuilder =
+    FocusSettingsCompanion Function({
+      Value<int> id,
+      Value<String?> mix,
+      Value<double> masterVolume,
+      Value<bool> muted,
+    });
+
+class $$FocusSettingsTableFilterComposer
+    extends Composer<_$AppDatabase, $FocusSettingsTable> {
+  $$FocusSettingsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get mix => $composableBuilder(
+    column: $table.mix,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<double> get masterVolume => $composableBuilder(
+    column: $table.masterVolume,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<bool> get muted => $composableBuilder(
+    column: $table.muted,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$FocusSettingsTableOrderingComposer
+    extends Composer<_$AppDatabase, $FocusSettingsTable> {
+  $$FocusSettingsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get mix => $composableBuilder(
+    column: $table.mix,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<double> get masterVolume => $composableBuilder(
+    column: $table.masterVolume,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<bool> get muted => $composableBuilder(
+    column: $table.muted,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$FocusSettingsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $FocusSettingsTable> {
+  $$FocusSettingsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<String> get mix =>
+      $composableBuilder(column: $table.mix, builder: (column) => column);
+
+  GeneratedColumn<double> get masterVolume => $composableBuilder(
+    column: $table.masterVolume,
+    builder: (column) => column,
+  );
+
+  GeneratedColumn<bool> get muted =>
+      $composableBuilder(column: $table.muted, builder: (column) => column);
+}
+
+class $$FocusSettingsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $FocusSettingsTable,
+          FocusPreferenceRow,
+          $$FocusSettingsTableFilterComposer,
+          $$FocusSettingsTableOrderingComposer,
+          $$FocusSettingsTableAnnotationComposer,
+          $$FocusSettingsTableCreateCompanionBuilder,
+          $$FocusSettingsTableUpdateCompanionBuilder,
+          (
+            FocusPreferenceRow,
+            BaseReferences<
+              _$AppDatabase,
+              $FocusSettingsTable,
+              FocusPreferenceRow
+            >,
+          ),
+          FocusPreferenceRow,
+          PrefetchHooks Function()
+        > {
+  $$FocusSettingsTableTableManager(_$AppDatabase db, $FocusSettingsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$FocusSettingsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$FocusSettingsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$FocusSettingsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String?> mix = const Value.absent(),
+                Value<double> masterVolume = const Value.absent(),
+                Value<bool> muted = const Value.absent(),
+              }) => FocusSettingsCompanion(
+                id: id,
+                mix: mix,
+                masterVolume: masterVolume,
+                muted: muted,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<String?> mix = const Value.absent(),
+                Value<double> masterVolume = const Value.absent(),
+                Value<bool> muted = const Value.absent(),
+              }) => FocusSettingsCompanion.insert(
+                id: id,
+                mix: mix,
+                masterVolume: masterVolume,
+                muted: muted,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map(
+                (e) => (
+                  e.readTable<$FocusSettingsTable, FocusPreferenceRow>(table),
+                  BaseReferences<
+                    _$AppDatabase,
+                    $FocusSettingsTable,
+                    FocusPreferenceRow
+                  >(db, table, e),
+                ),
+              )
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$FocusSettingsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $FocusSettingsTable,
+      FocusPreferenceRow,
+      $$FocusSettingsTableFilterComposer,
+      $$FocusSettingsTableOrderingComposer,
+      $$FocusSettingsTableAnnotationComposer,
+      $$FocusSettingsTableCreateCompanionBuilder,
+      $$FocusSettingsTableUpdateCompanionBuilder,
+      (
+        FocusPreferenceRow,
+        BaseReferences<_$AppDatabase, $FocusSettingsTable, FocusPreferenceRow>,
+      ),
+      FocusPreferenceRow,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
@@ -7310,4 +8178,8 @@ class $AppDatabaseManager {
       $$CustomThemesTableTableManager(_db, _db.customThemes);
   $$ThemeSettingsTableTableManager get themeSettings =>
       $$ThemeSettingsTableTableManager(_db, _db.themeSettings);
+  $$FocusSoundscapesTableTableManager get focusSoundscapes =>
+      $$FocusSoundscapesTableTableManager(_db, _db.focusSoundscapes);
+  $$FocusSettingsTableTableManager get focusSettings =>
+      $$FocusSettingsTableTableManager(_db, _db.focusSettings);
 }

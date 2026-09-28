@@ -827,4 +827,177 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get themePresetSand => 'Sand';
+
+  @override
+  String get focusLabel => 'Focus';
+
+  @override
+  String get focusTagline => 'Make room for a quieter mind.';
+
+  @override
+  String get focusLocal => 'Original synthetic ambience. Entirely offline.';
+
+  @override
+  String get focusMixer => 'Your mix';
+
+  @override
+  String get focusLibrary => 'Sound library';
+
+  @override
+  String get focusPresets => 'Made for the moment';
+
+  @override
+  String get focusCustom => 'Your soundscapes';
+
+  @override
+  String get focusNew => 'New soundscape';
+
+  @override
+  String get focusSave => 'Save soundscape';
+
+  @override
+  String get focusCopy => 'Save a copy';
+
+  @override
+  String get focusDelete => 'Delete this soundscape?';
+
+  @override
+  String get focusPlay => 'Play';
+
+  @override
+  String get focusPause => 'Pause';
+
+  @override
+  String get focusStop => 'Stop';
+
+  @override
+  String get focusMute => 'Mute';
+
+  @override
+  String get focusUnmute => 'Unmute';
+
+  @override
+  String get focusMaster => 'Master volume';
+
+  @override
+  String get focusDynamic => 'Dynamic ambience';
+
+  @override
+  String get focusDynamicHint => 'Slow, subtle variation in volume.';
+
+  @override
+  String get focusAdd => 'Add sound';
+
+  @override
+  String get focusRemove => 'Remove sound';
+
+  @override
+  String get focusLimit => 'Up to eight sounds per mix.';
+
+  @override
+  String get focusEmpty => 'Choose a soundscape, or create your own.';
+
+  @override
+  String get focusAddHint => 'Add a sound from the library to begin.';
+
+  @override
+  String get focusUnsaved => 'Edited mix · save to your library';
+
+  @override
+  String get focusAudioError =>
+      'Audio could not start or update. Try playing again.';
+
+  @override
+  String get focusStorageError =>
+      'Changes could not be saved. Retry before closing.';
+
+  @override
+  String get focusNoise => 'Noise';
+
+  @override
+  String get focusWeather => 'Weather';
+
+  @override
+  String get focusNature => 'Nature';
+
+  @override
+  String get focusCozy => 'Cozy';
+
+  @override
+  String get focusUrban => 'Urban';
+
+  @override
+  String get focusWorkspace => 'Workspace';
+
+  @override
+  String get focusWhite => 'White noise';
+
+  @override
+  String get focusPink => 'Pink noise';
+
+  @override
+  String get focusBrown => 'Brown noise';
+
+  @override
+  String get focusGrey => 'Grey noise';
+
+  @override
+  String get focusLightRain => 'Light rain';
+
+  @override
+  String get focusHeavyRain => 'Heavy rain';
+
+  @override
+  String get focusThunder => 'Rolling thunder';
+
+  @override
+  String get focusWind => 'Wind';
+
+  @override
+  String get focusOcean => 'Ocean waves';
+
+  @override
+  String get focusStream => 'Stream';
+
+  @override
+  String get focusBirds => 'Birdsong';
+
+  @override
+  String get focusCrickets => 'Night crickets';
+
+  @override
+  String get focusFireplace => 'Fireplace';
+
+  @override
+  String get focusVinyl => 'Vinyl crackle';
+
+  @override
+  String get focusCafe => 'Café ambience';
+
+  @override
+  String get focusTrain => 'Train journey';
+
+  @override
+  String get focusKeyboard => 'Soft keyboard';
+
+  @override
+  String get focusOffice => 'Quiet office';
+
+  @override
+  String get focusDeepPreset => 'Deep focus';
+
+  @override
+  String get focusCafePreset => 'Rainy café';
+
+  @override
+  String get focusNightPreset => 'Night coding';
+
+  @override
+  String get focusForestPreset => 'Forest study';
+
+  @override
+  String get focusStormPreset => 'Stormy evening';
+
+  @override
+  String get focusJourneyPreset => 'Quiet journey';
 }

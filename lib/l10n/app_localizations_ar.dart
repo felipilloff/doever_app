@@ -822,4 +822,177 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get themePresetSand => 'الرمال';
+
+  @override
+  String get focusLabel => 'التركيز';
+
+  @override
+  String get focusTagline => 'مساحة لذهن أكثر هدوءًا.';
+
+  @override
+  String get focusLocal => 'أجواء صوتية مُركّبة أصلية. تعمل دون اتصال.';
+
+  @override
+  String get focusMixer => 'مزيجك';
+
+  @override
+  String get focusLibrary => 'مكتبة الأصوات';
+
+  @override
+  String get focusPresets => 'لكل لحظة';
+
+  @override
+  String get focusCustom => 'مشاهدك الصوتية';
+
+  @override
+  String get focusNew => 'مشهد صوتي جديد';
+
+  @override
+  String get focusSave => 'حفظ المشهد الصوتي';
+
+  @override
+  String get focusCopy => 'حفظ نسخة';
+
+  @override
+  String get focusDelete => 'حذف هذا المشهد الصوتي؟';
+
+  @override
+  String get focusPlay => 'تشغيل';
+
+  @override
+  String get focusPause => 'إيقاف مؤقت';
+
+  @override
+  String get focusStop => 'إيقاف';
+
+  @override
+  String get focusMute => 'كتم الصوت';
+
+  @override
+  String get focusUnmute => 'إلغاء الكتم';
+
+  @override
+  String get focusMaster => 'مستوى الصوت العام';
+
+  @override
+  String get focusDynamic => 'أجواء متغيرة';
+
+  @override
+  String get focusDynamicHint => 'تغيرات بطيئة ولطيفة في مستوى الصوت.';
+
+  @override
+  String get focusAdd => 'إضافة صوت';
+
+  @override
+  String get focusRemove => 'إزالة الصوت';
+
+  @override
+  String get focusLimit => 'حتى ثمانية أصوات لكل مزيج.';
+
+  @override
+  String get focusEmpty => 'اختر مشهدًا صوتيًا أو أنشئ مشهدك.';
+
+  @override
+  String get focusAddHint => 'أضف صوتًا من المكتبة للبدء.';
+
+  @override
+  String get focusUnsaved => 'مزيج معدّل · احفظه في مكتبتك';
+
+  @override
+  String get focusAudioError =>
+      'تعذر تشغيل الصوت أو تحديثه. حاول التشغيل مجددًا.';
+
+  @override
+  String get focusStorageError =>
+      'تعذر حفظ التغييرات. أعد المحاولة قبل الإغلاق.';
+
+  @override
+  String get focusNoise => 'ضوضاء';
+
+  @override
+  String get focusWeather => 'الطقس';
+
+  @override
+  String get focusNature => 'الطبيعة';
+
+  @override
+  String get focusCozy => 'أجواء دافئة';
+
+  @override
+  String get focusUrban => 'المدينة';
+
+  @override
+  String get focusWorkspace => 'مساحة العمل';
+
+  @override
+  String get focusWhite => 'ضوضاء بيضاء';
+
+  @override
+  String get focusPink => 'ضوضاء وردية';
+
+  @override
+  String get focusBrown => 'ضوضاء بنية';
+
+  @override
+  String get focusGrey => 'ضوضاء رمادية';
+
+  @override
+  String get focusLightRain => 'مطر خفيف';
+
+  @override
+  String get focusHeavyRain => 'مطر غزير';
+
+  @override
+  String get focusThunder => 'رعد متواصل';
+
+  @override
+  String get focusWind => 'رياح';
+
+  @override
+  String get focusOcean => 'أمواج البحر';
+
+  @override
+  String get focusStream => 'جدول ماء';
+
+  @override
+  String get focusBirds => 'تغريد الطيور';
+
+  @override
+  String get focusCrickets => 'صراصير الليل';
+
+  @override
+  String get focusFireplace => 'مدفأة';
+
+  @override
+  String get focusVinyl => 'طقطقة أسطوانة';
+
+  @override
+  String get focusCafe => 'أجواء مقهى';
+
+  @override
+  String get focusTrain => 'رحلة قطار';
+
+  @override
+  String get focusKeyboard => 'لوحة مفاتيح هادئة';
+
+  @override
+  String get focusOffice => 'مكتب هادئ';
+
+  @override
+  String get focusDeepPreset => 'تركيز عميق';
+
+  @override
+  String get focusCafePreset => 'مقهى ماطر';
+
+  @override
+  String get focusNightPreset => 'برمجة ليلية';
+
+  @override
+  String get focusForestPreset => 'دراسة في الغابة';
+
+  @override
+  String get focusStormPreset => 'مساء عاصف';
+
+  @override
+  String get focusJourneyPreset => 'رحلة هادئة';
 }

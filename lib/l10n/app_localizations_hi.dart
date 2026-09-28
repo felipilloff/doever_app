@@ -817,4 +817,176 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get themePresetSand => 'रेत';
+
+  @override
+  String get focusLabel => 'एकाग्रता';
+
+  @override
+  String get focusTagline => 'मन को सुकून दें।';
+
+  @override
+  String get focusLocal => 'मौलिक संश्लेषित ध्वनियाँ। पूरी तरह ऑफलाइन।';
+
+  @override
+  String get focusMixer => 'आपका मिश्रण';
+
+  @override
+  String get focusLibrary => 'ध्वनि संग्रह';
+
+  @override
+  String get focusPresets => 'हर पल के लिए';
+
+  @override
+  String get focusCustom => 'आपके ध्वनि परिवेश';
+
+  @override
+  String get focusNew => 'नया ध्वनि परिवेश';
+
+  @override
+  String get focusSave => 'ध्वनि परिवेश सहेजें';
+
+  @override
+  String get focusCopy => 'प्रतिलिपि सहेजें';
+
+  @override
+  String get focusDelete => 'यह ध्वनि परिवेश हटाएँ?';
+
+  @override
+  String get focusPlay => 'चलाएँ';
+
+  @override
+  String get focusPause => 'रोकें';
+
+  @override
+  String get focusStop => 'बंद करें';
+
+  @override
+  String get focusMute => 'म्यूट करें';
+
+  @override
+  String get focusUnmute => 'ध्वनि चालू करें';
+
+  @override
+  String get focusMaster => 'मुख्य वॉल्यूम';
+
+  @override
+  String get focusDynamic => 'गतिशील परिवेश';
+
+  @override
+  String get focusDynamicHint => 'वॉल्यूम में धीमा, हल्का बदलाव।';
+
+  @override
+  String get focusAdd => 'ध्वनि जोड़ें';
+
+  @override
+  String get focusRemove => 'ध्वनि हटाएँ';
+
+  @override
+  String get focusLimit => 'हर मिश्रण में अधिकतम आठ ध्वनियाँ।';
+
+  @override
+  String get focusEmpty => 'ध्वनि परिवेश चुनें या अपना बनाएँ।';
+
+  @override
+  String get focusAddHint => 'शुरू करने के लिए संग्रह से ध्वनि जोड़ें।';
+
+  @override
+  String get focusUnsaved => 'संपादित मिश्रण · संग्रह में सहेजें';
+
+  @override
+  String get focusAudioError => 'ऑडियो शुरू या अपडेट नहीं हुआ। फिर चलाएँ।';
+
+  @override
+  String get focusStorageError =>
+      'बदलाव सहेजे नहीं गए। बंद करने से पहले पुनः प्रयास करें।';
+
+  @override
+  String get focusNoise => 'शोर';
+
+  @override
+  String get focusWeather => 'मौसम';
+
+  @override
+  String get focusNature => 'प्रकृति';
+
+  @override
+  String get focusCozy => 'सुकून';
+
+  @override
+  String get focusUrban => 'शहरी';
+
+  @override
+  String get focusWorkspace => 'कार्यस्थल';
+
+  @override
+  String get focusWhite => 'सफेद शोर';
+
+  @override
+  String get focusPink => 'गुलाबी शोर';
+
+  @override
+  String get focusBrown => 'भूरा शोर';
+
+  @override
+  String get focusGrey => 'धूसर शोर';
+
+  @override
+  String get focusLightRain => 'हल्की बारिश';
+
+  @override
+  String get focusHeavyRain => 'तेज़ बारिश';
+
+  @override
+  String get focusThunder => 'बादलों की गड़गड़ाहट';
+
+  @override
+  String get focusWind => 'हवा';
+
+  @override
+  String get focusOcean => 'समुद्र की लहरें';
+
+  @override
+  String get focusStream => 'बहता झरना';
+
+  @override
+  String get focusBirds => 'पक्षियों का गीत';
+
+  @override
+  String get focusCrickets => 'रात के झींगुर';
+
+  @override
+  String get focusFireplace => 'अंगीठी';
+
+  @override
+  String get focusVinyl => 'विनाइल की चटख';
+
+  @override
+  String get focusCafe => 'कैफ़े का माहौल';
+
+  @override
+  String get focusTrain => 'रेल यात्रा';
+
+  @override
+  String get focusKeyboard => 'हल्की टाइपिंग';
+
+  @override
+  String get focusOffice => 'शांत कार्यालय';
+
+  @override
+  String get focusDeepPreset => 'गहरी एकाग्रता';
+
+  @override
+  String get focusCafePreset => 'बारिश वाला कैफ़े';
+
+  @override
+  String get focusNightPreset => 'रात की कोडिंग';
+
+  @override
+  String get focusForestPreset => 'जंगल में अध्ययन';
+
+  @override
+  String get focusStormPreset => 'तूफ़ानी शाम';
+
+  @override
+  String get focusJourneyPreset => 'शांत यात्रा';
 }

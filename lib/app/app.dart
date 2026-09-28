@@ -7,6 +7,7 @@ import '../features/theme_studio/application/theme_providers.dart';
 import '../features/theme_studio/domain/custom_theme.dart';
 import 'providers.dart';
 import 'theme/doever_theme.dart';
+import '../features/focus/presentation/focus_shell.dart';
 
 class DoeverApp extends ConsumerWidget {
   const DoeverApp({super.key, required this.router, this.messengerKey});
@@ -38,6 +39,14 @@ class DoeverApp extends ConsumerWidget {
       locale: ref.watch(localeProvider),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
+      builder: (context, child) => FocusShell(
+        openFocus: () {
+          if (router.routeInformationProvider.value.uri.path != '/focus') {
+            router.push('/focus');
+          }
+        },
+        child: child ?? const SizedBox.shrink(),
+      ),
     );
   }
 }

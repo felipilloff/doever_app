@@ -73,6 +73,29 @@ Theme Studio follows the language selected in Settings, including dialogs,
 contrast feedback, and built-in preset labels. Custom theme names stay as entered.
 The workspace-background preview uses the active theme's colors and gradients.
 
+## Focus (Windows and Linux)
+
+Open **Focus** to mix up to eight sounds. A compact player remains available
+across Tasks, Notes and Settings. Choose one of six original presets, or create,
+save, rename, duplicate and delete your own soundscapes. Track volumes, master
+volume, mute and the last mix stay local; opening Doever never starts playback.
+
+The library includes generated white, pink, brown and approximate grey noise,
+plus fourteen original **synthesized** weather, nature, cozy, urban and workspace
+ambiences. These are sound designs, not field recordings. Playback uses seamless
+loops, gentle fades and optional slow Dynamic Ambience. No streaming, account,
+telemetry or network connection is involved. See [audio provenance and licenses](assets/audio/ATTRIBUTION.md).
+
+Focus follows Theme Studio's Foundation, Surface and Accent colors/gradients and
+the selected app language. Use Tab to reach controls, arrow keys for sliders,
+**M** to mute while Focus is active, and **Space** to play/pause when the page
+itself has keyboard focus. Buttons keep their normal Space/Enter behavior.
+
+SoLoud initializes lazily on Play. Linux uses the existing audio device/backend
+(PulseAudio or ALSA); no Xiph codec packages are required. Technical decisions
+are in [Focus architecture](docs/focus-architecture.md); sessions, timers and
+analytics remain future work in [TODO.md](TODO.md).
+
 ## Screenshots
 
 Generated from deterministic widget tests using the bundled font:
@@ -147,6 +170,9 @@ dart format --output=none --set-exit-if-changed lib test integration_test tool w
 flutter analyze
 flutter test
 flutter test integration_test/app_test.dart -d <android-or-desktop-id>
+flutter test integration_test/focus_test.dart -d <windows-or-linux-id>
+# Native audio device required; output stays muted:
+flutter test integration_test/focus_audio_test.dart -d <windows-or-linux-id>
 ```
 
 Tests cover smart queries, literal search, calendar dates, recurrence boundaries,
