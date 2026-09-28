@@ -53,7 +53,7 @@ def prepare(source, start_seconds):
     audio = np.tanh(audio / max(np.std(audio) * 3, .001))
     audio -= audio.mean()
     # Preserve the engine's .65 peak budget, including during crossfades.
-    audio *= .65 / peak
+    audio *= .65 / np.max(np.abs(audio))
     return np.rint(audio * 32767).astype('<i2')
 
 
@@ -69,6 +69,7 @@ def main():
             raise ValueError(f'Source checksum mismatch: {source}')
         pcm = prepare(source, entry['start_seconds'])
         assert len(pcm) == FRAMES
+        assert abs(np.max(np.abs(pcm.astype(np.int32))) / 32767 - .65) < .0001, entry['asset']
         steps = np.abs(np.diff(pcm.astype(np.int32)))
         assert abs(int(pcm[-1]) - int(pcm[0])) <= np.quantile(steps, .999) + 1, entry['asset']
         prepared.append((entry['asset'], pcm))
