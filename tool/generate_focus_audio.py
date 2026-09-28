@@ -1,6 +1,6 @@
-"""Reproduce Doever's original, synthetic ambient loops. Requires NumPy.
+"""Reproduce Doever's original synthetic vinyl texture. Requires NumPy.
 
-No recordings, downloaded samples, speech, or proprietary presets are used.
+Environmental recordings are prepared by prepare_focus_recordings.py instead.
 Circular noise filters and wrapped event envelopes make every loop continuous.
 Run from the repository root; outputs mono 44.1 kHz, signed 16-bit PCM WAV.
 """
@@ -10,7 +10,6 @@ import numpy as np
 
 RATE, SECONDS = 44100, 24
 N = RATE * SECONDS
-TIME = np.arange(N) / RATE
 ROOT = Path(__file__).resolve().parents[1] / "assets/audio/ambience"
 ROOT.mkdir(parents=True, exist_ok=True)
 
@@ -24,9 +23,6 @@ def render(name, seed):
         response = (1 - np.exp(-(frequencies / low) ** 2)) * np.exp(-(frequencies / high) ** 2)
         result = np.fft.irfft(spectrum * response, n=N)
         return result / max(np.std(result), .001)
-
-    def swell(cycles, floor=.4):
-        return floor + (1 - floor) * (.5 + .5 * np.sin(2 * np.pi * cycles * TIME / SECONDS))
 
     def events(count, duration, pitch=None, chirp=0):
         result = np.zeros(N)
@@ -43,36 +39,8 @@ def render(name, seed):
             result[(start + np.arange(size)) % N] += signal * envelope * rng.uniform(.4, 1)
         return result
 
-    if name == "lightRain":
-        audio = .25 * bed(700, 9500) + events(650, .02) * 4
-    elif name == "heavyRain":
-        audio = .4 * bed(200, 8500) * swell(3, .8) + events(1100, .03) * 2
-    elif name == "thunder":
-        audio = bed(22, 240) * (swell(3, .01) ** 5) + .07 * bed(400, 3500)
-    elif name == "wind":
-        audio = bed(90, 1700) * swell(3, .12) + .05 * bed(700, 6000)
-    elif name == "ocean":
-        audio = bed(120, 6500) * swell(4, .08) ** 2
-    elif name == "stream":
-        audio = .4 * bed(450, 8000) + events(160, .06, 900, -1200)
-    elif name == "birds":
-        audio = .025 * bed(250, 2500) + events(35, .24, 2500, 1600) + events(20, .13, 4200, -1800)
-    elif name == "crickets":
-        audio = .025 * bed(800, 8000) + events(135, .13, 4800, 80)
-    elif name == "fireplace":
-        audio = .18 * bed(100, 2200) * swell(5, .65) + events(140, .055) * 5
-    elif name == "vinyl":
+    if name == "vinyl":
         audio = .035 * bed(500, 9000) + events(160, .004) * 6
-    elif name == "cafe":
-        # Abstract low room babble and cups; no recorded or intelligible voices.
-        audio = .25 * bed(150, 900) * swell(7, .65) + .1 * bed(550, 1600) * swell(11)
-        audio += events(25, .12, 1900) * .25 + events(60, .025) * .8
-    elif name == "train":
-        audio = .3 * bed(35, 750) + .15 * bed(800, 4500) * swell(48, .3)
-    elif name == "keyboard":
-        audio = events(210, .024) * 3 + events(180, .019, 310) * .5
-    elif name == "office":
-        audio = .12 * bed(120, 1500) + events(80, .025) * .4
     else:
         raise ValueError(name)
     audio -= np.mean(audio)
@@ -90,8 +58,4 @@ def render(name, seed):
 
 
 if __name__ == '__main__':
-    for index, sound in enumerate((
-        'lightRain', 'heavyRain', 'thunder', 'wind', 'ocean', 'stream',
-        'birds', 'crickets', 'fireplace', 'vinyl', 'cafe', 'train', 'keyboard', 'office',
-    )):
-        render(sound, 20260927 + index)
+    render('vinyl', 20260936)

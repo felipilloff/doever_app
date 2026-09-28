@@ -25,6 +25,7 @@ mkdir -p "$bundle/licenses"
 cp assets/fonts/*LICENSE.txt "$bundle/licenses/"
 cp assets/audio/licenses/*LICENSE.txt "$bundle/licenses/"
 cp assets/audio/ATTRIBUTION.md "$bundle/licenses/Focus-audio-ATTRIBUTION.md"
+cp assets/audio/recordings.json "$bundle/licenses/recordings.json"
 mkdir -p "$output"
 tar --exclude='./data/flutter_assets/kernel_blob.bin' -czf "$output/doever-linux-x64.tar.gz" -C "$bundle" .
 (cd "$output" && sha256sum doever-linux-x64.tar.gz > doever-linux-x64.tar.gz.sha256)

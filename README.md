@@ -81,8 +81,8 @@ save, rename, duplicate and delete your own soundscapes. Track volumes, master
 volume, mute and the last mix stay local; opening Doever never starts playback.
 
 The library includes generated white, pink, brown and approximate grey noise,
-plus fourteen original **synthesized** weather, nature, cozy, urban and workspace
-ambiences. These are sound designs, not field recordings. Playback uses seamless
+plus thirteen licensed **field recordings** of weather, nature, cozy, urban and
+workspace ambiences, and a synthesized vinyl texture. Playback uses crossfaded
 loops, gentle fades and optional slow Dynamic Ambience. No streaming, account,
 telemetry or network connection is involved. See [audio provenance and licenses](assets/audio/ATTRIBUTION.md).
 

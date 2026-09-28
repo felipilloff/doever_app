@@ -20,8 +20,10 @@ Dart/Flutter package licenses remain with their respective upstream projects.
 Focus uses flutter_soloud 5.1.2 (MIT), SoLoud (zlib/libpng), and its bundled
 Signalsmith/PFFFT components. Their notices are in `assets/audio/licenses/`
 and `licenses/` in desktop packages. Unused Xiph codecs are disabled.
-The original synthesized Focus loops use Doever's MIT license; full provenance
-and reproducible sources are documented in `assets/audio/ATTRIBUTION.md`.
+Focus recordings retain their CC0, CC BY 3.0, CC BY 4.0 or public-domain terms.
+Authors, source links and modifications are in `assets/audio/ATTRIBUTION.md`;
+license texts ship in `assets/audio/licenses/` and desktop package `licenses/`.
+The synthesized vinyl texture and generated colored noise use Doever's MIT license.
 The repository's MIT license covers Doever's original source, not a relicensing
 of third-party assets.
 

@@ -1,34 +1,57 @@
 # Focus audio provenance
 
-All fourteen bundled ambient loops are **original procedural sound designs**
-created for Doever, distributed under the repository's MIT license. They are
-synthesized interpretations, not field recordings. No third-party audio,
-sample library, voice recording, music, or extracted product asset is included.
+Thirteen environmental loops are derived from field recordings published by
+their authors on Freesound or SoundBible. They are **not covered by Doever's MIT
+license**: each recording retains the terms listed below. Sources and license
+declarations were checked on 2026-09-28. No Pixabay or Mixkit assets are bundled.
 
-Source/author: Doever project, [`tool/generate_focus_audio.py`](../../tool/generate_focus_audio.py).
-The script is the complete reproducible source; no external source URL applies.
-Each file is mono 44.1 kHz / 16-bit PCM, 24 seconds, peak-normalized to 0.65.
-Modifications: synthesis, circular filtering/event wrapping, soft limiting,
-DC removal and normalization as specified by that script.
+## Recordings and attribution
 
-| Asset (`ambience/`) | Synthesis | Seed |
-|---|---|---|
-| lightRain.wav | High-frequency rain bed and droplets | 20260927 |
-| heavyRain.wav | Broad rain bed and dense droplets | 20260928 |
-| thunder.wav | Slow, low-frequency rolling rumble | 20260929 |
-| wind.wav | Filtered gusts | 20260930 |
-| ocean.wav | Four broad wave envelopes | 20260931 |
-| stream.wav | Water bed and descending bubbles | 20260932 |
-| birds.wav | Two families of chirped tones | 20260933 |
-| crickets.wav | Short high-frequency chirps | 20260934 |
-| fireplace.wav | Low fire bed and crackles | 20260935 |
-| vinyl.wav | Restrained hiss and short clicks | 20260936 |
-| cafe.wav | Abstract room murmur and cup-like tones; no speech | 20260937 |
-| train.wav | Low rolling bed and rhythmic wheel texture | 20260938 |
-| keyboard.wav | Short key-like noise and pitched taps | 20260939 |
-| office.wav | Quiet ventilation and distant key-like taps | 20260940 |
+| Bundled asset | Original recording | Author | License | Excerpt starts at |
+|---|---|---|---|---|
+| `birds.wav` | [WoodThrushinMorningShawneeForestMay272012.wav](https://freesound.org/people/kvgarlic/sounds/156826/) | kvgarlic | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 10 s |
+| `cafe.wav` | [Restaurant Ambiance](https://soundbible.com/1664-Restaurant-Ambiance.html) | stephan | Public domain | 0 s |
+| `crickets.wav` | [Crickets Chirping At Night](https://soundbible.com/2083-Crickets-Chirping-At-Night.html) | Lisa Redfern | Public domain | 10 s |
+| `fireplace.wav` | [Fireplace](https://soundbible.com/1543-Fireplace.html) | ezwa | Public domain | 0 s |
+| `heavyRain.wav` | [Heavy Rain](https://freesound.org/people/NachtmahrTV/sounds/618108/) | NachtmahrTV | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 10 s |
+| `keyboard.wav` | [Keyboard typing](https://freesound.org/people/paulocorona/sounds/334990/) | paulocorona | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 0 s |
+| `lightRain.wav` | [rain ambience](https://freesound.org/people/alex36917/sounds/524605/) | alex36917 | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | 10 s |
+| `ocean.wav` | [oceanwavescrushing.wav](https://freesound.org/people/Luftrum/sounds/48412/) | Luftrum | [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) | 10 s |
+| `office.wav` | [Empty Office Ambience](https://freesound.org/people/simonjeffery13/sounds/750799/) | simonjeffery13 | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 0 s |
+| `stream.wav` | [stream2.wav](https://freesound.org/people/gluckose/sounds/333987/) | gluckose | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 10 s |
+| `thunder.wav` | [230823 Thunder, dry distant rolling, R-07 EM272s, Stratford 12pm](https://freesound.org/people/TRP/sounds/717890/) | TRP | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 132 s |
+| `train.wav` | [Trains of the Yamanote Line](https://freesound.org/people/SDLx/sounds/259988/) | SDLx | [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/) | 515 s |
+| `wind.wav` | [Wind blowing in a field in Texas, USA](https://freesound.org/people/felix.blume/sounds/217506/) | felix.blume | [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/) | 10 s |
 
-White, pink, brown and grey noise are generated locally by Doever's Dart noise
-generator, also under MIT. Grey is a documented perceptual approximation, not a
-claim to a uniquely defined spectrum. SoLoud and its dependencies retain their
-own licenses in the application's license notices.
+### Modifications and reproduction
+
+Doever uses the public high-quality MP3 previews from Freesound and the MP3
+downloads from SoundBible. Download URLs and original-file SHA-256 checksums are
+in `recordings.json` beside this file. No account or download is required at run
+time; the prepared WAV files ship inside the application.
+
+Modifications by Doever: excerpt selection, mono downmix, resampling to 44.1 kHz,
+DC removal, one-second overlap crossfades (including repetitions of short
+recordings), soft limiting of transients, peak normalization to 0.65 and
+conversion to 16-bit PCM WAV.
+Each bundled loop is 24 seconds. The recordings preserve their original acoustic
+backgrounds; natural ambience is not an isolated laboratory sound.
+
+To reproduce, download each manifest URL as `<asset>.mp3` into a local directory
+and run `python tool/prepare_focus_recordings.py <directory>` from the repository.
+The development-only dependencies are NumPy, SciPy and SoundFile. Input hashes
+are verified before any bundled recording is overwritten. No network dependency
+is added to Doever. CC0 and CC BY legal texts accompany this file in `licenses/`
+in the repository (alongside this attribution file in desktop packages).
+License text copies come from https://github.com/spdx/license-list-data/tree/main/text .
+Keep this attribution and the applicable license notices when redistributing.
+No endorsement by the recording authors is implied.
+
+## Original generated sounds
+
+`vinyl.wav` remains Doever's original procedural hiss/click texture under MIT,
+generated by `tool/generate_focus_audio.py`, seed 20260936. It is mono 44.1 kHz,
+16-bit PCM, 24 seconds and peak-normalized to 0.65. It contains no music sample.
+White, pink, brown and grey noise remain generated locally in Dart under MIT.
+Grey is a documented perceptual approximation, not a canonical spectrum.
+SoLoud and its dependencies retain their separate notices in `licenses/`.

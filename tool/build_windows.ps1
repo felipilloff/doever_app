@@ -21,6 +21,7 @@ try {
     Copy-Item assets/fonts/*LICENSE.txt -Destination "$bundle/licenses" -Force
     Copy-Item assets/audio/licenses/*LICENSE.txt -Destination "$bundle/licenses" -Force
     Copy-Item assets/audio/ATTRIBUTION.md -Destination "$bundle/licenses/Focus-audio-ATTRIBUTION.md" -Force
+    Copy-Item assets/audio/recordings.json -Destination "$bundle/licenses/recordings.json" -Force
     $output = 'build/releases'
     New-Item -ItemType Directory -Path $output -Force | Out-Null
     $archive = Join-Path $output 'doever-windows-x64.zip'

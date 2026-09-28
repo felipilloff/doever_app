@@ -11,13 +11,13 @@
 ## Focus v1 — completed
 
 - [x] Windows/Linux navigation, full mixer and persistent mini player.
-- [x] Testable SoLoud adapter, four colored noises and fourteen original synthesized loops.
+- [x] Testable SoLoud adapter, four colored noises, thirteen licensed field recordings and synthesized vinyl.
 - [x] Eight-track mixing, independent/master volume, mute, pause/resume, loops and fades.
 - [x] Bounded Dynamic Ambience and soundscape crossfades.
 - [x] Six built-in presets, custom soundscape CRUD and local preferences.
 - [x] Theme Studio gradients, keyboard access and five-language interface.
 - [x] Additive v4 migration, playback/persistence/widget/integration tests.
-- [x] Audio provenance, reproducible synthesis source and redistribution notices.
+- [x] Audio provenance, reproducible recording preparation and redistribution notices.
 - [x] Native Linux engine verification and navigation/restart integration.
 - [x] Native Windows application workflow and verified Windows/Linux release packages.
 

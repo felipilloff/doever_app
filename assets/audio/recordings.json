@@ -1,0 +1,132 @@
+[
+  {
+    "asset": "birds",
+    "author": "kvgarlic",
+    "title": "WoodThrushinMorningShawneeForestMay272012.wav",
+    "source": "https://freesound.org/people/kvgarlic/sounds/156826/",
+    "download": "https://cdn.freesound.org/previews/156/156826_1050391-hq.mp3",
+    "sha256": "5468ff45db4acc42de0ef5ba0ed90882a5c934f524e38b3493ba0e1c5d59c489",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "cafe",
+    "author": "stephan",
+    "source": "https://soundbible.com/1664-Restaurant-Ambiance.html",
+    "download": "https://soundbible.com/mp3/Restaurant%20Ambiance%20-SoundBible.com-628640170.mp3",
+    "sha256": "93f89a9dd27a6f6a9b2be9dbca782c92d51a57dc219bdf4613b403c73f9adb4b",
+    "title": "Restaurant Ambiance",
+    "start_seconds": 0,
+    "license": "Public Domain"
+  },
+  {
+    "asset": "crickets",
+    "author": "Lisa Redfern",
+    "source": "https://soundbible.com/2083-Crickets-Chirping-At-Night.html",
+    "download": "https://soundbible.com/mp3/Night_Sounds_-_Crickets-Lisa_Redfern-591005346.mp3",
+    "sha256": "ca0f35cce55bed2981e9f97058ee269c14d3eb7f14fb148d6bd87eab6ff61284",
+    "title": "Crickets Chirping At Night",
+    "start_seconds": 10,
+    "license": "Public Domain"
+  },
+  {
+    "asset": "fireplace",
+    "author": "ezwa",
+    "source": "https://soundbible.com/1543-Fireplace.html",
+    "download": "https://soundbible.com/mp3/Fireplace-SoundBible.com-127901833.mp3",
+    "sha256": "5847b62c623bc0765f02f5548679d3efa1446bfaad80ef9cddbe94fe9de74dcd",
+    "title": "Fireplace",
+    "start_seconds": 0,
+    "license": "Public Domain"
+  },
+  {
+    "asset": "heavyRain",
+    "author": "NachtmahrTV",
+    "title": "Heavy Rain",
+    "source": "https://freesound.org/people/NachtmahrTV/sounds/618108/",
+    "download": "https://cdn.freesound.org/previews/618/618108_5620304-hq.mp3",
+    "sha256": "12ae45363d1bfa338057a2d951086512e778c51918ef9b53da77d2cf7702f2d2",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "keyboard",
+    "author": "paulocorona",
+    "title": "Keyboard typing",
+    "source": "https://freesound.org/people/paulocorona/sounds/334990/",
+    "download": "https://cdn.freesound.org/previews/334/334990_5863857-hq.mp3",
+    "sha256": "61b26d94788a4a393b2fb816c39e1ce908c79c04a0142a7af7fa506d6181c033",
+    "start_seconds": 0,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "lightRain",
+    "author": "alex36917",
+    "title": "rain ambience",
+    "source": "https://freesound.org/people/alex36917/sounds/524605/",
+    "download": "https://cdn.freesound.org/previews/524/524605_5838112-hq.mp3",
+    "sha256": "19b1cd767ccc42d5047055d46c6f32d0dc5a95a9e38106705034c6dac4348d6d",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "asset": "ocean",
+    "author": "Luftrum",
+    "title": "oceanwavescrushing.wav",
+    "source": "https://freesound.org/people/Luftrum/sounds/48412/",
+    "download": "https://cdn.freesound.org/previews/48/48412_553671-hq.mp3",
+    "sha256": "e2fedd51ea1053ea0fd35adbcd1ab8d038400be51d2573aa3b5ee5a72a0c4d02",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/licenses/by/4.0/"
+  },
+  {
+    "asset": "office",
+    "author": "simonjeffery13",
+    "title": "Empty Office Ambience",
+    "source": "https://freesound.org/people/simonjeffery13/sounds/750799/",
+    "download": "https://cdn.freesound.org/previews/750/750799_1326393-hq.mp3",
+    "sha256": "f8a6d12f4765f7394687ffb10a6ed26889c5c0768599cd8763586993abc597af",
+    "start_seconds": 0,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "stream",
+    "author": "gluckose",
+    "title": "stream2.wav",
+    "source": "https://freesound.org/people/gluckose/sounds/333987/",
+    "download": "https://cdn.freesound.org/previews/333/333987_3562143-hq.mp3",
+    "sha256": "498e683ba24dfef0babca9b5ee82fa7a650b4f442cb11e9d684b211229ab2cf7",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "thunder",
+    "author": "TRP",
+    "title": "230823 Thunder, dry distant rolling, R-07 EM272s, Stratford 12pm",
+    "source": "https://freesound.org/people/TRP/sounds/717890/",
+    "download": "https://cdn.freesound.org/previews/717/717890_97550-hq.mp3",
+    "sha256": "9fef0328de54f0555625235c2a8cc6a76f90f90a8c57df6e9be2f07bda591afe",
+    "start_seconds": 132,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  },
+  {
+    "asset": "train",
+    "author": "SDLx",
+    "title": "Trains of the Yamanote Line",
+    "source": "https://freesound.org/people/SDLx/sounds/259988/",
+    "download": "https://cdn.freesound.org/previews/259/259988_788333-hq.mp3",
+    "sha256": "dfff3296ac2bd3b238009fb2e7cb7af5eec89a7c3625244182c238f558a72a1b",
+    "start_seconds": 515,
+    "license": "https://creativecommons.org/licenses/by/3.0/"
+  },
+  {
+    "asset": "wind",
+    "author": "felix.blume",
+    "title": "Wind blowing in a field in Texas, USA",
+    "source": "https://freesound.org/people/felix.blume/sounds/217506/",
+    "download": "https://cdn.freesound.org/previews/217/217506_1661766-hq.mp3",
+    "sha256": "dace89ad0d1e15b2bf5527a0fe8f0cbcf6a2dd18f6ee7b27c70fd3cadb2e49d7",
+    "start_seconds": 10,
+    "license": "https://creativecommons.org/publicdomain/zero/1.0/"
+  }
+]

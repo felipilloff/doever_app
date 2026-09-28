@@ -27,9 +27,14 @@ mix, master volume and mute. No voice handles or playing state are serialized.
 The existing schema-v1/v2/v3 snapshots are migrated additively to v4, with exact
 legacy-row comparisons in tests. Focus never writes to Tasks, Notes or themes.
 
-Environmental loops are original procedural sound designs, explicitly described
-as synthesized ambience, not field recordings. Their reproducible generator and
-license provenance ship with the repository. White, pink, brown and approximate
+Thirteen environmental loops use licensed field recordings; vinyl remains a
+procedural texture. `tool/prepare_focus_recordings.py` verifies source checksums,
+downmixes/resamples to mono 44.1 kHz PCM16, removes DC and overlaps boundaries
+for 24-second loops, soft-limits transients and retains the engine's 0.65 peak
+ceiling. Short recordings
+also overlap when repeated. Source URLs, licenses, offsets and hashes are in
+`assets/audio/recordings.json`; credits ship with the desktop packages.
+White, pink, brown and approximate
 grey noise are generated on demand in an isolate. See assets/audio/ATTRIBUTION.md.
 The grey approximation emphasizes low and high bands around restrained mids;
 it does not claim calibrated equal loudness. Pink uses sixteen octave rows of
