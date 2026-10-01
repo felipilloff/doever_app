@@ -1,3 +1,5 @@
+import '../features/focus/presentation/session_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,6 +25,13 @@ GoRouter createRouter() => GoRouter(
       routes: [
         GoRoute(
           path: 'focus',
+          routes: [
+            GoRoute(
+              path: 'session',
+              redirect: (_, _) => supportsFocus ? null : '/',
+              builder: (_, _) => const SessionScreen(),
+            ),
+          ],
           redirect: (_, _) => supportsFocus ? null : '/',
           builder: (_, _) => const FocusScreen(),
         ),

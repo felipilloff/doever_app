@@ -1,3 +1,5 @@
+import 'package:doever/features/focus/application/focus_session_controller.dart';
+import 'package:doever/features/focus/application/session_providers.dart';
 import 'package:doever/app/app.dart';
 import 'package:doever/app/router.dart';
 import 'package:doever/app/providers.dart';
@@ -46,10 +48,12 @@ class AppHarness {
     Widget Function(Widget)? wrap,
     CalendarDate? today,
     FocusPlayer? focusPlayer,
+    FocusSessionController? focusSession,
   }) {
     final child = ProviderScope(
       overrides: [
         focusPlayerProvider.overrideWithValue(focusPlayer),
+        focusSessionProvider.overrideWithValue(focusSession),
         if (today != null) todayProvider.overrideWith(() => FixedToday(today)),
         repositoryProvider.overrideWithValue(repository),
         themeRepositoryProvider.overrideWithValue(

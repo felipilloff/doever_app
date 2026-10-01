@@ -93,8 +93,32 @@ itself has keyboard focus. Buttons keep their normal Space/Enter behavior.
 
 SoLoud initializes lazily on Play. Linux uses the existing audio device/backend
 (PulseAudio or ALSA); no Xiph codec packages are required. Technical decisions
-are in [Focus architecture](docs/focus-architecture.md); sessions, timers and
-analytics remain future work in [TODO.md](TODO.md).
+are in [Focus architecture](docs/focus-architecture.md).
+
+### Focus Sessions and Pomodoro
+
+On Windows/Linux, choose **Start Focus** in task details or press **Ctrl+Shift+F**
+for Quick Focus. Search incomplete tasks or start without a task, choose a custom
+1–180 minute timer or Pomodoro, and optionally select a soundscape. Starting the
+session plays a selected soundscape; opening setup never starts audio.
+
+Pomodoro defaults to 25 minutes of Focus, a 5-minute short break, and a 15-minute
+long break after four Focus blocks. Durations, interval, notifications, and each
+phase's auto-start behavior are configurable in setup; auto-start defaults off.
+The active timer survives navigation. Use its persistent indicator to return,
+**Space** on the session page to pause/resume, or open the existing mixer without
+interrupting the timer. Pausing/finishing the timer leaves ambience independent.
+Task completion always requires an explicit **Complete Task** action.
+
+History stays entirely local, including task-title snapshots, planned/actual time,
+phase and completion state. The latest 100 entries are displayed; older entries
+are retained. Cancellation is recorded but never advances a Pomodoro cycle.
+After restart, unfinished sessions offer Resume or Finish using the last saved
+transition; offline time is not counted. Gaps over 15 seconds conservatively
+interrupt the timer without counting the gap. Windows/Linux completion notices
+use the existing local notification adapter; OS delivery needs target-device
+validation. Session controls currently use English; Focus v1 remains localized.
+Analytics and additional desktop conveniences remain in [TODO.md](TODO.md).
 
 ## Screenshots
 

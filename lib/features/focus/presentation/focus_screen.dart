@@ -1,3 +1,8 @@
+import 'package:go_router/go_router.dart';
+
+import '../application/session_providers.dart';
+import 'session_setup.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -56,6 +61,17 @@ class FocusScreen extends ConsumerWidget {
           appBar: AppBar(
             title: Text(s.focusLabel),
             actions: [
+              if (ref.watch(focusSessionProvider) != null) ...[
+                TextButton.icon(
+                  onPressed: () => showFocusSetup(context),
+                  icon: const Icon(Icons.timer_outlined),
+                  label: const Text('Start Focus'),
+                ),
+                TextButton(
+                  onPressed: () => context.push('/focus/session'),
+                  child: const Text('Sessions'),
+                ),
+              ],
               TextButton.icon(
                 onPressed: player.busy
                     ? null

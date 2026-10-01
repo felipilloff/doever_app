@@ -20,6 +20,7 @@ final class LocalReminders implements ReminderService {
   Future<void> _init() async {
     await _plugin.initialize(
       settings: const InitializationSettings(
+        linux: LinuxInitializationSettings(defaultActionName: 'Open Doever'),
         android: AndroidInitializationSettings('ic_notification'),
         iOS: DarwinInitializationSettings(
           requestAlertPermission: false,
@@ -103,6 +104,23 @@ final class LocalReminders implements ReminderService {
         iOS: DarwinNotificationDetails(),
         macOS: DarwinNotificationDetails(),
         windows: WindowsNotificationDetails(),
+      ),
+    );
+  }
+
+  @override
+  Future<void> showFocusCompletion({
+    required String title,
+    required String body,
+  }) async {
+    await _initialize();
+    await _plugin.show(
+      id: 2147483646,
+      title: title,
+      body: body,
+      notificationDetails: const NotificationDetails(
+        windows: WindowsNotificationDetails(),
+        linux: LinuxNotificationDetails(),
       ),
     );
   }

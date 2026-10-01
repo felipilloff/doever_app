@@ -1,3 +1,8 @@
+import 'package:doever/features/focus/application/focus_session_controller.dart';
+import 'package:doever/features/focus/application/session_providers.dart';
+import 'package:doever/features/focus/data/focus_session_repository.dart';
+import 'package:doever/features/focus/domain/focus_session.dart';
+
 import 'dart:io';
 
 import 'package:doever/app/app.dart';
@@ -37,6 +42,16 @@ void main() {
       var repo = DriftFocusRepository(db);
       var audio = FakeFocusAudio();
       var player = FocusPlayer(repo, audio, await repo.loadPreferences());
+      var elapsed = Duration.zero;
+      FocusSessionController makeSessions() => FocusSessionController(
+        FocusSessionRepository(db),
+        tasks,
+        player: player,
+        scheduleTicks: false,
+        monotonic: () => elapsed,
+        now: () => DateTime.utc(2026).add(elapsed),
+      );
+      var sessions = makeSessions();
       var router = createRouter();
       Widget app() => ProviderScope(
         overrides: [
@@ -45,6 +60,7 @@ void main() {
           remindersProvider.overrideWithValue(FakeReminders()),
           noteRepositoryProvider.overrideWithValue(DriftNoteRepository(db)),
           focusPlayerProvider.overrideWithValue(player),
+          focusSessionProvider.overrideWithValue(sessions),
         ],
         child: DoeverApp(router: router),
       );
@@ -66,6 +82,16 @@ void main() {
         await player.add(FocusSound.brown);
         await player.save('Desktop retreat');
         final id = player.mix!.id;
+        final taskId = await tasks.createTask('Desktop focus session');
+        router.go('/task/$taskId');
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Start Focus'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Start'));
+        await tester.pumpAndSettle();
+        expect(sessions.session!.linkedTaskId, taskId);
+        elapsed += const Duration(seconds: 8);
+        await sessions.tick();
         for (final route in ['/', '/notes', '/settings', '/focus']) {
           router.go(route);
           await tester.pumpAndSettle();
@@ -73,8 +99,22 @@ void main() {
           expect(find.text('Desktop retreat'), findsWidgets);
         }
         expect(audio.calls.where((c) => c == 'play'), hasLength(2));
+        router.go('/focus/session');
+        await tester.pumpAndSettle();
+        expect(sessions.elapsed, const Duration(seconds: 8));
+        await tester.tap(find.text('Pause'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Resume'));
+        await tester.pumpAndSettle();
+        await tester.tap(find.text('Finish Session'));
+        await tester.pumpAndSettle();
+        expect(sessions.session!.completionState, SessionState.completed);
+        await tester.tap(find.text('Complete Task'));
+        await tester.pumpAndSettle();
+        expect((await tasks.getTask(taskId))!.isCompleted, true);
         await tester.pumpWidget(const SizedBox());
         await tester.pumpAndSettle();
+        await sessions.shutdown();
         await player.shutdown();
         router.dispose();
         await db.close();
@@ -84,6 +124,12 @@ void main() {
         repo = DriftFocusRepository(db);
         audio = FakeFocusAudio();
         player = FocusPlayer(repo, audio, await repo.loadPreferences());
+        sessions = makeSessions();
+        await sessions.restore();
+        expect(sessions.active, false);
+        final history = await sessions.repository.watchHistory().first;
+        expect(history.single.taskTitleSnapshot, 'Desktop focus session');
+        expect(history.single.actualDuration, const Duration(seconds: 8));
         router = createRouter();
         await tester.pumpWidget(app());
         router.go('/focus');
@@ -102,6 +148,7 @@ void main() {
       } finally {
         await tester.pumpWidget(const SizedBox());
         await tester.pumpAndSettle();
+        await sessions.shutdown();
         await player.shutdown();
         router.dispose();
         await db.close();

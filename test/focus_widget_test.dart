@@ -33,6 +33,9 @@ void main() {
       await tester.pumpAndSettle();
       expect(h.router.routeInformationProvider.value.uri.path, '/');
       expect(find.byType(FocusScreen), findsNothing);
+      h.router.go('/focus/session');
+      await tester.pumpAndSettle();
+      expect(h.router.routeInformationProvider.value.uri.path, '/');
       expect(audio.calls, isEmpty);
       await tester.pumpWidget(const SizedBox());
       await tester.pumpAndSettle();

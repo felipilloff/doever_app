@@ -1,3 +1,7 @@
+import '../features/focus/application/focus_session_controller.dart';
+import '../features/focus/application/session_providers.dart';
+import '../features/focus/data/focus_session_repository.dart';
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -36,6 +40,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
   AppDatabase? _database;
   ReminderWorker? _worker;
   FocusPlayer? _focus;
+  FocusSessionController? _sessions;
   late Future<Widget> _app = _initialize();
   Future<Widget> _initialize() async {
     final database = _database = AppDatabase();
@@ -58,6 +63,18 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       final reminders = LocalReminders(
         onOpen: (id) => _router.go('/task/${Uri.encodeComponent(id)}'),
       );
+      if (supportsFocus) {
+        _sessions = FocusSessionController(
+          FocusSessionRepository(database),
+          repository,
+          player: _focus,
+          onCompleted: (session) => reminders.showFocusCompletion(
+            title: 'Focus session complete',
+            body: '${session.title} · ${session.actualDuration.inMinutes} min',
+          ),
+        );
+        await _sessions!.restore();
+      }
       var notified = false;
       _worker = ReminderWorker(
         database,
@@ -79,6 +96,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       return ProviderScope(
         overrides: [
           focusPlayerProvider.overrideWithValue(_focus),
+          focusSessionProvider.overrideWithValue(_sessions),
           repositoryProvider.overrideWithValue(repository),
           noteRepositoryProvider.overrideWithValue(
             DriftNoteRepository(database),
@@ -92,6 +110,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
       );
     } catch (error, stack) {
       logFailure('bootstrap.database_or_preferences', error, stack);
+      await _sessions?.shutdown();
       await _focus?.shutdown();
       _focus = null;
       await database.close();
@@ -109,6 +128,7 @@ class _DoeverBootstrapState extends State<DoeverBootstrap> {
 
   Future<void> _close() async {
     await _worker?.dispose();
+    await _sessions?.shutdown();
     await _focus?.shutdown();
     await _database?.close();
   }

@@ -151,6 +151,20 @@ class FocusSettings extends Table {
   ];
 }
 
+@DataClassName('FocusSessionRow')
+@TableIndex(name: 'focus_sessions_started', columns: {#startedAt})
+@TableIndex(name: 'focus_sessions_task', columns: {#linkedTaskId})
+class FocusSessions extends Table {
+  TextColumn get id => text()();
+  // Historical reference deliberately survives task deletion.
+  TextColumn get linkedTaskId => text().nullable()();
+  DateTimeColumn get startedAt => dateTime()();
+  BoolColumn get finished => boolean()();
+  TextColumn get document => text()();
+  @override
+  Set<Column<Object>> get primaryKey => {id};
+}
+
 @DriftDatabase(
   tables: [
     Lists,
@@ -163,6 +177,7 @@ class FocusSettings extends Table {
     ThemeSettings,
     FocusSoundscapes,
     FocusSettings,
+    FocusSessions,
   ],
 )
 class AppDatabase extends _$AppDatabase {
@@ -181,7 +196,7 @@ class AppDatabase extends _$AppDatabase {
             ),
       );
   @override
-  int get schemaVersion => 4;
+  int get schemaVersion => 5;
   @override
   MigrationStrategy get migration => MigrationStrategy(
     onCreate: (m) async {
@@ -203,6 +218,15 @@ class AppDatabase extends _$AppDatabase {
         await m.createTable(customThemes);
         await m.createTable(themeSettings);
         await _insertThemeSettings();
+      }
+      if (from < 5) {
+        await m.createTable(focusSessions);
+        await customStatement(
+          'CREATE INDEX focus_sessions_started ON focus_sessions (started_at)',
+        );
+        await customStatement(
+          'CREATE INDEX focus_sessions_task ON focus_sessions (linked_task_id)',
+        );
       }
       if (from < 4) {
         await m.createTable(focusSoundscapes);

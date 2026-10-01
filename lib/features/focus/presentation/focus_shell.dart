@@ -1,3 +1,9 @@
+import 'package:flutter/services.dart';
+
+import '../application/session_providers.dart';
+import '../domain/focus_session.dart';
+import 'session_screen.dart';
+
 import 'dart:async';
 import 'dart:ui' show AppExitResponse;
 
@@ -13,9 +19,15 @@ import 'focus_labels.dart';
 
 /// Remains above the router, retaining its child identity during playback.
 class FocusShell extends ConsumerStatefulWidget {
-  const FocusShell({super.key, required this.child, required this.openFocus});
+  const FocusShell({
+    super.key,
+    required this.child,
+    required this.openFocus,
+    required this.openSession,
+    required this.quickFocus,
+  });
   final Widget child;
-  final VoidCallback openFocus;
+  final VoidCallback openFocus, openSession, quickFocus;
   @override
   ConsumerState<FocusShell> createState() => _FocusShellState();
 }
@@ -29,6 +41,7 @@ class _FocusShellState extends ConsumerState<FocusShell> {
       onDetach: () => unawaited(ref.read(focusPlayerProvider)?.shutdown()),
       onInactive: () => unawaited(ref.read(focusPlayerProvider)?.flush()),
       onExitRequested: () async {
+        await ref.read(focusSessionProvider)?.pause();
         await ref.read(focusPlayerProvider)?.flush();
         return AppExitResponse.exit;
       },
@@ -45,82 +58,133 @@ class _FocusShellState extends ConsumerState<FocusShell> {
   Widget build(BuildContext context) {
     final player = ref.watch(focusPlayerProvider);
     if (!supportsFocus || player == null) return widget.child;
-    return Overlay.wrap(
-      child: Column(
-        children: [
-          Expanded(child: widget.child),
-          ListenableBuilder(
-            listenable: player,
-            builder: (context, _) {
-              final mix = player.mix;
-              if (mix == null) return const SizedBox.shrink();
-              final s = AppLocalizations.of(context);
-              return ThemeLayerPaint(
-                role: ThemeLayerRole.surface,
-                child: SafeArea(
-                  top: false,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 8,
+    return CallbackShortcuts(
+      bindings: {
+        const SingleActivator(
+          LogicalKeyboardKey.keyF,
+          control: true,
+          shift: true,
+        ): widget.quickFocus,
+      },
+      child: Overlay.wrap(
+        child: Column(
+          children: [
+            Expanded(child: widget.child),
+            if (ref.watch(focusSessionProvider) case final controller?)
+              ListenableBuilder(
+                listenable: controller,
+                builder: (context, _) {
+                  final session = controller.session;
+                  if (session == null) return const SizedBox.shrink();
+                  final running =
+                      session.completionState == SessionState.running;
+                  return ThemeLayerPaint(
+                    role: ThemeLayerRole.surface,
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: TextButton(
+                            onPressed: widget.openSession,
+                            child: Text(
+                              '${phaseLabel(session.sessionType)} · ${timerLabel(controller.remaining)} · ${session.completionState.name}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                        if (controller.active)
+                          IconButton(
+                            tooltip: running ? 'Pause timer' : 'Resume timer',
+                            onPressed: controller.busy
+                                ? null
+                                : running
+                                ? controller.pause
+                                : controller.resume,
+                            icon: Icon(
+                              running ? Icons.pause : Icons.play_arrow,
+                            ),
+                          ),
+                      ],
                     ),
-                    child: LayoutBuilder(
-                      builder: (context, constraints) => Row(
-                        children: [
-                          FocusPlayButton(player: player),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: TextButton(
-                              onPressed: widget.openFocus,
-                              child: Align(
-                                alignment: AlignmentDirectional.centerStart,
-                                child: Text(
-                                  mixLabel(s, mix),
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
+                  );
+                },
+              ),
+            ListenableBuilder(
+              listenable: player,
+              builder: (context, _) {
+                final mix = player.mix;
+                if (mix == null) return const SizedBox.shrink();
+                final s = AppLocalizations.of(context);
+                return ThemeLayerPaint(
+                  role: ThemeLayerRole.surface,
+                  child: SafeArea(
+                    top: false,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 16,
+                        vertical: 8,
+                      ),
+                      child: LayoutBuilder(
+                        builder: (context, constraints) => Row(
+                          children: [
+                            FocusPlayButton(player: player),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: TextButton(
+                                onPressed: widget.openFocus,
+                                child: Align(
+                                  alignment: AlignmentDirectional.centerStart,
+                                  child: Text(
+                                    mixLabel(s, mix),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                          if (constraints.maxWidth > 560)
-                            SizedBox(
-                              width: 200,
-                              child: FocusMaster(player: player, compact: true),
-                            )
-                          else
-                            IconButton(
-                              tooltip: player.muted
-                                  ? s.focusUnmute
-                                  : s.focusMute,
-                              onPressed: player.toggleMute,
-                              icon: Icon(
-                                player.muted
-                                    ? Icons.volume_off_outlined
-                                    : Icons.volume_up_outlined,
+                            if (constraints.maxWidth > 560)
+                              SizedBox(
+                                width: 200,
+                                child: FocusMaster(
+                                  player: player,
+                                  compact: true,
+                                ),
+                              )
+                            else
+                              IconButton(
+                                tooltip: player.muted
+                                    ? s.focusUnmute
+                                    : s.focusMute,
+                                onPressed: player.toggleMute,
+                                icon: Icon(
+                                  player.muted
+                                      ? Icons.volume_off_outlined
+                                      : Icons.volume_up_outlined,
+                                ),
                               ),
-                            ),
-                          if (player.failure != null)
+                            if (player.failure != null)
+                              IconButton(
+                                tooltip: player.failure == FocusFailure.audio
+                                    ? s.focusAudioError
+                                    : s.focusStorageError,
+                                onPressed: widget.openFocus,
+                                icon: const Icon(Icons.error_outline),
+                              ),
                             IconButton(
-                              tooltip: player.failure == FocusFailure.audio
-                                  ? s.focusAudioError
-                                  : s.focusStorageError,
+                              tooltip: s.focusMixer,
                               onPressed: widget.openFocus,
-                              icon: const Icon(Icons.error_outline),
+                              icon: const Icon(Icons.tune),
                             ),
-                          IconButton(
-                            tooltip: s.focusMixer,
-                            onPressed: widget.openFocus,
-                            icon: const Icon(Icons.tune),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              );
-            },
-          ),
-        ],
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

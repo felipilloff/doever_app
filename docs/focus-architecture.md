@@ -46,3 +46,45 @@ builds with `no_xiph_libs` because only PCM WAV decoding is needed.
 Focus reuses ThemeLayerPaint, ColorScheme and the existing localization catalogs.
 Timers, sessions, music, analytics, task timers and media-session integration are
 deliberately outside v1; TODO.md records those future decisions.
+
+
+## Focus v2 sessions
+
+`FocusSessionController` is owned by bootstrap and exposed through an app-scoped
+Riverpod provider. Only the session view and shell indicator listen to timer
+updates. The controller uses injected monotonic time (Stopwatch in production)
+and a one-second display heartbeat; it never decrements a seconds counter.
+Wall timestamps provide history and detect suspension. Gaps over 15 seconds or
+backwards wall-clock changes mark the session interrupted without counting the
+gap. This deliberately also pauses on long application stalls.
+
+Drift v5 adds only `focus_sessions`, with indexed start time and task reference.
+Typed session/configuration snapshots carry UUIDs, state, phase, cycle count,
+planned/actual duration, timestamps, optional task/label and soundscape snapshots.
+Task references deliberately have no cascading foreign key. Start, pause, resume,
+finish and interruption persist before publishing their transition. No per-second
+writes occur. A crash can lose work measured since the last transition, but does
+not count offline time; restoration always offers an interrupted session, never
+automatically playing audio. Normal close checkpoints the timer. Failed recovery
+blocks another start until recovery succeeds.
+
+Simple setup defaults and last soundscape ID use existing SharedPreferences.
+Session snapshots retain their Pomodoro configuration so a resumed cycle stays
+consistent. Completed Focus blocks prepare short/long breaks, and breaks prepare
+Focus. Each auto-start flag defaults off; cancelled blocks never advance a cycle.
+All cancellations remain in history for predictable retention. History queries
+show the most recent 100 entries without deleting older records.
+
+The session controller reuses FocusPlayer, TaskRepository and the existing
+notification adapter. Timer pause/finish/cancel never controls audio. Immediate
+Linux notifications use the existing plugin's Linux adapter; scheduled task
+reminders remain unsupported there. Notification failures cannot undo completion.
+The optional Complete Task action stays available during an auto-started break.
+
+Validation covers fake-clock transitions, suspension, recovery, task deletion,
+file-backed history, v1–v4 migrations, task/setup/Quick Focus/navigation widgets on
+Windows and Linux variants, and extreme/gradient themes with enlarged text.
+The native desktop integration scenario also includes task sessions and restart.
+The local Linux release build and native integration scenario pass with
+`GDK_BACKEND=x11 LIBGL_ALWAYS_SOFTWARE=1`; Windows runtime validation remains in TODO.md. Physical notifications/audio/sleep behavior
+require target-hardware checks.

@@ -8,4 +8,8 @@ abstract interface class ReminderService {
     required DateTime at,
   });
   Future<void> cancel(int id);
+  Future<void> showFocusCompletion({
+    required String title,
+    required String body,
+  });
 }

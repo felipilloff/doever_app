@@ -6,6 +6,14 @@ class FakeReminders implements ReminderService {
   bool allow = true, fail = false;
   int permissionRequests = 0;
   @override
+  Future<void> showFocusCompletion({
+    required String title,
+    required String body,
+  }) async {
+    if (fail) throw StateError('OS failed');
+  }
+
+  @override
   bool get supported => true;
   @override
   Future<bool> requestPermission() async {

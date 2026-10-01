@@ -1,3 +1,5 @@
+import '../features/focus/presentation/session_setup.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -40,6 +42,12 @@ class DoeverApp extends ConsumerWidget {
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
       builder: (context, child) => FocusShell(
+        openSession: () => router.push('/focus/session'),
+        quickFocus: () {
+          final navigatorContext =
+              router.routerDelegate.navigatorKey.currentContext;
+          if (navigatorContext != null) showFocusSetup(navigatorContext);
+        },
         openFocus: () {
           if (router.routeInformationProvider.value.uri.path != '/focus') {
             router.push('/focus');

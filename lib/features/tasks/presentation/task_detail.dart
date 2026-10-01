@@ -1,3 +1,7 @@
+import '../../focus/application/focus_providers.dart';
+import '../../focus/application/session_providers.dart';
+import '../../focus/presentation/session_setup.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -114,6 +118,14 @@ class TaskDetail extends ConsumerWidget {
             ),
           ],
         ),
+        if (supportsFocus &&
+            ref.watch(focusSessionProvider) != null &&
+            !task.isCompleted)
+          TextButton.icon(
+            onPressed: () => showFocusSetup(context, task: task),
+            icon: const Icon(Icons.timer_outlined),
+            label: const Text('Start Focus'),
+          ),
         SavedTextField(
           key: ValueKey('title-$id'),
           value: task.title,
